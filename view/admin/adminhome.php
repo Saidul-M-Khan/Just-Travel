@@ -4,11 +4,10 @@
 ?>
 
 <!DOCTYPE html>
-<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <!--<title> Responsive Sidebar Menu  | CodingLab </title>-->
     <link rel="stylesheet" href="../css/adminhome.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -23,17 +22,13 @@
     </div>
     <ul class="nav-list">
       <li>
-          <i class='bx bx-search' ></i>
-         <input type="text" placeholder="Search...">
-         <span class="tooltip">Search</span>
-      </li>
-      <li>
         <a href="#">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">Dashboard</span>
         </a>
          <span class="tooltip">Dashboard</span>
       </li>
+
       <li>
        <a href="#">
          <i class='bx bx-user' ></i>
@@ -43,49 +38,79 @@
      </li>
      <li>
        <a href="#">
-         <i class='bx bx-chat' ></i>
-         <span class="links_name">Messages</span>
+         <i class='bx bxs-hotel' ></i>
+         <span class="links_name">Hotel</span>
        </a>
-       <span class="tooltip">Messages</span>
+       <span class="tooltip">Hotel</span>
      </li>
      <li>
        <a href="#">
-         <i class='bx bx-pie-chart-alt-2' ></i>
-         <span class="links_name">Analytics</span>
+         <i class='bx bx-calendar-event' ></i>
+         <span class="links_name">Event</span>
        </a>
-       <span class="tooltip">Analytics</span>
+       <span class="tooltip">Event</span>
      </li>
      <li>
        <a href="#">
-         <i class='bx bx-folder' ></i>
-         <span class="links_name">File Manager</span>
+         <i class='bx bx-location-plus' ></i>
+         <span class="links_name">Place</span>
        </a>
-       <span class="tooltip">Files</span>
+       <span class="tooltip">Place</span>
      </li>
      <li>
        <a href="#">
-         <i class='bx bx-cart-alt' ></i>
-         <span class="links_name">Order</span>
+         <i class='bx bxs-offer' ></i>
+         <span class="links_name">Offers</span>
        </a>
-       <span class="tooltip">Order</span>
+       <span class="tooltip">Offers</span>
      </li>
      <li>
        <a href="#">
-         <i class='bx bx-heart' ></i>
-         <span class="links_name">Saved</span>
+         <i class='bx bx-bus' ></i>
+         <span class="links_name">Bus ticket</span>
        </a>
-       <span class="tooltip">Saved</span>
+       <span class="tooltip">Bus ticket</span>
      </li>
      <li>
        <a href="#">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Setting</span>
+         <i class='bx bxs-plane-alt' ></i>
+         <span class="links_name">Air ticket</span>
        </a>
-       <span class="tooltip">Setting</span>
+       <span class="tooltip">Air ticket</span>
      </li>
+     <li>
+       <a href="#">
+         <i class='bx bxs-ship' ></i>
+         <span class="links_name">lounch ticket</span>
+       </a>
+       <span class="tooltip">lounch ticket</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bxs-bookmark-plus' ></i>
+         <span class="links_name">Booking Info</span>
+       </a>
+       <span class="tooltip">Booking Info</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bx-money' ></i>
+         <span class="links_name">User Payment</span>
+       </a>
+       <span class="tooltip">User Payment</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bx-diamond' ></i>
+         <span class="links_name">Merchant Payment</span>
+       </a>
+       <span class="tooltip">Merchant Payment</span>
+     </li>
+
+
      <li class="profile">
          <div class="profile-details">
-           <!--<img src="profile.jpg" alt="profileImg">-->
+           <img src="../../assets/admin.png" alt="profileImg">-->
            <div class="name_job">
              <div class="name"><?php echo $_SESSION['username']; ?></div>
              <div class="job">Web designer</div>
@@ -95,9 +120,21 @@
      </li>
     </ul>
   </div>
+  
   <section class="home-section">
       <div class="text">Dashboard</div>
+
+      <div class="cards">
+        <div class="card-single">
+          <div>
+            <h3> crad 1</h3>
+            <h4> details</h4>
+          </div>
+        </div>
+      </div>
+
   </section>
+
   <script>
   let sidebar = document.querySelector(".sidebar");
   let closeBtn = document.querySelector("#btn");
@@ -124,8 +161,6 @@
   </script>
 </body>
 </html>
-
-
 
 <?php
 	}else{

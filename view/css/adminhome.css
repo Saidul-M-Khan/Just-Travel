@@ -16,6 +16,7 @@
   padding: 6px 14px;
   z-index: 99;
   transition: all 0.5s ease;
+  overflow-x: hidden;
 }
 .sidebar.open{
   width: 250px;
@@ -56,6 +57,7 @@
 .sidebar.open .logo-details #btn{
   text-align: right;
 }
+
 .sidebar i{
   color: #fff;
   height: 60px;
@@ -224,7 +226,7 @@
 }
 .home-section{
   position: relative;
-  background: #E4E9F7;
+  background: #ffeded;
   min-height: 100vh;
   top: 0;
   left: 78px;
@@ -247,4 +249,16 @@
   .sidebar li .tooltip{
     display: none;
   }
+}
+/* cards*/
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+}
+
+.card-single {
+  display: flex;
+  justify-content:space-between;
+  background: #ffff;
 }
