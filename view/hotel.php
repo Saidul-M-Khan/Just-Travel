@@ -237,7 +237,7 @@ if (isset($_COOKIE['flag'])) {
 
 
             <?php
-            require("../control/db.php");
+            require("../model/db.php");
 
             $query = "SELECT * FROM hotel";
             $query_run = mysqli_query($connection, $query);

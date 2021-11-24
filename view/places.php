@@ -75,7 +75,7 @@ if (isset($_COOKIE['flag'])) {
 
             <div class="cards">
                 <?php
-                require("../control/db.php");
+                require("../model/db.php");
 
                 $query = "SELECT * FROM places";
                 $query_run = mysqli_query($connection, $query);

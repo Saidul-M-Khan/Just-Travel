@@ -96,7 +96,7 @@ if (isset($_COOKIE['flag'])) {
             </center>
             <div class="cards">
                 <?php
-                require("../control/db.php");
+                require("../model/db.php");
 
                 $query = "SELECT * FROM event_ticket";
                 $query_run = mysqli_query($connection, $query);

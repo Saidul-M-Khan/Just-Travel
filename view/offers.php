@@ -64,7 +64,7 @@ if (isset($_COOKIE['flag'])) {
                 <h1>OFFERS</h1>
             </center>
             <?php
-            require("../control/db.php");
+            require("../model/db.php");
 
             $query = "SELECT * FROM offers";
             $query_run = mysqli_query($connection, $query);
