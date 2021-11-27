@@ -6,8 +6,8 @@ body {
 }
 
 .search {
-    position: relative;
-    top: -400px;
+    /* position: relative;
+    top: -400px; */
 }
 
 label {
@@ -71,11 +71,6 @@ label {
 
 .search-by-component {
     margin-left: 20px;
-}
-
-.content{
-    position: relative;
-    top: -100px;
 }
 
 
