@@ -5,7 +5,22 @@ html, body {
   
   .pic-ctn {
     width: 100vw;
-    height: 200px;
+    height: 400px;
+    position: relative;
+    top: -100px;
+    width: 55vw;
+    height: 250px;
+    margin-top: 7vh;
+    margin-bottom: 10vh;
+    /* margin-top: 15vh; */
+  }
+
+  .pic-ctn > img {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 100px);
+    opacity: 0;
+    animation: display 10s infinite;
   }
   
   @keyframes display {
@@ -29,21 +44,6 @@ html, body {
       transform: translateX(-200px);
       opacity: 0;
     }
-  }
-  
-  .pic-ctn {
-    position: relative;
-    width: 55vw;
-    height: 300px;
-    margin-top: 15vh;
-  }
-  
-  .pic-ctn > img {
-    position: absolute;
-    top: 0;
-    left: calc(50% - 100px);
-    opacity: 0;
-    animation: display 10s infinite;
   }
   
   img:nth-child(2) {

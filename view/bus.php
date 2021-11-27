@@ -94,22 +94,22 @@ if (isset($_COOKIE['flag'])) {
                     </div>
                 </div>
 
-                <section class="bus-ticket-slider">
+                <section class="bus-ticket-slider" style="margin-bottom: 150px;">
                     <center>
                         <h2>AVAILABLE PACKAGES</h2>
                     </center>
 
-                    <div class="pic-ctn">
-                        <img src="./images/bus-ticket-packages/package-1.png" alt="" class="pic" width="300px">
-                        <img src="./images/bus-ticket-packages/package-2.png" alt="" class="pic" width="300px">
-                        <img src="./images/bus-ticket-packages/package-3.png" alt="" class="pic" width="300px">
-                        <img src="./images/bus-ticket-packages/package-4.png" alt="" class="pic" width="300px">
-                        <img src="./images/bus-ticket-packages/package-5.png" alt="" class="pic" width="300px">
-                        <img src="./images/bus-ticket-packages/package-6.png" alt="" class="pic" width="300px">
-                        <img src="./images/bus-ticket-packages/package-7.png" alt="" class="pic" width="300px">
-                        <img src="./images/bus-ticket-packages/package-8.png" alt="" class="pic" width="300px">
-                        <img src="./images/bus-ticket-packages/package-9.png" alt="" class="pic" width="300px">
-                        <img src="./images/bus-ticket-packages/package-10.png" alt="" class="pic" width="300px">
+                    <div class="pic-ctn" style="margin-top: 50px;">
+                        <img src="./images/bus-ticket-packages/package-1.png" alt="" class="pic" width="600px">
+                        <img src="./images/bus-ticket-packages/package-2.png" alt="" class="pic" width="600px">
+                        <img src="./images/bus-ticket-packages/package-3.png" alt="" class="pic" width="600px">
+                        <img src="./images/bus-ticket-packages/package-4.png" alt="" class="pic" width="600px">
+                        <img src="./images/bus-ticket-packages/package-5.png" alt="" class="pic" width="600px">
+                        <img src="./images/bus-ticket-packages/package-6.png" alt="" class="pic" width="600px">
+                        <img src="./images/bus-ticket-packages/package-7.png" alt="" class="pic" width="600px">
+                        <img src="./images/bus-ticket-packages/package-8.png" alt="" class="pic" width="600px">
+                        <img src="./images/bus-ticket-packages/package-9.png" alt="" class="pic" width="600px">
+                        <img src="./images/bus-ticket-packages/package-10.png" alt="" class="pic" width="600px">
                     </div>
                 </section>
 

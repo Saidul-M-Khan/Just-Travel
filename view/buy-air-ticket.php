@@ -15,55 +15,136 @@ if (isset($_COOKIE['flag'])) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+        <link rel="stylesheet" href="./styles/header.css">
+        <link rel="stylesheet" href="./styles/banner.css">
+        <link rel="stylesheet" href="./styles/text-animation.css">
+        <link rel="stylesheet" href="./styles/search.css">
+        <link rel="stylesheet" href="./styles/ticket.css">
+        <link rel="stylesheet" href="./styles/footer.css">
         <style>
             * {
                 font-family: 'Poppins', sans-serif;
             }
         </style>
 
-        <title>Air Ticket Info</title>
+        <title>Buy Air Ticket</title>
     </head>
 
     <body>
-        <?php include 'header.php'; ?>
+        <header>
+            <?php include './header.php'; ?>
+            <div class="banner wrapper">
+                <div class="container">
+                    <h1 class="typing-effect">Most Reliable Air Ticket Solution</h1>
+                    <h2>No. 1 online Ticketing Network</h2>
+
+                </div>
+            </div>
+        </header>
 
         <main>
-            <fieldset style="width:35%; margin:0 auto; margin-top: 35px;">
-                <form action="">
-                    <label for="">From:</label>
-                    <select name="" id="">
-                        <option value="dhaka">Dhaka</option>
-                        <option value="chittagong">Chittagong</option>
-                        <option value="barisal">Barisal</option>
-                        <option value="joshore">Joshore</option>
-                        <option value="saiadpur">Saiadpur</option>
-                        <option value="rajshahi">Rajshahi</option>
-                        <option value="cox-bazar">Cox's Bazar</option>
-                        <option value="sylhet">Sylhet</option>
-                    </select>
+            <center>
+                <div class="search">
+                    <center>
+                        <h2 class="search-title">SEARCH PLANE</h2>
+                    </center>
+                    <div class="search-bar">
+                        <form action="">
+                            <span id="start" class="search-by-component">
+                                <label for="">From:</label>
+                                <select name="" id="" class="search-input">
+                                    <option value="dhaka">Dhaka</option>
+                                    <option value="chittagong">Chittagong</option>
+                                    <option value="barisal">Barisal</option>
+                                    <option value="joshore">Joshore</option>
+                                    <option value="saiadpur">Saiadpur</option>
+                                    <option value="rajshahi">Rajshahi</option>
+                                    <option value="cox-bazar">Cox's Bazar</option>
+                                    <option value="sylhet">Sylhet</option>
+                                </select>
+                            </span>
 
-                    <label for="">To:</label>
-                    <select name="" id="">
-                        <option value="dhaka">Dhaka</option>
-                        <option value="chittagong">Chittagong</option>
-                        <option value="barisal">Barisal</option>
-                        <option value="joshore">Joshore</option>
-                        <option value="saiadpur">Saiadpur</option>
-                        <option value="rajshahi">Rajshahi</option>
-                        <option value="cox-bazar">Cox's Bazar</option>
-                        <option value="sylhet">Sylhet</option>
-                    </select>
-
-                    <label for="">JOURNEY DATE:</label>
-                    <input type="date" id="journey-date" name="journey-date">
-
-                    <input type="submit" value="Submit">
-                </form>
-            </fieldset>
+                            <span id="end" class="search-by-component">
+                                <label for="">To:</label>
+                                <select name="" id="" class="search-input">
+                                    <option value="dhaka">Dhaka</option>
+                                    <option value="chittagong">Chittagong</option>
+                                    <option value="barisal">Barisal</option>
+                                    <option value="joshore">Joshore</option>
+                                    <option value="saiadpur">Saiadpur</option>
+                                    <option value="rajshahi">Rajshahi</option>
+                                    <option value="cox-bazar">Cox's Bazar</option>
+                                    <option value="sylhet">Sylhet</option>
+                                </select>
+                            </span>
 
 
+                            <span class="search-by-component" id="journey-date">
+                                <label for="">JOURNEY DATE:</label>
+                                <input type="date" id="journey-date" name="journey-date" class="search-input">
+                            </span>
 
-            <fieldset style="width: 70%; margin:0 auto; margin-top: 25px;">
+                            <input type="submit" value="Submit" class="search-btn">
+                        </form>
+                    </div>
+
+                </div>
+
+            </center>
+
+
+            <section class="tickets">
+                <?php
+                require("../model/db.php");
+
+                $query = "SELECT * FROM air_ticket";
+                $query_run = mysqli_query($connection, $query);
+                $check_ticket = mysqli_num_rows($query_run) > 0;
+
+                if ($check_ticket) {
+                    while ($row = mysqli_fetch_assoc($query_run)) {
+                ?>
+
+                        <div class="ticket-card">
+                            <div class="meta">
+                                <div class="photo" style="background-image: url(<?php echo $row['image']; ?>);"></div>
+                            </div>
+                            <div class="description">
+                                <img src="<?php echo $row['airline_image']; ?>" alt="" height="80px" width="80px">
+                                <h1><?php echo $row['airline_name']; ?></h1>
+                                <h2><i style="color:black" class="ticket-icon fas fa-route"></i>&nbsp;&nbsp;&nbsp;<strong>Route:&nbsp;</strong><?php echo $row['plane_start_location']; ?>&nbsp;<i style="color:black" class="ticket-icon fas fa-arrow-right"></i>&nbsp;<?php echo $row['plane_end_location']; ?></h2>
+                                <h2><i style="color:black" class="fas fa-plane"></i>&nbsp;&nbsp;&nbsp;<strong>Flight:&nbsp;</strong><?php echo $row['flight_no']; ?></h2>
+                                <p><i style="color:black" class="ticket-icon far fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;<strong>Journey Date:&nbsp;</strong><?php echo $row['plane_journey_date']; ?></p>
+                                <p><i style="color:black" class="ticket-icon fas fa-ticket-alt"></i>&nbsp;&nbsp;&nbsp;<strong>Ticket Type:&nbsp;</strong><?php echo $row['air_ticket_type']; ?></p>
+                                <p><i style="color:black" class="fas fa-plane-arrival"></i>&nbsp;&nbsp;&nbsp;<strong>Arrival Time:&nbsp;</strong><?php echo $row['plane_arrival_time']; ?></p>
+                                <p><i style="color:black" class="fas fa-plane-departure"></i>&nbsp;&nbsp;&nbsp;<strong>Departure Time:&nbsp;</strong><?php echo $row['plane_departure_time']; ?></p>
+                                <p><i style="color:black" class="ticket-icon fas fa-check-square"></i>&nbsp;&nbsp;&nbsp;<strong>Available Seat:&nbsp;</strong><?php echo $row['plane_available_seat']; ?></p>
+                                <p><i style="color:black" class="ticket-icon fas fa-hand-holding-usd"></i>&nbsp;&nbsp;&nbsp;<strong>Price:&nbsp;</strong><span style="color: red; font-weight: 700; font-size: 25px; line-height: 25px;">৳<?php echo $row['air_ticket_price']; ?></span></p>
+                                <p class="qty">
+                                    <!-- <label for="qty">Quantity:</label> -->
+                                    <!-- <button class="qtyminus" aria-hidden="true">&minus;</button> -->
+                                    <strong style="font-size: 20px;">Quantity:&nbsp;</strong>&nbsp;&nbsp;&nbsp;<input type="number" name="qty" class="qty" id="qty" min="1" max="<?php echo $row['plane_available_seat']; ?>" step="1" value="1">
+                                    <!-- <button class="qtyplus" aria-hidden="true">&plus;</button> -->
+                                </p>
+                                <button class="ticket-buy-btn" role="button" style="margin-top:15px;"><i style="color:white" class="ticket-icon fas fa-shopping-cart"></i>&nbsp;&nbsp;Buy</button>
+                            </div>
+                        </div>
+
+                <?php
+
+
+                    }
+                } else {
+                    echo "No ticket found";
+                }
+
+                ?>
+
+            </section>
+
+
+
+            <!-- <fieldset style="width: 70%; margin:0 auto; margin-top: 25px;">
                 <table style="width:100%; margin:0 auto; margin-top: 25px;">
                     <tbody>
                         <tr>
@@ -129,9 +210,9 @@ if (isset($_COOKIE['flag'])) {
                         </tr>
                     </tbody>
                 </table>
-            </fieldset>
+            </fieldset> -->
 
-            <fieldset style="width: 70%; margin:0 auto; margin-top: 25px;">
+            <!-- <fieldset style="width: 70%; margin:0 auto; margin-top: 25px;">
                 <table style="width:100%; margin:0 auto; margin-top: 25px;">
                     <tbody>
                         <tr>
@@ -197,9 +278,9 @@ if (isset($_COOKIE['flag'])) {
                         </tr>
                     </tbody>
                 </table>
-            </fieldset>
+            </fieldset> -->
 
-            <fieldset style="width: 70%; margin:0 auto; margin-top: 25px;">
+            <!-- <fieldset style="width: 70%; margin:0 auto; margin-top: 25px;">
                 <table style="width:100%; margin:0 auto; margin-top: 25px;">
                     <tbody>
                         <tr>
@@ -266,7 +347,6 @@ if (isset($_COOKIE['flag'])) {
                     </tbody>
                 </table>
             </fieldset>
-
 
             <fieldset style="width: 70%; margin:0 auto; margin-top: 25px;">
                 <table style="width:100%; margin:0 auto; margin-top: 25px;">
@@ -335,9 +415,9 @@ if (isset($_COOKIE['flag'])) {
                         </tr>
                     </tbody>
                 </table>
-            </fieldset>
+            </fieldset> -->
 
-            <fieldset style="width: 70%; margin:0 auto; margin-top: 25px;">
+            <!-- <fieldset style="width: 70%; margin:0 auto; margin-top: 25px;">
                 <table style="width:100%; margin:0 auto; margin-top: 25px;">
                     <tbody>
                         <tr>
@@ -405,7 +485,6 @@ if (isset($_COOKIE['flag'])) {
                     </tbody>
                 </table>
             </fieldset>
-
 
             <fieldset style="width: 70%; margin:0 auto; margin-top: 25px;">
                 <table style="width:100%; margin:0 auto; margin-top: 25px;">
@@ -476,7 +555,6 @@ if (isset($_COOKIE['flag'])) {
                 </table>
             </fieldset>
 
-
             <fieldset style="width: 70%; margin:0 auto; margin-top: 25px;">
                 <table style="width:100%; margin:0 auto; margin-top: 25px;">
                     <tbody>
@@ -544,10 +622,15 @@ if (isset($_COOKIE['flag'])) {
                         </tr>
                     </tbody>
                 </table>
-            </fieldset>
+            </fieldset> -->
         </main>
 
-        <?php include 'footer.php'; ?>
+        <footer>
+            <?php include 'footer.php'; ?>
+        </footer>
+
+        <script src="./js/header.js"></script>
+        <script src="./js/quantity.js"></script>
 
     </body>
 

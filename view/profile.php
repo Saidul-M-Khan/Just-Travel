@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_COOKIE['flag'])) {
-    require("../control/db.php");
+    require("../model/db.php");
     // $Username = $_SESSION['username'];
     // $query = "SELECT * FROM users where user_username='Saidul_Khan'";
     $query = "SELECT * FROM users where username='Saidul_Khan'";
@@ -59,12 +59,12 @@ if (isset($_COOKIE['flag'])) {
                 </center>
                 <br>
                 <br>
-                <p><strong><i class="far fa-user-circle"></i>&nbsp;&nbsp;&nbsp;Username:</strong>&nbsp;<?php echo $row['username']; ?></p>
+                <p><strong><i style="color:cyan" class="far fa-user-circle"></i>&nbsp;&nbsp;&nbsp;Username:</strong>&nbsp;<?php echo $row['username']; ?></p>
                 <!-- <br> -->
-                <p><strong><i class="fas fa-lock"></i>&nbsp;&nbsp;&nbsp;Password:</strong>&nbsp;<?php echo $row['password']; ?>
+                <p><strong><i style="color:cyan" class="fas fa-lock"></i>&nbsp;&nbsp;&nbsp;Password:</strong>&nbsp;<?php echo $row['password']; ?>
                 </p>
                 <!-- <br> -->
-                <p><strong><i class="fas fa-at"></i>&nbsp;&nbsp;&nbsp;Email:</strong>&nbsp;<?php echo $row['email']; ?>
+                <p><strong><i style="color:cyan" class="fas fa-at"></i>&nbsp;&nbsp;&nbsp;Email:</strong>&nbsp;<?php echo $row['email']; ?>
                 </p>
                 <!-- <br> -->
                 <!-- <p><strong><i class="fas fa-venus-mars"></i>&nbsp;&nbsp;&nbsp;Gender:</strong>&nbsp;<?php

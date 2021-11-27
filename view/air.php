@@ -96,18 +96,18 @@ if (isset($_COOKIE['flag'])) {
 
 
 
-                <section class="air-ticket-slider">
+                <section class="air-ticket-slider" style="margin-bottom: 200px;">
                     <center>
                         <h2>AVAILABLE PACKAGES</h2>
                     </center>
 
-                    <div class="pic-ctn">
-                        <img src="./images/air-ticket-packages/air-ticket-1.png" alt="" class="pic" width="300px">
-                        <img src="./images/air-ticket-packages/air-ticket-2.png" alt="" class="pic" width="300px">
-                        <img src="./images/air-ticket-packages/air-ticket-3.png" alt="" class="pic" width="300px">
-                        <img src="./images/air-ticket-packages/air-ticket-4.png" alt="" class="pic" width="300px">
-                        <img src="./images/air-ticket-packages/air-ticket-5.png" alt="" class="pic" width="300px">
-                        <img src="./images/air-ticket-packages/air-ticket-6.png" alt="" class="pic" width="300px">
+                    <div class="pic-ctn" style="margin-top: 50px;">
+                        <img src="./images/air-ticket-packages/air-ticket-1.png" alt="" class="pic" width="500px">
+                        <img src="./images/air-ticket-packages/air-ticket-2.png" alt="" class="pic" width="500px">
+                        <img src="./images/air-ticket-packages/air-ticket-3.png" alt="" class="pic" width="500px">
+                        <img src="./images/air-ticket-packages/air-ticket-4.png" alt="" class="pic" width="500px">
+                        <img src="./images/air-ticket-packages/air-ticket-5.png" alt="" class="pic" width="500px">
+                        <img src="./images/air-ticket-packages/air-ticket-6.png" alt="" class="pic" width="500px">
                     </div>
                 </section>
 

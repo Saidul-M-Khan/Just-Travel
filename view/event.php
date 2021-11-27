@@ -51,7 +51,7 @@ if (isset($_COOKIE['flag'])) {
                 padding: 2px 16px;
             }
 
-            .button-33 {
+            .event-ticket-buy-btn {
                 background-color: #c2fbd7;
                 border-radius: 100px;
                 box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
@@ -70,7 +70,7 @@ if (isset($_COOKIE['flag'])) {
                 touch-action: manipulation;
             }
 
-            .button-33:hover {
+            .event-ticket-buy-btn:hover {
                 box-shadow: rgba(44, 187, 99, .35) 0 -25px 18px -14px inset, rgba(44, 187, 99, .25) 0 1px 2px, rgba(44, 187, 99, .25) 0 2px 4px, rgba(44, 187, 99, .25) 0 4px 8px, rgba(44, 187, 99, .25) 0 8px 16px, rgba(44, 187, 99, .25) 0 16px 32px;
                 transform: scale(1.05) rotate(-1deg);
             }
@@ -123,7 +123,7 @@ if (isset($_COOKIE['flag'])) {
                                     <h2>Price: <span style="color:red;">৳<?php echo $row['event_ticket_price']; ?></span></h2>
                                 </div>
                                 <div style="margin: 25px 10px 25px 10px;">
-                                    <button class="button-33" role="button">SEE DETAILS</button>
+                                    <button class="event-ticket-buy-btn" role="button">SEE DETAILS</button>
                                 </div>
                             </div>
                         </div>

@@ -83,7 +83,8 @@ label {
     border-radius: 10px;
     width: 100%;
     margin: 0 auto;
-    padding: 15px;
+    padding: 25px;
+    margin-right: 35px;
     background-color: #fff;
     line-height: 50px;
 }

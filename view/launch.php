@@ -92,16 +92,14 @@ if (isset($_COOKIE['flag'])) {
                     </div>
                 </div>
 
-
-                <div style="width:100%; margin:0 auto;">
+                <div style="width:100%; margin:0 auto; position: relative; top:-100px;">
                     <center>
                         <iframe width="1200" height="720" src="https://www.youtube.com/embed/nhwtKxTDrRY?list=PL4pcb3feGRyYbJdcz1XnnpF_zpi9R75vw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </center>
 
                 </div>
 
-
-                <div class="launch-routes">
+                <div class="launch-routes" style="position: relative; top: -100px;">
                     <center>
                         <table>
                             <thead>
@@ -150,7 +148,7 @@ if (isset($_COOKIE['flag'])) {
                 </div>
 
 
-                <div style="width:100%; margin:0 auto; margin-top: 100px; margin-bottom:50px; background: white; border:2px solid blueviolet; border-radius: 10px; padding: 30px;">
+                <div style="width:100%; margin:0 auto; margin-top: 100px; margin-bottom:50px; background: white; border:2px solid blueviolet; border-radius: 10px; padding: 30px; position: relative; top: -100px;">
 
                     <center>
                         <h1>We Accept</h1>
