@@ -25,15 +25,14 @@ if (isset($_COOKIE['flag'])) {
             .offer {
                 width: 90%;
                 height: auto;
-                background-color: #fff;
                 border-radius: 10px;
                 padding: 25px;
                 margin: 100px;
-                border: 2px solid blueviolet;
-                background: #FC5C7D;
-                background: -webkit-linear-gradient(to left, #6A82FB, #FC5C7D);
-                background: linear-gradient(to left, #6A82FB, #FC5C7D);
-                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+                border: 2px solid black;
+                box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
+                background: #0575E6;
+                background: -webkit-linear-gradient(to left, #021B79, #0575E6);
+                background: linear-gradient(to left, #021B79, #0575E6);
             }
 
             .offer:hover {
@@ -42,6 +41,12 @@ if (isset($_COOKIE['flag'])) {
 
             td {
                 padding: 10px;
+            }
+
+            ul>h2,
+            p,
+            strong {
+                color: white;
             }
         </style>
     </head>
@@ -63,59 +68,56 @@ if (isset($_COOKIE['flag'])) {
             <center>
                 <h1>OFFERS</h1>
             </center>
-            <?php
-            require("../model/db.php");
+            <div class="offers">
+                <?php
+                require("../model/db.php");
 
-            $query = "SELECT * FROM offers";
-            $query_run = mysqli_query($connection, $query);
-            $check_offer = mysqli_num_rows($query_run) > 0;
+                $query = "SELECT * FROM offers";
+                $query_run = mysqli_query($connection, $query);
+                $check_offer = mysqli_num_rows($query_run) > 0;
 
-            if ($check_offer) {
-                while ($row = mysqli_fetch_assoc($query_run)) {
-            ?>
-                    <div class="offer">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <ul>
-                                            <dl>
+                if ($check_offer) {
+                    while ($row = mysqli_fetch_assoc($query_run)) {
+                ?>
+                        <div class="offer">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <ul>
                                                 <h2><?php echo $row['offer_title']; ?></h2>
-                                            </dl>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <ul>
-                                            <dl>
-                                                <strong><?php echo $row['offer_summary']; ?></strong>
-                                            </dl>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <ul>
-                                            <dl>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
+                                                <p><strong><?php echo $row['offer_summary']; ?></strong></p>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
                                                 <p><?php echo $row['offer_details']; ?></p>
-                                            </dl>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <ul>
-                                            <?php echo $row['offer_rules']; ?>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
+                                                <p><?php echo $row['offer_rules']; ?></p>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                 <?php
 
 
+                    }
+                } else {
+                    echo "No offer found";
                 }
-            } else {
-                echo "No offer found";
-            }
 
                 ?>
-                    </div>
+            </div>
         </main>
 
         <footer>

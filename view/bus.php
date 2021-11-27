@@ -99,7 +99,7 @@ if (isset($_COOKIE['flag'])) {
                         <h2>AVAILABLE PACKAGES</h2>
                     </center>
 
-                    <div class="pic-ctn" style="margin-top: 50px;">
+                    <div class="pic-ctn" style="margin-top: 50px; position: relative; right: 100px;">
                         <img src="./images/bus-ticket-packages/package-1.png" alt="" class="pic" width="600px">
                         <img src="./images/bus-ticket-packages/package-2.png" alt="" class="pic" width="600px">
                         <img src="./images/bus-ticket-packages/package-3.png" alt="" class="pic" width="600px">

@@ -86,7 +86,7 @@ if (isset($_COOKIE['flag'])) {
                 ?>
 
                         <div class="card">
-                            <img src="<?php echo $row['place_image']; ?>" alt="" style="width:100%">
+                            <img src="<?php echo $row['place_image']; ?>" alt="" style="width:100%" width="547px" height="307px">
                             <div class="card-container">
                                 <h1><?php echo $row['place_name']; ?></h1>
 
