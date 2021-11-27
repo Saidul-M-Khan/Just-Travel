@@ -1,7 +1,27 @@
 <?php
 session_start();
+require_once('../model/model.php');
+$id = $_REQUEST['id'];
+$user = getUserById($id);
 if (isset($_COOKIE['flag'])) {
+    require("../model/db.php");
+    // $Username = $_SESSION['username'];
+    // $query = "SELECT * FROM users where user_username='Saidul_Khan'";
+    // $query = "SELECT * FROM users where username='Saidul_Khan'";
+    // $query_run = mysqli_query($connection, $query);
+
+    // check if profile exists
+    // if (mysqli_num_rows($query_run) > 0) {
+    //     $row = mysqli_fetch_assoc($query_run);
+    // }
+
+
+
+
+
+
 ?>
+
     <!DOCTYPE html>
     <html lang="en">
 
@@ -14,74 +34,105 @@ if (isset($_COOKIE['flag'])) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+        <link rel="stylesheet" href="./styles/header.css">
+        <link rel="stylesheet" href="./styles/banner.css">
+        <link rel="stylesheet" href="./styles/footer.css">
+        <link rel="stylesheet" href="./styles/text-animation.css">
+        <link rel="stylesheet" href="./styles/profile.css">
         <title>Edit Profile</title>
-        <style>
-            * {
-                font-family: 'Poppins', sans-serif;
-            }
-        </style>
+
     </head>
 
     <body>
-
-        <?php include 'header.php'; ?>
+        <header>
+            <?php include './header.php'; ?>
+        </header>
 
         <main>
-            <center>
-                <h1>EDIT PROFILE</h1>
-            </center>
-            <fieldset style="margin: 0 auto; margin-top: 25px; width: 35%;">
-                <center>
-                    <img src="./images/users-profile-picture/user-1.png" alt="" width="50%" height="auto">
+            <form method="post" action="../control/updateUserInfo.php">
+                <div class="profile">
+
+                    <center>
+                        <h1 style="color:cyan; margin-bottom:15px;">[ Edit PROFILE ]</h1>
+                    </center>
+                    <center>
+                        <?php if (empty($row['photo'])) { ?>
+                            <img src="./images/user.png" width="45%">
+                        <?php } else { ?>
+                            <img src="<?php echo $row['photo']; ?>" alt="" width="45%" height="auto" style="border: 2px solid blueviolet; border-radius:50%;">
+                        <?php } ?>
+                        <br>
+                        <!-- <input type="file" name="fileToUpload" id="fileToUpload"><br><br><span style="color:red"> -->
+                        <?php
+                        // if ($ImageError != "") {
+                        //     echo $ImageError;
+                        // }
+
+                        ?>
+                        </span>
+                        <!-- <input type="button" value="Upload Profile Picture"> -->
+                        <br>
+                        <h1>
+                            <?php
+                            // echo $row['user_fname']; 
+                            ?>
+                        </h1>
+                    </center>
                     <br>
-                    <button>Change Profile Picture</button>
-                    <br>
-                    <p><strong>Name: </strong>&nbsp;<input type="text" placeholder="Enter your name"></p>
-                </center>
-                <br>
-                <hr>
-                <p><strong>Username:</strong>&nbsp;<input type="text" placeholder="Enter your Username"></p>
-                <hr>
-                <p><strong>Password:</strong>&nbsp;<input type="password" placeholder="Enter your Password"></p>
-                <hr>
-                <p><strong>Confirm Password:</strong>&nbsp;<input type="password" placeholder="Enter your Password again"></p>
-                <hr>
-                <p><strong>Email:</strong>&nbsp;<input type="email" placeholder="Enter your email address"></p>
-                <hr>
-                <p>
-                    <strong>Gender:</strong>&nbsp;
-                    <select name="" id="">
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                </p>
-                <hr>
-                <p><strong>Phone Number:</strong>&nbsp;<input type="text" placeholder="Enter your Phone Number"></p>
-                <hr>
-                <p><strong>Address:</strong>&nbsp;
-                    <textarea name="" id="" cols="30" rows="5" placeholder="Enter your address"></textarea>
-                </p>
-                <hr>
-                <center>
-                    <fieldset style="width:120px;">
-                        <a href="profile.php" style="text-decoration:none; color:black"><i class="fas fa-check-circle"></i>&nbsp;Submit</a>
-                    </fieldset>
-                    <fieldset style="width:10%; margin-top:10px;">
-                        <a href="profile.php" style="text-decoration:none; color:black"><i class="fas fa-arrow-circle-left"></i>&nbsp;Back</a>
-                    </fieldset>
-                </center>
 
-
-
-            </fieldset>
+                    <p><strong><i style="color:cyan" class="far fa-user-circle"></i>&nbsp;&nbsp;&nbsp;Username:</strong>&nbsp;<input type="text" name="username" id="" value="<?= $user['username'] ?>"></p>
+                    <!-- <br> -->
+                    <p><strong><i style="color:cyan" class="fas fa-lock"></i>&nbsp;&nbsp;&nbsp;Password:</strong>&nbsp;<input type="text" name="password" id="" value="<?= $user['password'] ?>">
+                    </p>
+                    <!-- <br> -->
+                    <p><strong><i style="color:cyan" class="fas fa-at"></i>&nbsp;&nbsp;&nbsp;Email:</strong>&nbsp;<input type="email" name="email" id="" value="<?= $user['email'] ?>">
+                    </p>
+                    <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                    <!-- <br> -->
+                    <!-- <p><strong><i class="fas fa-venus-mars"></i>&nbsp;&nbsp;&nbsp;Gender:</strong>&nbsp;<?php
+                                                                                                                // echo $row['user_gender']; 
+                                                                                                                ?>
+    </p> -->
+                    <!-- <br> -->
+                    <!-- <p><strong><i class="fas fa-baby"></i>&nbsp;&nbsp;&nbsp;Date of
+            Birth:</strong>&nbsp;<?php
+                                    // echo $row['user_dob']; 
+                                    ?></p> -->
+                    <!-- <br> -->
+                    <!-- <p><strong><i class="fas fa-house-user"></i>&nbsp;&nbsp;&nbsp;Address:</strong>&nbsp;383/1 Free School Street, Dhanmondi, Dhaka-1205</p> -->
+                    <!-- <br> -->
+                    <center>
+                        <!-- <fieldset style="width:120px;">
+            <a href="edit-profile.php" style="text-decoration:none; color:white"><i class="far fa-edit"></i>&nbsp;Edit Profile</a>
+        </fieldset> -->
+                        <button class="button-62" role="button">Submit</button>
+                        <!-- <fieldset style="width:35%; margin-top: 10px;">
+            <a href="order-status.php" style="text-decoration:none; color:white"><i class="fas fa-shopping-cart"></i>&nbsp;See Order Status</a>
+        </fieldset> -->
+                        <!-- <button class="button-62" role="button">See Order Status</button> -->
+                    </center>
+                </div>
+            </form>
         </main>
 
-        <?php include 'footer.php'; ?>
+
+
+
+
+
+        <footer>
+            <?php
+            include './footer.php';
+            ?>
+        </footer>
+
+        <script src="./js/header.js"></script>
+
 
     </body>
 
     </html>
+
 <?php
 } else {
     header('location: ../control/login.php');

@@ -18,63 +18,10 @@ if (isset($_COOKIE['flag'])) {
         <link rel="stylesheet" href="./styles/banner.css">
         <link rel="stylesheet" href="./styles/footer.css">
         <link rel="stylesheet" href="./styles/text-animation.css">
+        <link rel="stylesheet" href="./styles/event.css">
+        <!-- <link rel="stylesheet" href="./styles/event-details.css"> -->
         <title>Events</title>
-        <style>
-            * {
-                font-family: 'Poppins', sans-serif;
-            }
 
-            .cards {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                grid-auto-rows: auto;
-                grid-gap: 2rem;
-                margin: 100px;
-            }
-
-            .card {
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-                transition: 0.3s;
-                width: 100%;
-                border-radius: 5px;
-            }
-
-            .card:hover {
-                box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-            }
-
-            img {
-                border-radius: 5px 5px 0 0;
-            }
-
-            .card-container {
-                padding: 2px 16px;
-            }
-
-            .event-ticket-buy-btn {
-                background-color: #c2fbd7;
-                border-radius: 100px;
-                box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
-                color: green;
-                cursor: pointer;
-                display: inline-block;
-                font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
-                padding: 7px 20px;
-                text-align: center;
-                text-decoration: none;
-                transition: all 250ms;
-                border: 0;
-                font-size: 16px;
-                user-select: none;
-                -webkit-user-select: none;
-                touch-action: manipulation;
-            }
-
-            .event-ticket-buy-btn:hover {
-                box-shadow: rgba(44, 187, 99, .35) 0 -25px 18px -14px inset, rgba(44, 187, 99, .25) 0 1px 2px, rgba(44, 187, 99, .25) 0 2px 4px, rgba(44, 187, 99, .25) 0 4px 8px, rgba(44, 187, 99, .25) 0 8px 16px, rgba(44, 187, 99, .25) 0 16px 32px;
-                transform: scale(1.05) rotate(-1deg);
-            }
-        </style>
     </head>
 
     <body>
@@ -123,10 +70,30 @@ if (isset($_COOKIE['flag'])) {
                                     <h2>Price: <span style="color:red;">৳<?php echo $row['event_ticket_price']; ?></span></h2>
                                 </div>
                                 <div style="margin: 25px 10px 25px 10px;">
-                                    <button class="event-ticket-buy-btn" role="button">SEE DETAILS</button>
+                                    <button class="event-ticket-buy-btn" role="button"><i class="fas fa-shopping-cart"></i>&nbsp;Buy Now</button>
+                                    <!-- <a class="see-details-button" href="<?php
+                                                                                // echo $row['event_id']; 
+                                                                                ?>">SEE DETAILS</a> -->
                                 </div>
+
+
+
                             </div>
                         </div>
+
+                        <!-- <div id="<?php
+                                        // echo $row['event_id'];
+                                        ?>" class="overlay">
+                            <div class="popup">
+                                <h2><?php
+                                    // echo $row['event_name'];
+                                    ?></h2>
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                    Thank to pop me out of that button, but now i'm done so you can close this window.
+                                </div>
+                            </div>
+                        </div> -->
                 <?php
 
 

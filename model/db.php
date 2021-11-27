@@ -27,6 +27,23 @@ $db_name = "just-travel";
 // }
 
 
+if (!function_exists('getConnection')) {
+	function getConnection()
+	{
+		global $server_name;
+		global $db_username;
+		global $db_password;
+		global $db_name;
+
+		$con = mysqli_connect($server_name, $db_username, $db_password, $db_name);
+		return $con;
+	}
+}
+
+
+
+
+
 global $server_name;
 global $db_username;
 global $db_password;

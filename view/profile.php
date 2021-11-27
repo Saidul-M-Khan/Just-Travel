@@ -1,17 +1,21 @@
 <?php
 session_start();
+
+
+include('../model/model.php');
 if (isset($_COOKIE['flag'])) {
-    require("../model/db.php");
+    include("../model/db.php");
     // $Username = $_SESSION['username'];
     // $query = "SELECT * FROM users where user_username='Saidul_Khan'";
     $query = "SELECT * FROM users where username='Saidul_Khan'";
     $query_run = mysqli_query($connection, $query);
 
+
+
     // check if profile exists
     if (mysqli_num_rows($query_run) > 0) {
         $row = mysqli_fetch_assoc($query_run);
     }
-
 
 ?>
 
@@ -49,7 +53,13 @@ if (isset($_COOKIE['flag'])) {
                     <h1 style="color:cyan; margin-bottom:15px;">[ PROFILE ]</h1>
                 </center>
                 <center>
-                    <img src="<?php echo $row['photo']; ?>" alt="" width="45%" height="auto" style="border: 2px solid blueviolet; border-radius:50%;">
+                    <?php if (empty($row['photo'])) { ?>
+                        <img src="./images/user.png" width="45%">
+                    <?php } else { ?>
+                        <img src="<?php echo $row['photo']; ?>" alt="" width="45%" height="auto" style="border: 2px solid blueviolet; border-radius:50%;">
+                    <?php } ?>
+
+
                     <br>
                     <h1>
                         <?php
@@ -83,7 +93,8 @@ if (isset($_COOKIE['flag'])) {
                     <!-- <fieldset style="width:120px;">
                         <a href="edit-profile.php" style="text-decoration:none; color:white"><i class="far fa-edit"></i>&nbsp;Edit Profile</a>
                     </fieldset> -->
-                    <button class="button-62" role="button">Edit Profile</button>
+                    <a href="edit-profile.php?id=<?php echo $row['id']; ?>"> <button class="button-62" role="button">Edit Profile</button> </a>
+
                     <!-- <fieldset style="width:35%; margin-top: 10px;">
                         <a href="order-status.php" style="text-decoration:none; color:white"><i class="fas fa-shopping-cart"></i>&nbsp;See Order Status</a>
                     </fieldset> -->

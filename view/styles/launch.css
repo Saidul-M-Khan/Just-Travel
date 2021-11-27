@@ -1,14 +1,7 @@
 body {
-    /* overflow-x: hidden;
-    background: url(../images/background.jpg) no-repeat center fixed;
-    background-size: cover; */
     background-color: white;
 }
 
-.search {
-    /* position: relative;
-    top: -400px; */
-}
 
 label {
     color: white;
@@ -23,9 +16,6 @@ label {
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    /* background: #9CECFB;
-    background: -webkit-linear-gradient(to left, #0052D4, #65C7F7, #9CECFB);
-    background: linear-gradient(to left, #0052D4, #65C7F7, #9CECFB); */
     background: rgba(255, 255, 255, 0.171);
 }
 
