@@ -70,13 +70,38 @@ function getAllOffer()
     return $result;
 }
 
-function getUserById($id)
+function getUserById($data)
 {
     $con = getConnection();
-    $sql = "select * from users where id={$id}";
+    $sql = "select * from users where id={$data}";
     $result = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($result);
     return $data;
+}
+
+function getUserInfo($data)
+{
+    $con = getConnection();
+    $sql = "select * from users where id={$data}";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    return $data;
+}
+
+function checkLogin($data)
+{
+    $con = getConnection();
+    $fusername = $data['NID'];
+    $fpassword = $data['Password'];
+    $query = mysqli_query($con, "select * from users where username='$fusername' && password='$fpassword'");
+    $num_rows = mysqli_num_rows($query);
+    $row = mysqli_fetch_array($query);
+
+    if ($num_rows > 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function getBusTicketById($bus_ticket_id)
@@ -136,7 +161,7 @@ function getEventDetailsById($event_id)
 function editUserInfo($user)
 {
     $con = getConnection();
-    $sql = "update users set username='{$user['username']}', password='{$user['password']}', email='{$user['email']}', photo='{$user['photo']}' where id={$user['id']}";
+    $sql = "update users set fname='{$user['fname']}', username='{$user['username']}', password='{$user['password']}', email='{$user['email']}', dob='{$user['dob']}', gender='{$user['gender']}', photo='{$user['photo']}' where id={$user['id']}";
 
     if (mysqli_query($con, $sql)) {
         return true;

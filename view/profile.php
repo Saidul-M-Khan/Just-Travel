@@ -7,7 +7,7 @@ if (isset($_COOKIE['flag'])) {
     include("../model/db.php");
     // $Username = $_SESSION['username'];
     // $query = "SELECT * FROM users where user_username='Saidul_Khan'";
-    $query = "SELECT * FROM users where username='Saidul_Khan'";
+    $query = "SELECT * FROM users where username='Saidul1234'";
     $query_run = mysqli_query($connection, $query);
 
 
@@ -69,14 +69,14 @@ if (isset($_COOKIE['flag'])) {
                 </center>
                 <br>
                 <br>
+                <p><strong><i style="color:cyan" class="fas fa-user"></i>&nbsp;&nbsp;&nbsp;Name:</strong>&nbsp;<?php echo $row['fname'] ?></p>
                 <p><strong><i style="color:cyan" class="far fa-user-circle"></i>&nbsp;&nbsp;&nbsp;Username:</strong>&nbsp;<?php echo $row['username']; ?></p>
-                <!-- <br> -->
                 <p><strong><i style="color:cyan" class="fas fa-lock"></i>&nbsp;&nbsp;&nbsp;Password:</strong>&nbsp;<?php echo $row['password']; ?>
                 </p>
-                <!-- <br> -->
                 <p><strong><i style="color:cyan" class="fas fa-at"></i>&nbsp;&nbsp;&nbsp;Email:</strong>&nbsp;<?php echo $row['email']; ?>
                 </p>
-                <!-- <br> -->
+                <p><strong><i style="color:cyan" class="fas fa-venus-mars"></i>&nbsp;&nbsp;&nbsp;Gender:</strong>&nbsp;<?php echo $row['gender'] ?></p>
+                <p><strong><i style="color:cyan" class="fas fa-birthday-cake"></i>&nbsp;&nbsp;&nbsp;Date of Birth:</strong>&nbsp;<?php echo $row['dob'] ?></p>
                 <!-- <p><strong><i class="fas fa-venus-mars"></i>&nbsp;&nbsp;&nbsp;Gender:</strong>&nbsp;<?php
                                                                                                             // echo $row['user_gender']; 
                                                                                                             ?>

@@ -96,7 +96,7 @@ if (isset($_COOKIE['flag'])) {
 
                 <section class="bus-ticket-slider" style="margin-bottom: 150px;">
                     <center>
-                        <h2>AVAILABLE PACKAGES</h2>
+                        <h2 style="position: relative; top: -80px;">AVAILABLE PACKAGES</h2>
                     </center>
 
                     <div class="pic-ctn" style="margin-top: 50px; position: relative; right: 100px;">

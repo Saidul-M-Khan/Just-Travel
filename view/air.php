@@ -98,10 +98,10 @@ if (isset($_COOKIE['flag'])) {
 
                 <section class="air-ticket-slider" style="margin-bottom: 200px;">
                     <center>
-                        <h2>AVAILABLE PACKAGES</h2>
+                        <h2 style="position: relative; top: -50px;">AVAILABLE PACKAGES</h2>
                     </center>
 
-                    <div class="pic-ctn" style="margin-top: 50px; position: relative; right: 100px;">
+                    <div class="pic-ctn" style="margin-top: 50px; position: relative; right: 100px; top: 10px">
                         <img src="./images/air-ticket-packages/air-ticket-1.png" alt="" class="pic" width="500px">
                         <img src="./images/air-ticket-packages/air-ticket-2.png" alt="" class="pic" width="500px">
                         <img src="./images/air-ticket-packages/air-ticket-3.png" alt="" class="pic" width="500px">

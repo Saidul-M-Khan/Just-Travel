@@ -14,12 +14,6 @@ if (isset($_COOKIE['flag'])) {
     // if (mysqli_num_rows($query_run) > 0) {
     //     $row = mysqli_fetch_assoc($query_run);
     // }
-
-
-
-
-
-
 ?>
 
     <!DOCTYPE html>
@@ -62,7 +56,8 @@ if (isset($_COOKIE['flag'])) {
                             <img src="<?php echo $row['photo']; ?>" alt="" width="45%" height="auto" style="border: 2px solid blueviolet; border-radius:50%;">
                         <?php } ?>
                         <br>
-                        <!-- <input type="file" name="fileToUpload" id="fileToUpload"><br><br><span style="color:red"> -->
+                        <input type="file" name="fileToUpload" id="fileToUpload">
+                        <!-- <br><br><span style="color:red"> -->
                         <?php
                         // if ($ImageError != "") {
                         //     echo $ImageError;
@@ -80,12 +75,27 @@ if (isset($_COOKIE['flag'])) {
                     </center>
                     <br>
 
-                    <p><strong><i style="color:cyan" class="far fa-user-circle"></i>&nbsp;&nbsp;&nbsp;Username:</strong>&nbsp;<input type="text" name="username" id="" value="<?= $user['username'] ?>"></p>
+                    <p><strong><i style="color:cyan" class="fas fa-user"></i>&nbsp;&nbsp;&nbsp;Name:</strong>&nbsp;<input type="text" name="fname" id="fname" onkeyup="validateName(document.getElementById('fname').value)" value="<?= $user['fname'] ?>">
+                    </p><span id="nameOutput"></span>
                     <!-- <br> -->
-                    <p><strong><i style="color:cyan" class="fas fa-lock"></i>&nbsp;&nbsp;&nbsp;Password:</strong>&nbsp;<input type="text" name="password" id="" value="<?= $user['password'] ?>">
+                    <p><strong><i style="color:cyan" class="far fa-user-circle"></i>&nbsp;&nbsp;&nbsp;Username:</strong>&nbsp;<input type="text" name="username" id="user" onkeyup="validateUsername(document.getElementById('user').value)" value="<?= $user['username'] ?>"></p><span id="usernameOutput"></span>
+                    <!-- <br> -->
+                    <p><strong><i style="color:cyan" class="fas fa-lock"></i>&nbsp;&nbsp;&nbsp;Password:</strong>&nbsp;<input type="text" name="password" id="pass" onkeyup="validatePassword(document.getElementById('pass').value)" value="<?= $user['password'] ?>">
+                    <p id="passwordOutput"></p>
                     </p>
                     <!-- <br> -->
-                    <p><strong><i style="color:cyan" class="fas fa-at"></i>&nbsp;&nbsp;&nbsp;Email:</strong>&nbsp;<input type="email" name="email" id="" value="<?= $user['email'] ?>">
+                    <p><strong><i style="color:cyan" class="fas fa-at"></i>&nbsp;&nbsp;&nbsp;Email:</strong>&nbsp;<input type="email" name="email" id="email" onkeyup="CheckEmail(document.getElementById('email').value)" value="<?= $user['email'] ?>">
+                    <p id="emailOutput"></p>
+                    </p>
+
+                    <p><strong><i style="color:cyan" class="fas fa-venus-mars"></i>&nbsp;&nbsp;&nbsp;Gender:</strong>&nbsp;
+                        <select name="gender" id="gender">
+                            <option value="none" selected>Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </p>
+                    <p><strong><i style="color:cyan" class="fas fa-birthday-cake"></i>&nbsp;&nbsp;&nbsp;Date of Birth:</strong>&nbsp;<input type="date" name="dob" id="dob" value="<?= $user['dob'] ?>">
                     </p>
                     <input type="hidden" name="id" value="<?= $user['id'] ?>">
                     <!-- <br> -->
@@ -105,7 +115,7 @@ if (isset($_COOKIE['flag'])) {
                         <!-- <fieldset style="width:120px;">
             <a href="edit-profile.php" style="text-decoration:none; color:white"><i class="far fa-edit"></i>&nbsp;Edit Profile</a>
         </fieldset> -->
-                        <button class="button-62" role="button">Submit</button>
+                        <button class="button-62" id="profileEditButton" role="button">Submit</button>
                         <!-- <fieldset style="width:35%; margin-top: 10px;">
             <a href="order-status.php" style="text-decoration:none; color:white"><i class="fas fa-shopping-cart"></i>&nbsp;See Order Status</a>
         </fieldset> -->
@@ -127,6 +137,7 @@ if (isset($_COOKIE['flag'])) {
         </footer>
 
         <script src="./js/header.js"></script>
+        <script src="./js/validate.js"></script>
 
 
     </body>
