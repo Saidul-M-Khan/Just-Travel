@@ -53,10 +53,15 @@ if (isset($_COOKIE['flag'])) {
                         <?php if (empty($row['photo'])) { ?>
                             <img src="./images/user.png" width="45%">
                         <?php } else { ?>
-                            <img src="<?php echo $row['photo']; ?>" alt="" width="45%" height="auto" style="border: 2px solid blueviolet; border-radius:50%;">
+                            <img src="./images/user.png" id="blah" alt="" width="45%" height="auto" style="border: 2px solid blueviolet; border-radius:50%;">
+                            <!-- <img src="<?php 
+                            // echo $row['photo']; 
+                            ?>" alt="" width="45%" height="auto" style="border: 2px solid blueviolet; border-radius:50%;"> -->
                         <?php } ?>
                         <br>
-                        <input type="file" name="fileToUpload" id="fileToUpload">
+                        <!-- <input type="file" name="dataFile" id="fileChooser" onchange="return ValidateFileUpload()"> -->
+                        <input type="file" name="fileToUpload" id="fileToUpload" onchange="validateImageAndSize()">
+
                         <!-- <br><br><span style="color:red"> -->
                         <?php
                         // if ($ImageError != "") {
@@ -75,10 +80,13 @@ if (isset($_COOKIE['flag'])) {
                     </center>
                     <br>
 
-                    <p><strong><i style="color:cyan" class="fas fa-user"></i>&nbsp;&nbsp;&nbsp;Name:</strong>&nbsp;<input type="text" name="fname" id="fname" onkeyup="validateName(document.getElementById('fname').value)" value="<?= $user['fname'] ?>">
-                    </p><span id="nameOutput"></span>
+                    <!-- <p><strong><i style="color:cyan" class="fas fa-user"></i>&nbsp;&nbsp;&nbsp;Name:</strong>&nbsp;<input type="text" name="fname" id="fname" onkeyup="validateName(document.getElementById('fname').value)" value="<?php
+                                                                                                                                                                                                                                            // $user['fname'] 
+                                                                                                                                                                                                                                            ?>">
+                    </p><span id="nameOutput"></span> -->
                     <!-- <br> -->
-                    <p><strong><i style="color:cyan" class="far fa-user-circle"></i>&nbsp;&nbsp;&nbsp;Username:</strong>&nbsp;<input type="text" name="username" id="user" onkeyup="validateUsername(document.getElementById('user').value)" value="<?= $user['username'] ?>"></p><span id="usernameOutput"></span>
+                    <p><strong><i style="color:cyan" class="far fa-user-circle"></i>&nbsp;&nbsp;&nbsp;Username:</strong>&nbsp;<input type="text" name="username" id="user" onkeyup="validateUsername(document.getElementById('user').value)" value="<?= $user['username'] ?>"></p>
+                    <p id="usernameOutput"></p>
                     <!-- <br> -->
                     <p><strong><i style="color:cyan" class="fas fa-lock"></i>&nbsp;&nbsp;&nbsp;Password:</strong>&nbsp;<input type="text" name="password" id="pass" onkeyup="validatePassword(document.getElementById('pass').value)" value="<?= $user['password'] ?>">
                     <p id="passwordOutput"></p>
@@ -88,15 +96,18 @@ if (isset($_COOKIE['flag'])) {
                     <p id="emailOutput"></p>
                     </p>
 
-                    <p><strong><i style="color:cyan" class="fas fa-venus-mars"></i>&nbsp;&nbsp;&nbsp;Gender:</strong>&nbsp;
+                    <!-- <p><strong><i style="color:cyan" class="fas fa-venus-mars"></i>&nbsp;&nbsp;&nbsp;Gender:</strong>&nbsp;
                         <select name="gender" id="gender">
                             <option value="none" selected>Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
-                    </p>
-                    <p><strong><i style="color:cyan" class="fas fa-birthday-cake"></i>&nbsp;&nbsp;&nbsp;Date of Birth:</strong>&nbsp;<input type="date" name="dob" id="dob" value="<?= $user['dob'] ?>">
-                    </p>
+                    </p> -->
+                    <!-- <p><strong><i style="color:cyan" class="fas fa-birthday-cake"></i>&nbsp;&nbsp;&nbsp;Date of Birth:</strong>&nbsp;<input type="date" name="dob" id="dob" value="
+                    <?php
+                    // $user['dob'];
+                    ?>">
+                    </p> -->
                     <input type="hidden" name="id" value="<?= $user['id'] ?>">
                     <!-- <br> -->
                     <!-- <p><strong><i class="fas fa-venus-mars"></i>&nbsp;&nbsp;&nbsp;Gender:</strong>&nbsp;<?php
@@ -138,6 +149,30 @@ if (isset($_COOKIE['flag'])) {
 
         <script src="./js/header.js"></script>
         <script src="./js/validate.js"></script>
+
+
+        <script>
+function validateImageAndSize() {
+    var formData = new FormData(); 
+    var file = document.getElementById("fileToUpload").files[0]; 
+    formData.append("Filedata", file);
+    
+    var t = file.type.split('/').pop().toLowerCase(); 
+    if (t != "jpeg" && t != "jpg" && t != "png") {
+        alert('Please select a valid image file');
+        document.getElementById("fileToUpload").value = ''; 
+        return false; 
+    } 
+    
+    var fsize = (file.size / 1024 / 1024).toFixed(2); 
+    if (fsize > 2 ) {
+        alert('Max Upload size is 2MB only'); 
+        document.getElementById("fileToUpload").value = ''; 
+        return false; 
+    } 
+    return true;
+}
+        </script>
 
 
     </body>
