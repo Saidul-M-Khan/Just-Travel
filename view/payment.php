@@ -14,137 +14,74 @@ if (isset($_COOKIE['flag'])) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+        <link rel="stylesheet" href="./styles/payment.css">
+        <link rel="stylesheet" href="./styles/header.css">
+        <link rel="stylesheet" href="./styles/banner.css">
+        <link rel="stylesheet" href="./styles/footer.css">
+        <link rel="stylesheet" href="./styles/text-animation.css">
         <title>Payment</title>
-        <style>
-            * {
-                font-family: 'Poppins', sans-serif;
-            }
-
-            .body-text {
-                padding: 0 20px 30px 20px;
-                font-family: "Roboto";
-                font-size: 1em;
-                color: #333;
-                text-align: center;
-                line-height: 1.2em;
-            }
-
-            .form-container {
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-                padding: 60px 0;
-                background-color: rgb(50, 168, 246);
-                margin: 0 auto;
-                width: 600px;
-            }
-
-            .card-wrapper {
-                background-color: #6FB7E9;
-                width: 100%;
-                display: flex;
-
-            }
-
-            .personal-information {
-                background-color: #3C8DC5;
-                color: #fff;
-                padding: 1px 0;
-                text-align: center;
-            }
-
-            h1 {
-                font-size: 1.3em;
-                font-family: "Roboto"
-            }
-
-            input {
-                margin: 1px 0;
-                padding-left: 3%;
-                font-size: 14px;
-            }
-
-            input[type="text"] {
-                display: block;
-                height: 50px;
-                width: 97%;
-                border: none;
-            }
-
-            input[type="email"] {
-                display: block;
-                height: 50px;
-                width: 97%;
-                border: none;
-            }
-
-            input[type="submit"] {
-                display: block;
-                height: 60px;
-                width: 100%;
-                border: none;
-                background-color: #3C8DC5;
-                color: #fff;
-                margin-top: 2px;
-                cursor: pointer;
-                font-size: 0.9em;
-                text-transform: uppercase;
-                font-weight: bold;
-                cursor: pointer;
-            }
-
-            input[type="submit"]:hover {
-                background-color: #6FB7E9;
-                transition: 0.3s ease;
-            }
-
-            #column-left {
-                width: 46.5%;
-                float: left;
-                margin-bottom: 2px;
-            }
-
-            #column-right {
-                width: 46.5%;
-                float: right;
-            }
-        </style>
     </head>
 
     <body>
 
-        <?php include 'header.php'; ?>
+        <header>
+            <?php include './header.php'; ?>
+        </header>
 
         <main>
-            <div class="body-text" style="margin-top: 50px;">Write your name in the right fields. Also write your imaginary card
+            <!-- <div class="body-text" style="margin-top: 50px;">Write your name in the right fields. Also write your imaginary
+                card
                 number. By clicking CCV
-                field card will turn.</div>
-            <form action="./thankyou.php" method="
-        POST">
+                field card will turn.
+            </div> -->
+
+            <!-- <div class="body-text">
+                <small id="error" style="color: Red; display: none">* Input digits (0 - 9)</small>
+                <p id="emailOutput"></p>
+                <p id="nameOutput"></p>
+            </div> -->
+            <form action="./thankyou.php" method="POST">
                 <div class="form-container">
+                    <div class="body-text">
+                        <small id="error" style="color: Red; display: none">* Input digits (0 - 9)</small>
+                        <p id="emailOutput"></p>
+                        <p id="nameOutput"></p>
+                    </div>
                     <div class="personal-information">
                         <h1>Payment Information</h1>
                     </div>
 
-                    <input id="input-field" type="text" name="name-on-card" autocomplete="on" maxlength="40" placeholder="Name on Card" />
-                    <input id="input-field" type="text" name="number" placeholder="Card Number" />
-                    <input id="column-left" type="text" name="expiry" placeholder="MM / YY" />
-                    <input id="column-right" type="text" name="cvc" placeholder="CCV" />
+                    <input id="cardName" type="text" name="name-on-card" autocomplete="on" maxlength="40" placeholder="Name on Card" onkeyup="validateName(document.getElementById('cardName').value)" />
 
-                    <div class="card-wrapper"></div>
+                    <input id="cardNumber" type="text" name="number" maxlength="16" placeholder="Card Number" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" />
 
-                    <input id="input-field" type="text" name="streetaddress" required="required" autocomplete="on" maxlength="45" placeholder="Streed Address" />
-                    <input id="column-left" type="text" name="city" required="required" autocomplete="on" maxlength="20" placeholder="City" />
-                    <input id="column-right" type="text" name="zipcode" required="required" autocomplete="on" pattern="[0-9]*" maxlength="5" placeholder="ZIP code" />
-                    <input id="input-field" type="email" name="email" required="required" autocomplete="on" maxlength="40" placeholder="Email" />
-                    <input id="input-button" type="submit" value="Submit" />
+                    <input id="cardExpiry" type="text" name="expiry" maxlength="5" placeholder="MM / YY" />
+                    <input id="cardCvv" type="text" name="cvc" placeholder="CCV" maxlength="3" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" />
 
+                    <!-- <div class="card-wrapper"></div> -->
+
+                    <input id="cardAddress" type="text" name="streetaddress" required="required" autocomplete="on" maxlength="45" placeholder="Street Address" />
+                    <input id="cardCity" type="text" name="city" required="required" autocomplete="on" maxlength="20" placeholder="City" />
+                    <input id="cardZip" type="text" name="zipcode" required="required" autocomplete="on" maxlength="5" placeholder="ZIP code" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" />
+                    <!-- <span id="error" style="color: Red; display: none">* Input digits (0 - 9)</span> -->
+                    <input id="cardEmail" type="email" name="email" required="required" autocomplete="on" maxlength="40" placeholder="Email" onchange="CheckEmail(document.getElementById('cardEmail').value)" />
+                    <input id="payment-button" type="submit" value="Submit" onclick="validatePayment()" />
+                </div>
             </form>
-            </div>
+
+
+
         </main>
 
-        <?php include 'footer.php'; ?>
+
+        <footer>
+            <?php
+            include './footer.php';
+            ?>
+        </footer>
+
+        <script src="./js/validate.js"></script>
+        <script src="./js/header.js"></script>
 
     </body>
 

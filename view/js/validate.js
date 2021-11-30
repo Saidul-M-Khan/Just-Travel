@@ -1,13 +1,13 @@
 // Validate Full Name
 function WordCount(str) {
     return str.split(' ')
-        .filter(function(n) {
+        .filter(function (n) {
             return n != ''
         })
         .length;
 }
 
-String.prototype.stripSlashes = function() {
+String.prototype.stripSlashes = function () {
     return this.replace(/\\(.)/mg, "$1");
 }
 
@@ -20,7 +20,7 @@ function escapeHtml(text) {
         "'": '&#039;'
     };
 
-    return text.replace(/[&<>"']/g, function(m) {
+    return text.replace(/[&<>"']/g, function (m) {
         return map[m];
     });
 }
@@ -33,7 +33,6 @@ function validateInput(information) {
 }
 
 function validateName(nameValue) {
-    // let nameValue = document.getElementById('name').value;
     var Error = document.getElementById('nameOutput');
     var str_word_count = WordCount(nameValue);
     if (nameValue == "") {
@@ -72,10 +71,10 @@ function ValidateEmailAddress(emailString) {
 function CheckEmail(emailString) {
     var Result = ValidateEmailAddress(emailString);
 
-    if(!isNaN(emailString)){
+    if (!isNaN(emailString)) {
         document.getElementById("emailOutput").innerHTML = "";
         document.getElementById("profileEditButton").disabled = true;
-    }else{
+    } else {
         if (Result) {
             document.getElementById("emailOutput").innerHTML = "<small><span style='color:green;'>Valid Email Id</span></small>";
             document.getElementById("profileEditButton").disabled = false;
@@ -88,10 +87,10 @@ function CheckEmail(emailString) {
 
 // Password Validation
 function validatePassword(pass) {
-    if(!isNaN(pass)){
+    if (!isNaN(pass)) {
         document.getElementById("passwordOutput").innerHTML = "";
         document.getElementById("profileEditButton").disabled = true;
-    } else{
+    } else {
         if (pass.length < 8) {
             document.getElementById("passwordOutput").innerHTML = "<small><span style='color:red;'>Your password must be at least 8 characters.</span></small>";
             document.getElementById("profileEditButton").disabled = true;
@@ -101,7 +100,7 @@ function validatePassword(pass) {
         } else if (pass.search(/[0-9]/) < 0) {
             document.getElementById("passwordOutput").innerHTML = "<small><span style='color:red;'>Your password must contain at least one letter.</span></small>";
             document.getElementById("profileEditButton").disabled = true;
-        } else if(pass.search(/[A-Z]/)){
+        } else if (pass.search(/[A-Z]/)) {
             document.getElementById("passwordOutput").innerHTML = "<small><span style='color:red;'>Your password must contain at least one Uppercase letter.</span></small>";
             document.getElementById("profileEditButton").disabled = true;
         } else {
@@ -115,10 +114,10 @@ function validatePassword(pass) {
 
 // Username Validation
 function validateUsername(user) {
-    if(!isNaN(user)){
+    if (!isNaN(user)) {
         document.getElementById("usernameOutput").innerHTML = "";
         document.getElementById("profileEditButton").disabled = true;
-    } else{
+    } else {
         if (user.length < 5) {
             document.getElementById("usernameOutput").innerHTML = "<small><span style='color:red;'>Your username must be at least 5 characters.</span></small>";
             document.getElementById("profileEditButton").disabled = true;
@@ -139,29 +138,111 @@ function validateUsername(user) {
 
 // Picture Validation
 function ValidateFileUpload() {
-        var fuData = document.getElementById('fileChooser');
-        var FileUploadPath = fuData.value;
-//To check if user upload any file
-        if (FileUploadPath == '') {
-            alert("Please upload an image");
-        } else {
-            var Extension = FileUploadPath.substring(
-                    FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
-//The file uploaded is an image
-if (Extension == "gif" || Extension == "png" || Extension == "bmp"
-                    || Extension == "jpeg" || Extension == "jpg") {
-// To Display
-                if (fuData.files && fuData.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#blah').attr('src', e.target.result);
-                    }
-                    reader.readAsDataURL(fuData.files[0]);
+    var fuData = document.getElementById('fileChooser');
+    var FileUploadPath = fuData.value;
+    //To check if user upload any file
+    if (FileUploadPath == '') {
+        alert("Please upload an image");
+    } else {
+        var Extension = FileUploadPath.substring(
+            FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+        //The file uploaded is an image
+        if (Extension == "gif" || Extension == "png" || Extension == "bmp" ||
+            Extension == "jpeg" || Extension == "jpg") {
+            // To Display
+            if (fuData.files && fuData.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
                 }
-            } 
-//The file upload is NOT an image
-else {
-                alert("Photo only allows file types of GIF, PNG, JPG, JPEG and BMP. ");
+                reader.readAsDataURL(fuData.files[0]);
             }
         }
+        //The file upload is NOT an image
+        else {
+            alert("Photo only allows file types of GIF, PNG, JPG, JPEG and BMP. ");
+        }
     }
+}
+
+
+// Validate Numeric Value 
+var specialKeys = new Array();
+specialKeys.push(8); //Backspace
+function IsNumeric(e) {
+    var keyCode = e.which ? e.which : e.keyCode
+    var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+    document.getElementById("error").style.display = ret ? "none" : "inline";
+    return ret;
+}
+
+
+// Validate Payment Information
+function validatePayment() {
+    var cardName = document.getElementById('cardName').value;
+    var cardNumber = document.getElementById('cardNumber').value;
+    var cardExpiry = document.getElementById('cardExpiry').value;
+    var cardCvv = document.getElementById('cardCvv').value;
+    var cardAddress = document.getElementById('cardAddress').value;
+    var cardCity = document.getElementById('cardCity').value;
+    var cardZip = document.getElementById('cardZip').value;
+    var cardEmail = document.getElementById('cardEmail').value;
+    // var cardNumberError = document.getElementById('cardNumberError');
+    // var cardNameError = document.getElementById('cardNameError');
+    // var cardExpiryError = document.getElementById('cardExpiryError');
+    // var cardCvvError = document.getElementById('cardCvvError');
+    var submitButton = document.getElementById('payment-button');
+
+
+    // if (cardName == "" || cardNumber == "" || cardExpiry == "" || cardCvv == "" || cardAddress == "" || cardCity == "" || cardZip == "" || cardEmail == "") {
+    //     submitButton.disabled = true;
+    //     alert("Fill out all fields");
+    //     return false;
+        
+    // } else {
+    //     alert("Payment Successful");
+    //     // submitButton.disabled = false;
+    //     return true;
+    // }
+
+    if(cardName == ""){
+        // submitButton.disabled = true;
+        alert("Fill out all fields");
+        return false;
+    }else if(cardNumber == ""){
+        // submitButton.disabled = true;
+        alert("Fill out all fields");
+        return false;
+    }else if(cardExpiry == ""){
+        // submitButton.disabled = true;
+        alert("Fill out all fields");
+        return false;
+    }else if(cardCvv == ""){
+        // submitButton.disabled = true;
+        alert("Fill out all fields");
+        return false;
+    }else if(cardAddress == ""){
+        // submitButton.disabled = true;
+        alert("Fill out all fields");
+        return false;
+    }else if(cardCity == ""){
+        // submitButton.disabled = true;
+        alert("Fill out all fields");
+        return false;
+    }else if(cardZip == ""){
+        // submitButton.disabled = true;
+        alert("Fill out all fields");
+        return false;
+    }else if(cardEmail == ""){
+        // submitButton.disabled = true;
+        alert("Fill out all fields");
+        return false;
+    }else{
+        alert("Payment Successful");
+        submitButton.disabled = false;
+        return true;
+    }
+
+
+
+}
