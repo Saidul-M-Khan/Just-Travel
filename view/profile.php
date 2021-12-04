@@ -5,11 +5,12 @@ session_start();
 include('../model/model.php');
 if (isset($_COOKIE['flag'])) {
     include("../model/db.php");
-    // $Username = $_SESSION['username'];
+    $Username = $_SESSION['username'];
+
     // $query = "SELECT * FROM users where user_username='Saidul_Khan'";
 
-    $ID = $_SESSION["NID"];
-    $query = "SELECT * FROM users where id=8";
+    // $ID = $_SESSION["NID"];
+    $query = "SELECT * FROM users WHERE username='$Username'";
     $query_run = mysqli_query($connection, $query);
 
 
@@ -65,20 +66,19 @@ if (isset($_COOKIE['flag'])) {
                     <br>
                     <h1>
                         <?php
-                        // echo $row['user_fname']; 
+                        echo $row['fname'];
                         ?>
                     </h1>
                 </center>
                 <br>
                 <br>
                 <!-- <p><strong><i style="color:cyan" class="fas fa-user"></i>&nbsp;&nbsp;&nbsp;Name:</strong>&nbsp;
-                <?php
-                // echo $row['fname'] 
-                ?></p> -->
-
+                    <?php
+                    // echo $row['fname'];
+                    ?></p> -->
+                <p><strong><i style="color:cyan" class="fas fa-users"></i>&nbsp;&nbsp;&nbsp;Role:</strong>&nbsp;<?php echo $row['role']; ?></p>
                 <p><strong><i style="color:cyan" class="far fa-user-circle"></i>&nbsp;&nbsp;&nbsp;Username:</strong>&nbsp;<?php echo $row['username']; ?></p>
                 <p><strong><i style="color:cyan" class="fas fa-lock"></i>&nbsp;&nbsp;&nbsp;Password:</strong>&nbsp;<?php echo $row['password']; ?>
-                </p>
                 <p><strong><i style="color:cyan" class="fas fa-at"></i>&nbsp;&nbsp;&nbsp;Email:</strong>&nbsp;<?php echo $row['email']; ?>
                 </p>
 
@@ -131,13 +131,12 @@ if (isset($_COOKIE['flag'])) {
 
         <script src="./js/header.js"></script>
 
-
     </body>
 
     </html>
 
 <?php
 } else {
-    header('location: ../control/login.php');
+    header('location: ../control/user-login.php');
 }
 ?>

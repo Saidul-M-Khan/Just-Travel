@@ -31,13 +31,13 @@ if (isset($_COOKIE['flag'])) {
                 <a href="bus.php" style="text-decoration:none; color:black"><i class="fas fa-arrow-circle-left"></i>&nbsp;Back</a>
             </fieldset>
         </center>
-        
+
     </body>
 
     </html>
 
 <?php
 } else {
-    header('location: ../control/login.php');
+    header('location: ../control/user-login.php');
 }
 ?>

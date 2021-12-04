@@ -161,7 +161,7 @@ function getEventDetailsById($event_id)
 function editUserInfo($user)
 {
     $con = getConnection();
-    $sql = "update users set fname='{$user['fname']}', username='{$user['username']}', password='{$user['password']}', email='{$user['email']}', dob='{$user['dob']}', gender='{$user['gender']}', photo='{$user['photo']}' where id={$user['id']}";
+    $sql = "update users set fname='{$user['fname']}', password='{$user['password']}', email='{$user['email']}', photo='{$user['photo']}' where id={$user['id']}";
 
     if (mysqli_query($con, $sql)) {
         return true;

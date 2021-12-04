@@ -30,10 +30,10 @@
         <center>
 
             <fieldset style="width:150px;">
-                <a href="./control/login.php" style="text-decoration:none; color:black"><big><i class="far fa-user-circle"></i>&nbsp;Login</big></a>
+                <a href="./control/user-login.php" style="text-decoration:none; color:black"><big><i class="far fa-user-circle"></i>&nbsp;Login</big></a>
             </fieldset>
             <fieldset style="width:150px;  margin-top: 10px;">
-                <a href="./control/register.php" style="text-decoration:none; color:black"><big><i class="fas fa-user-plus"></i>&nbsp;Register</big></a>
+                <a href="./control/user-login.php" style="text-decoration:none; color:black"><big><i class="fas fa-user-plus"></i>&nbsp;Register</big></a>
             </fieldset>
         </center>
     </main>

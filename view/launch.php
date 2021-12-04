@@ -20,6 +20,7 @@ if (isset($_COOKIE['flag'])) {
         <link rel="stylesheet" href="./styles/header.css">
         <link rel="stylesheet" href="./styles/banner.css">
         <link rel="stylesheet" href="./styles/footer.css">
+        <link rel="stylesheet" href="./styles/view-all-ticket.css">
         <title>Launch</title>
         <style>
             * {
@@ -159,6 +160,9 @@ if (isset($_COOKIE['flag'])) {
 
                 </div>
             </section>
+            <center>
+                <a href="./buy-launch-ticket.php" style="text-decoration:none;"><button class="see-tickets-btn" role="button"><span class="text">SEE ALL AVAILABLE LAUNCH TICKETS</span></button></a>
+            </center>
 
         </main>
 
@@ -176,6 +180,6 @@ if (isset($_COOKIE['flag'])) {
     </html>
 <?php
 } else {
-    header('location: ../control/login.php');
+    header('location: ../control/user-login.php');
 }
 ?>

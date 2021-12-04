@@ -16,39 +16,8 @@ if (isset($_COOKIE['flag'])) {
         <link rel="stylesheet" href="../view/styles/banner.css">
         <link rel="stylesheet" href="../view/styles/footer.css">
         <link rel="stylesheet" href="./styles/text-animation.css">
+        <link rel="stylesheet" href="./styles/offers.css">
         <title>Offers</title>
-        <style>
-            * {
-                font-family: 'Poppins', sans-serif;
-            }
-
-            .offer {
-                width: 90%;
-                height: auto;
-                border-radius: 10px;
-                padding: 25px;
-                margin: 100px;
-                border: 2px solid black;
-                box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
-                background: #0575E6;
-                background: -webkit-linear-gradient(to left, #021B79, #0575E6);
-                background: linear-gradient(to left, #021B79, #0575E6);
-            }
-
-            .offer:hover {
-                box-shadow: none;
-            }
-
-            td {
-                padding: 10px;
-            }
-
-            ul>h2,
-            p,
-            strong {
-                color: white;
-            }
-        </style>
     </head>
 
     <body>

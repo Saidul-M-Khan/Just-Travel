@@ -16,6 +16,7 @@ if (isset($_COOKIE['flag'])) {
         <link rel="stylesheet" href="./styles/footer.css">
         <link rel="stylesheet" href="./styles/slider.css">
         <link rel="stylesheet" href="./styles/text-animation.css">
+        <link rel="stylesheet" href="./styles/view-all-ticket.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -264,7 +265,12 @@ if (isset($_COOKIE['flag'])) {
                     <img src="./images/payment-methods.png" alt="" style="width: 100%; height: auto;">
 
                 </div>
+
             </section>
+
+            <center>
+                <a href="./buy-bus-ticket.php" style="text-decoration:none;"><button class="see-tickets-btn" role="button"><span class="text">SEE ALL AVAILABLE BUS TICKETS</span></button></a>
+            </center>
 
 
         </main>
@@ -283,6 +289,6 @@ if (isset($_COOKIE['flag'])) {
 
 <?php
 } else {
-    header('location: ../control/login.php');
+    header('location: ../control/user-login.php');
 }
 ?>

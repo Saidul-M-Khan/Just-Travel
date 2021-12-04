@@ -29,17 +29,6 @@ if (isset($_COOKIE['flag'])) {
         </header>
 
         <main>
-            <!-- <div class="body-text" style="margin-top: 50px;">Write your name in the right fields. Also write your imaginary
-                card
-                number. By clicking CCV
-                field card will turn.
-            </div> -->
-
-            <!-- <div class="body-text">
-                <small id="error" style="color: Red; display: none">* Input digits (0 - 9)</small>
-                <p id="emailOutput"></p>
-                <p id="nameOutput"></p>
-            </div> -->
             <form action="./thankyou.php" method="POST">
                 <div class="form-container">
                     <div class="body-text">
@@ -63,7 +52,6 @@ if (isset($_COOKIE['flag'])) {
                     <input id="cardAddress" type="text" name="streetaddress" required="required" autocomplete="on" maxlength="45" placeholder="Street Address" />
                     <input id="cardCity" type="text" name="city" required="required" autocomplete="on" maxlength="20" placeholder="City" />
                     <input id="cardZip" type="text" name="zipcode" required="required" autocomplete="on" maxlength="5" placeholder="ZIP code" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" />
-                    <!-- <span id="error" style="color: Red; display: none">* Input digits (0 - 9)</span> -->
                     <input id="cardEmail" type="email" name="email" required="required" autocomplete="on" maxlength="40" placeholder="Email" onchange="CheckEmail(document.getElementById('cardEmail').value)" />
                     <input id="payment-button" type="submit" value="Submit" onclick="validatePayment()" />
                 </div>
@@ -88,6 +76,6 @@ if (isset($_COOKIE['flag'])) {
     </html>
 <?php
 } else {
-    header('location: ../control/login.php');
+    header('location: ../control/user-login.php');
 }
 ?>
