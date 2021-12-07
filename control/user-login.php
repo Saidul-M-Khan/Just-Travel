@@ -27,13 +27,13 @@ if (isset($_POST['signup-submit'])) {
 				$_POST['role'] = "";
 				header("Location: user-login.php");
 			} else {
-				echo "<script>alert('Something Went Wrong.')</script>";
+				// echo "<script>alert('Something Went Wrong.')</script>";
 			}
 		} else {
-			echo "<script>alert('Email Already Exists.')</script>";
+			// echo "<script>alert('Email Already Exists.')</script>";
 		}
 	} else {
-		echo "<script>alert('Password Not Matched.')</script>";
+		// echo "<script>alert('Password Not Matched.')</script>";
 	}
 }
 
@@ -56,7 +56,7 @@ if (isset($_POST['login-submit'])) {
 		}
 		setcookie('flag', 'true', time() + 3600, '/');
 	} else {
-		echo "<script>alert('Woops! User Name or Password is Wrong.')</script>";
+		// echo "<script>alert('Woops! User Name or Password is Wrong.')</script>";
 	}
 }
 
@@ -72,7 +72,32 @@ if (isset($_POST['login-submit'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./css/login-registration.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
 	<title></title>
+	<style>
+		.error {
+			color: red;
+			font-weight: lighter;
+			font-size: small;
+		}
+
+		form #togglePassword {
+			/* margin-left: -30px; */
+			position: relative;
+			left: 350px;
+			right: 25px;
+			bottom: 32px;
+			cursor: pointer;
+		}
+
+		#togglePassword {
+			color: #fff;
+		}
+
+		#togglePassword:hover {
+			color: #212529;
+		}
+	</style>
 </head>
 
 <body>
@@ -84,24 +109,28 @@ if (isset($_POST['login-submit'])) {
 				<!-- Login -->
 				<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="login">
 					<div class="sign-in-htm">
+						<br><br>
 						<div class="group">
 							<label for="user" class="label">Username</label>
 							<i class="fas fa-user input-icons"></i>
-							<input type="text" id="user" class="input" placeholder="Enter Your Username" name="username" value="<?php echo $username; ?>" onkeyup="validateName()">
+							<input type="text" id="user" class="input" placeholder="Enter Your Username" name="username" value="<?php echo $username; ?>">
 							<!-- <br> -->
 							<!-- <small id="error"></small> -->
 						</div>
+						<br>
 						<div class="group">
 							<label for="pass" class="label">Password</label>
 							<i class="fas fa-lock input-icons"></i>
-							<input type="password" placeholder="Enter Your Password" id="pass" class="input" data-type="password" name="password" value="<?php echo $_POST['password']; ?>">
+							<input type="password" placeholder="Enter Your Password" id="pass" class="input" data-type="password" name="password" value="<?php echo $_POST['password']; ?>"><i class="bi bi-eye-slash" id="togglePassword"></i>
+
 						</div>
 						<div class="group">
 							<input id="check" type="checkbox" class="check" checked>
 							<label for="check"><span class="icon"></span> KEEP ME SIGNED IN</label>
 						</div>
+						<br><br>
 						<div class="group">
-							<input type="submit" name="login-submit" class="button btn" value="Login">
+							<input type="submit" name="login-submit" class="button btn" onclick="loginValidate()" value="Login">
 						</div>
 						<div class="hr"></div>
 						<div class="foot-lnk">
@@ -110,44 +139,47 @@ if (isset($_POST['login-submit'])) {
 					</div>
 				</form>
 
-				<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="signup">
+				<form name="signupForm" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="signup">
 					<!-- Registration -->
 					<div class="sign-up-htm">
 						<div class="group">
 							<label for="user" class="label">Full Name</label>
-							<i class="far fa-user-circle input-icons"></i><input id="user" placeholder="Enter Your Full Name" type="text" class="input" name="fname" value="<?php echo $fname; ?>">
+							<i class="far fa-user-circle input-icons"></i><input id="fname" placeholder="Enter Your Full Name" type="text" class="input" name="fname" value="<?php echo $fname; ?>">
+							<div class="error" id="fnameErr"></div>
 						</div>
+
 						<div class="group">
 							<label for="user" class="label">Username</label>
 							<i class="fas fa-user input-icons"></i><input id="user" placeholder="Enter a Username" type="text" class="input" name="username" value="<?php echo $username; ?>">
+							<div class="error" id="usernameErr"></div>
 						</div>
+
 						<div class="group">
 							<label for="pass" class="label">Password</label>
 							<i class="fas fa-lock input-icons"></i><input id="pass" placeholder="Enter The Password" type="password" class="input" data-type="password" name="password" value="<?php echo $_POST['password']; ?>">
+							<div class="error" id="passwordErr"></div>
 						</div>
+
 						<div class="group">
 							<label for="pass" class="label">Confirm Password</label>
-							<i class="fas fa-lock input-icons"></i><input id="pass" placeholder="Enter The Password Again" type="password" class="input" data-type="password" name="cpassword" value="<?php echo $_POST['cpassword']; ?>">
+							<i class="fas fa-lock input-icons"></i><input id="cpass" placeholder="Enter The Password Again" type="password" class="input" data-type="password" name="cpassword" value="<?php echo $_POST['cpassword']; ?>">
 						</div>
 						<div class="group">
 							<label for="email" class="label">Email Address</label>
 							<i class="fas fa-at input-icons"></i><input id="email" placeholder="Enter Your Email" type="text" class="input" name="email" value="<?php echo $email; ?>">
+							<div class="error" id="emailErr"></div>
 						</div>
 
 						<div class="group">
 							<label for="role" class="label" name="user-role">User Role</label>
 							<input type="radio" id="role" name="role" value="user"> User &nbsp; | &nbsp;
-							<!-- <input type="radio" id="role" name="role" value="admin"> Admin &nbsp; | &nbsp; -->
 							<input type="radio" id="role" name="role" value="merchant"> Merchant &nbsp;
+							<div class="error" id="roleErr"></div>
 						</div>
 
-						<!-- <div class="group">
-							<label for="picture" class="label">Picture</label>
-							<input type="file" name="fileToUpload" id="fileToUpload">
-						</div> -->
 						<br><br>
 						<div class="group">
-							<input type="submit" name="signup-submit" class="button btn" value="Register">
+							<input type="submit" name="signup-submit" id="signup-submit" class="button btn" onclick="validateSignUp()" value="Submit">
 						</div>
 						<div class="hr"></div>
 						<div class="foot-lnk">
@@ -158,6 +190,70 @@ if (isset($_POST['login-submit'])) {
 			</div>
 		</div>
 	</div>
+
+	<!-- <script src="../view/js/validate.js"></script>
+	<script>
+		function validateSignUp() {
+
+			var Full_Name = document.getElementById('fname').value;
+			var Username = document.getElementById('user').value;
+			var Password = document.getElementById('pass').value;
+			var Email = document.getElementById('email').value;
+			var Role = document.getElementsByName("role");
+			var submitButton = document.getElementById('signup-submit');
+
+			// if (Full_Name === "") {
+			// 	// submitButton.disabled = true;
+			// 	alert("Fill Out First Name Field");
+			// 	return false;
+			// } else if (Username === "") {
+			// 	// submitButton.disabled = true;
+			// 	alert("Fill Out Username Field");
+			// 	return false;
+			// } else if (Password === "") {
+			// 	// submitButton.disabled = true;
+			// 	alert("Fill Out Password Field");
+			// 	return false;
+			// } else if (Email === "") {
+			// 	// submitButton.disabled = true;
+			// 	alert("Fill Out Email Field");
+			// 	return false;
+			// } else {
+			// 	alert("Registration Successful");
+			// 	submitButton.disabled = false;
+			// 	return true;
+			// }
+
+			if (Full_Name === "" || Username === "" || Password === "" || Email === "") {
+				// document.getElementById('signup-submit').disabled = true;
+				alert("Fill out all fields");
+				return false;
+
+			} else {
+				// validateRole();
+				alert("Registration Successful");
+				document.getElementById('signup-submit').disabled = false;
+
+				return true;
+			}
+
+		}
+
+		// function validateRole() {
+		// 	var radios = document.getElementsByName("role");
+		// 	var formValid = false;
+
+		// 	var i = 0;
+		// 	while (!formValid && i < radios.length) {
+		// 		if (radios[i].checked) formValid = true;
+		// 		i++;
+		// 	}
+
+		// 	if (!formValid) alert("Must select a user!");
+		// 	return formValid;
+		// }​
+	</script> -->
+	<script src="../view/js/signup-validation.js"></script>
 </body>
 
 </html>

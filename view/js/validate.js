@@ -90,22 +90,28 @@ function validatePassword(pass) {
     if (!isNaN(pass)) {
         document.getElementById("passwordOutput").innerHTML = "";
         document.getElementById("profileEditButton").disabled = true;
+        document.getElementById('signup-submit').disabled = true;
     } else {
         if (pass.length < 8) {
             document.getElementById("passwordOutput").innerHTML = "<small><span style='color:red;'>Your password must be at least 8 characters.</span></small>";
             document.getElementById("profileEditButton").disabled = true;
+            document.getElementById('signup-submit').disabled = true;
         } else if (pass.search(/[a-z]/i) < 0) {
             document.getElementById("passwordOutput").innerHTML = "<small><span style='color:red;'>Your password must contain at least one letter.</span></small>";
             document.getElementById("profileEditButton").disabled = true;
+            document.getElementById('signup-submit').disabled = true;
         } else if (pass.search(/[0-9]/) < 0) {
             document.getElementById("passwordOutput").innerHTML = "<small><span style='color:red;'>Your password must contain at least one letter.</span></small>";
             document.getElementById("profileEditButton").disabled = true;
+            document.getElementById('signup-submit').disabled = true;
         } else if (pass.search(/[A-Z]/)) {
             document.getElementById("passwordOutput").innerHTML = "<small><span style='color:red;'>Your password must contain at least one Uppercase letter.</span></small>";
             document.getElementById("profileEditButton").disabled = true;
+            document.getElementById('signup-submit').disabled = true;
         } else {
             document.getElementById("passwordOutput").innerHTML = "<small><span style='color:green;'>Valid Password</span></small>";
             document.getElementById("profileEditButton").disabled = false;
+            document.getElementById('signup-submit').disabled = false;
             return true;
         }
     }
@@ -117,19 +123,24 @@ function validateUsername(user) {
     if (!isNaN(user)) {
         document.getElementById("usernameOutput").innerHTML = "";
         document.getElementById("profileEditButton").disabled = true;
+        document.getElementById('signup-submit').disabled = true;
     } else {
         if (user.length < 5) {
             document.getElementById("usernameOutput").innerHTML = "<small><span style='color:red;'>Your username must be at least 5 characters.</span></small>";
             document.getElementById("profileEditButton").disabled = true;
+            document.getElementById('signup-submit').disabled = true;
         } else if (user.search(/[A-Z]/i) < 0) {
             document.getElementById("usernameOutput").innerHTML = "<small><span style='color:red;'>Your username must contain at least one uppercase letter.</span></small>";
             document.getElementById("profileEditButton").disabled = true;
+            document.getElementById('signup-submit').disabled = true;
         } else if (user.search(/[0-9]/) < 0) {
             document.getElementById("usernameOutput").innerHTML = "<small><span style='color:red;'>Your username must contain at least one numeric value.</span></small>";
             document.getElementById("profileEditButton").disabled = true;
+            document.getElementById('signup-submit').disabled = true;
         } else {
             document.getElementById("usernameOutput").innerHTML = "<small><span style='color:green;'>Valid Username</span></small>";
             document.getElementById("profileEditButton").disabled = false;
+            document.getElementById('signup-submit').disabled = false;
             return true;
         }
     }
@@ -246,3 +257,40 @@ function validatePayment() {
 
 
 }
+
+function validateSignUp() {
+
+    var Full_Name = document.getElementById('fname').value;
+    var Username = document.getElementById('user').value;
+    var Password = document.getElementById('pass').value;
+    var Email = document.getElementById('email').value;
+    // var Role = document.getElementsByName("role").checked;
+    var submitButton = document.getElementById('signup-submit');
+
+    if (Full_Name == "" || Username == "" || Password == "" || Email == "") {
+        // submitButton.disabled = true;
+        alert("Fill out all fields");
+        return false;
+        
+    } else {
+        alert("Registration Successful");
+        // validateRole();
+        submitButton.disabled = false;
+        return true;
+    }
+    
+}
+
+// function validateRole() {
+//     var radios = document.getElementsByName("role");
+//     var formValid = false;
+
+//     var i = 0;
+//     while (!formValid && i < radios.length) {
+//         if (radios[i].checked) formValid = true;
+//         i++;        
+//     }
+
+//     if (!formValid) alert("Must select a user!");
+//     return formValid;
+// }​
