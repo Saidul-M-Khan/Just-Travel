@@ -1,6 +1,22 @@
 <?php
 session_start();
+
+require_once('../model/db.php');
+
+
 if (isset($_COOKIE['flag'])) {
+    $con = getConnection();
+    $sql = "insert into orders values('{$_POST['orderID']}', '{$_SESSION['username']}', '{$_POST['journey_by']}', '{$_POST['transport_name']}', '{$_POST['ticket_type']}', '{$_POST['journey_date']}', '{$_POST['start_location']}', '{$_POST['end_location']}', '{$_POST['arrival_time']}', '{$_POST['departure_time']}', '{$_POST['price']}', '{$_POST['payment_method']}', '{$_POST['status']}')";
+
+    mysqli_query($con, $sql);
+
+    $conn = getConnection();
+    $sql2 = "insert into booking values('{$_POST['orderID']}', '{$_SESSION['username']}', '{$_POST['booking_for']}', '{$_POST['name']}', '{$_POST['location']}', '{$_POST['booking_price']}', '{$_POST['booking_payment_method']}', '{$_POST['booking_status']}', '{$_POST['start_date']}', '{$_POST['end_date']}')";
+
+    mysqli_query($conn, $sql2);
+
+
+
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -28,7 +44,7 @@ if (isset($_COOKIE['flag'])) {
         <center>
             <h1>Please Stay With Just Travel</h1>
             <fieldset style="width:10%">
-                <a href="bus.php" style="text-decoration:none; color:black"><i class="fas fa-arrow-circle-left"></i>&nbsp;Back</a>
+                <a href="./order-status.php" style="text-decoration:none; color:black"><i class="fas fa-arrow-circle-left"></i>&nbsp;Back</a>
             </fieldset>
         </center>
 

@@ -180,3 +180,46 @@ function deleteProfile($id)
         return false;
     }
 }
+
+function cancelOrder($order_id)
+{
+    $con = getConnection();
+    $con = mysqli_connect('localhost', 'root', 'root', 'just-travel');
+    $sql = "delete from orders where order_id='{$order_id}'";
+    if (mysqli_query($con, $sql)) {
+        return true;
+    } else {
+        return false;
+    }
+
+    // mysqli_query($con, $sql);
+}
+
+function cancelBooking($booking_id)
+{
+    $con = getConnection();
+    $sql = "delete from booking where booking_id='{$booking_id}'";
+    if (mysqli_query($con, $sql)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function getOrderById($order_id)
+{
+    $con = getConnection();
+    $sql = "select * from orders where order_id={$order_id}";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    return $data;
+}
+
+function getBookingById($booking_id)
+{
+    $con = getConnection();
+    $sql = "select * from booking where booking_id={$booking_id}";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    return $data;
+}

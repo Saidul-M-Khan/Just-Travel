@@ -126,6 +126,6 @@ function loginValidate() {
         alert("Please enter the password.");
         return false;
     }
-    alert('Login successful');
+    // alert('Login successful');
 
 }

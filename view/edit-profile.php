@@ -304,7 +304,7 @@ if (isset($_COOKIE['flag'])) {
                         <!-- <fieldset style="width:120px;">
             <a href="edit-profile.php" style="text-decoration:none; color:white"><i class="far fa-edit"></i>&nbsp;Edit Profile</a>
         </fieldset> -->
-                        <button class="button-62" id="profileEditButton" name="edit-submit" role="button">Submit</button>
+                        <button class="profileButton" id="profileEditButton" name="edit-submit" role="button">Submit</button>
                         <!-- <fieldset style="width:35%; margin-top: 10px;">
             <a href="order-status.php" style="text-decoration:none; color:white"><i class="fas fa-shopping-cart"></i>&nbsp;See Order Status</a>
         </fieldset> -->

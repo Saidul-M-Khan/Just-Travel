@@ -113,12 +113,12 @@ if (isset($_COOKIE['flag'])) {
                     <!-- <fieldset style="width:120px;">
                         <a href="edit-profile.php" style="text-decoration:none; color:white"><i class="far fa-edit"></i>&nbsp;Edit Profile</a>
                     </fieldset> -->
-                    <a href="edit-profile.php?id=<?php echo $row['id']; ?>"> <button class="button-62" role="button">Edit Profile</button> </a>
+                    <a href="edit-profile.php?id=<?php echo $row['id']; ?>"> <button class="profileButton" role="button">Edit Profile</button> </a>
 
                     <!-- <fieldset style="width:35%; margin-top: 10px;">
                         <a href="order-status.php" style="text-decoration:none; color:white"><i class="fas fa-shopping-cart"></i>&nbsp;See Order Status</a>
                     </fieldset> -->
-                    <button class="button-62" role="button">See Order Status</button>
+                    <a href="./order-status.php"><button class="profileButton" role="button">See Order Status</button></a>
                 </center>
             </div>
         </main>

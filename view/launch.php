@@ -21,10 +21,197 @@ if (isset($_COOKIE['flag'])) {
         <link rel="stylesheet" href="./styles/banner.css">
         <link rel="stylesheet" href="./styles/footer.css">
         <link rel="stylesheet" href="./styles/view-all-ticket.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <title>Launch</title>
         <style>
             * {
                 font-family: 'Poppins', sans-serif;
+            }
+
+            @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+
+            .show-btn,
+            .output-container {
+                position: relative;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            input[type="checkbox"] {
+                display: none;
+            }
+
+            .output-container {
+                display: none;
+                background: #fff;
+                width: 1400px;
+                padding: 50px;
+                box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+                margin-top: 100px;
+            }
+
+            #show:checked~.output-container {
+                display: block;
+            }
+
+            .output-container .close-btn {
+                position: absolute;
+                right: 20px;
+                top: 15px;
+                font-size: 18px;
+                cursor: pointer;
+            }
+
+            .output-container .close-btn:hover {
+                color: #3498db;
+            }
+
+            /* Table Styles */
+
+            .table-wrapper {
+                height: 35px;
+                margin: 10px 0px 0px;
+                box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+            }
+
+            .fl-table {
+                border-radius: 5px;
+                font-size: 12px;
+                font-weight: normal;
+                border: none;
+                border-collapse: collapse;
+                width: 100%;
+                max-width: 100%;
+                white-space: nowrap;
+                background-color: white;
+            }
+
+            .table-wrapper#blur.active {
+                filter: blur(20px);
+                pointer-events: none;
+                user-select: none;
+            }
+
+            .fl-table td,
+            .fl-table th {
+                text-align: center;
+                padding: 8px;
+            }
+
+            .fl-table td {
+                border-right: 1px solid #f8f8f8;
+                font-size: 18px;
+            }
+
+            .fl-table thead th {
+                color: #ffffff;
+                background: #4FC3A1;
+            }
+
+
+            .fl-table thead th:nth-child(odd) {
+                color: #ffffff;
+                background: #324960;
+            }
+
+            .fl-table tr:nth-child(even) {
+                background: #F8F8F8;
+            }
+
+            /* Responsive */
+
+            @media (max-width: 767px) {
+                .fl-table {
+                    display: block;
+                    width: 100%;
+                }
+
+                .fl-table#blur.active {
+                    filter: blur(20px);
+                    pointer-events: none;
+                    user-select: none;
+                }
+
+                .table-wrapper:before {
+                    content: "Scroll horizontally >";
+                    display: block;
+                    text-align: right;
+                    font-size: 11px;
+                    color: white;
+                    padding: 0 0 10px;
+                }
+
+                .fl-table thead,
+                .fl-table tbody,
+                .fl-table thead th {
+                    display: block;
+                }
+
+                .fl-table thead th:last-child {
+                    border-bottom: none;
+                }
+
+                .fl-table thead {
+                    float: left;
+                }
+
+                .fl-table tbody {
+                    width: auto;
+                    position: relative;
+                    overflow-x: auto;
+                }
+
+                .fl-table td,
+                .fl-table th {
+                    padding: 20px .625em .625em .625em;
+                    height: 60px;
+                    vertical-align: middle;
+                    box-sizing: border-box;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    width: 120px;
+                    font-size: 13px;
+                    text-overflow: ellipsis;
+                }
+
+                .fl-table thead th {
+                    text-align: left;
+                    border-bottom: 1px solid #f7f7f9;
+                }
+
+                .fl-table tbody tr {
+                    display: table-cell;
+                }
+
+                .fl-table tbody tr:nth-child(odd) {
+                    background: none;
+                }
+
+                .fl-table tr:nth-child(even) {
+                    background: transparent;
+                }
+
+                .fl-table tr td:nth-child(odd) {
+                    background: #F8F8F8;
+                    border-right: 1px solid #E6E4E4;
+                }
+
+                .fl-table tr td:nth-child(even) {
+                    border-right: 1px solid #E6E4E4;
+                }
+
+                .fl-table tbody td {
+                    display: block;
+                    text-align: center;
+                }
+            }
+
+            #searchResults {
+                position: relative;
+                top: -400px;
             }
         </style>
     </head>
@@ -49,49 +236,86 @@ if (isset($_COOKIE['flag'])) {
                         <h2 style="color:cyan;">SEARCH LAUNCH</h2>
                     </center>
                     <div class="search-bar">
-                        <form action="">
-                            <span id="start" class="search-by-component">
-                                <label for="">From:</label>
-                                <select name="" id="" class="search-input">
-                                    <option value="dhaka">Dhaka</option>
-                                    <option value="chittagong">Chittagong</option>
-                                    <option value="barisal">Barisal</option>
-                                    <option value="cox-bazar">Cox's Bazar</option>
-                                    <option value="bargona">Bargona</option>
-                                    <option value="bangabandhu-island">Bangabandhu Island</option>
-                                    <option value="elisha">Elisha</option>
-                                    <option value="kuakata">Kuakata</option>
-                                    <option value="mawa">Mawa</option>
-                                    <option value="saint-martin">Saint Martin</option>
-                                </select>
 
-                            </span>
+                        <span id="start" class="search-by-component">
+                            <label for="">From:</label>
+                            <select name="startLocation" id="startLocation" class="search-input">
+                                <option value="dhaka">Dhaka</option>
+                                <option value="chittagong">Chittagong</option>
+                                <option value="barisal">Barisal</option>
+                                <option value="cox-bazar">Cox's Bazar</option>
+                                <option value="bargona">Bargona</option>
+                                <option value="bangabandhu-island">Bangabandhu Island</option>
+                                <option value="elisha">Elisha</option>
+                                <option value="kuakata">Kuakata</option>
+                                <option value="mawa">Mawa</option>
+                                <option value="saint-martin">Saint Martin</option>
+                            </select>
 
-                            <span id="end" class="search-by-component">
-                                <label for="">To:</label>
-                                <select name="" id="" class="search-input">
-                                    <option value="dhaka">Dhaka</option>
-                                    <option value="chittagong">Chittagong</option>
-                                    <option value="barisal">Barisal</option>
-                                    <option value="cox-bazar">Cox's Bazar</option>
-                                    <option value="bargona">Bargona</option>
-                                    <option value="bangabandhu-island">Bangabandhu Island</option>
-                                    <option value="elisha">Elisha</option>
-                                    <option value="kuakata">Kuakata</option>
-                                    <option value="mawa">Mawa</option>
-                                    <option value="saint-martin">Saint Martin</option>
-                                </select>
-                            </span>
+                        </span>
 
-                            <span class="search-by-component" id="journey-date">
-                                <label for="">JOURNEY DATE:</label>
-                                <input type="date" id="journey-date" name="journey-date" class="search-input">
-                            </span>
+                        <span id="end" class="search-by-component">
+                            <label for="">To:</label>
+                            <select name="endLocation" id="endLocation" class="search-input">
+                                <option value="dhaka">Dhaka</option>
+                                <option value="chittagong">Chittagong</option>
+                                <option value="barisal">Barisal</option>
+                                <option value="cox-bazar">Cox's Bazar</option>
+                                <option value="bargona">Bargona</option>
+                                <option value="bangabandhu-island">Bangabandhu Island</option>
+                                <option value="elisha">Elisha</option>
+                                <option value="kuakata">Kuakata</option>
+                                <option value="mawa">Mawa</option>
+                                <option value="saint-martin">Saint Martin</option>
+                            </select>
+                        </span>
 
-                            <input type="submit" value="Submit" class="search-btn">
-                        </form>
+                        <span class="search-by-component" id="journey-date">
+                            <label for="">JOURNEY DATE:</label>
+                            <input type="date" id="journeyDate" name="journeyDate" class="search-input">
+                        </span>
+
+                        <button id="search" class="search-btn button" onclick="toggle()"> <label for="show" style="color:#4FC3A1;">Search</label> </button>
+
                     </div>
                 </div>
+
+
+
+                <div id="searchResults">
+                    <!-- POP UP SEARCH  -->
+                    <div>
+                        <input type="checkbox" id="show">
+                        <div class="output-container">
+                            <label for="show" class="close-btn fas fa-times" style="color:black;" title="close"></label>
+                            <div class="table-wrapper">
+                                <table class="fl-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Operator Name</th>
+                                            <th>Journey Date</th>
+                                            <th>Starting Location</th>
+                                            <th>Ending Location</th>
+                                            <th>Arrival Time</th>
+                                            <th>Departure Time</th>
+                                            <th>Available Seat</th>
+                                            <th>Type</th>
+                                            <th>Price</th>
+                                            <!-- <th>Buy</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody id="output">
+
+                                    <tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
 
 
                 <div style="width:100%; margin:0 auto;">
@@ -175,6 +399,33 @@ if (isset($_COOKIE['flag'])) {
         </footer>
 
         <script src="./js/header.js"></script>
+        <script src="./js/search.js"></script>
+        <!-- pop up script -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#search").click(function() {
+                    $.ajax({
+                        type: 'POST',
+                        url: './search-launch-ticket.php',
+                        data: {
+                            startLocation: $("#startLocation").val(),
+                            endLocation: $("#endLocation").val(),
+                            journeyDate: $("#journeyDate").val()
+                        },
+                        success: function(data) {
+                            $("#output").html(data);
+                        }
+                    });
+                });
+            });
+        </script>
+        <!-- background blur script -->
+        <script type="text/javascript">
+            function toggle() {
+                var blur = document.getElementById('blur');
+                blur.classlist.toggle('active')
+            }
+        </script>
     </body>
 
     </html>

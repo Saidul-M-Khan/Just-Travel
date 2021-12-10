@@ -55,64 +55,78 @@ if (isset($_COOKIE['flag'])) {
             if ($check_hotel) {
                 while ($row = mysqli_fetch_assoc($query_run)) {
             ?>
+                    <form action="./payment.php" method="POST">
+                        <div class="cardContainer">
+                            <div class="product-details">
+                                <input type="hidden" name="booking_for" value="hotel">
+                                <input type="hidden" name="booking_payment_method" value="card">
+                                <input type="hidden" name="booking_status" value="pending">
+
+                                <input type="hidden" name="start_date" value="Null">
+                                <input type="hidden" name="end_date" value="Null">
+
+                                <h1>
+                                    <?php echo $row['hotel_name']; ?>
+                                    <input type="hidden" name="name" value="<?php echo $row['hotel_name']; ?>">
+                                </h1>
+
+                                <span class="hint-star star">
+                                    <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
+                                    <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
+                                    <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
+                                    <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
+                                    <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
+                                </span>
+
+                                <p style="margin-top: 20px;" class="information"><i class="fas fa-map-marked-alt"></i><strong>&nbsp;&nbsp;&nbsp;Location:
+                                    </strong>
+                                    <?php echo $row['hotel_location']; ?>
+                                    <input type="hidden" name="location" value="<?php echo $row['hotel_location']; ?>">
+                                </p>
+
+                                <p style="margin-top: 15px;" class="information"><i class="fas fa-map-marked-alt"></i><strong>&nbsp;&nbsp;&nbsp;Regular Booking:
+                                    </strong>
+                                    <del><span style="color:red">৳<?php echo $row['regular_booking_price']; ?></span></del>
+                                </p>
+                                <br>
 
 
-                    <div class="cardContainer">
-                        <div class="product-details">
+                                <div class="control">
+                                    <button type="submit" class="btn" role="button">
+                                        <span class="price text" style="color:azure">৳<?php echo $row['discounted_booking_price']; ?></span>
+                                        <input type="hidden" name="booking_price" value="<?php echo $row['discounted_booking_price']; ?>">
+                                        <span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true" style="color:azure"></i></span>
+                                        <span class="buy text" style="color:azure">Book Now</span>
+                                    </button>
 
-                            <h1>
-                                <?php echo $row['hotel_name']; ?>
-                            </h1>
+                                    <!-- <input type="submit" class="ticket-buy-btn" role="button" style="margin-top:15px;" value="Buy"> -->
+                                </div>
 
-                            <span class="hint-star star">
-                                <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
-                                <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
-                                <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
-                                <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
-                                <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
-                            </span>
-
-                            <p style="margin-top: 20px;" class="information"><i class="fas fa-map-marked-alt"></i><strong>&nbsp;&nbsp;&nbsp;Location:
-                                </strong>
-                                <?php echo $row['hotel_location']; ?>
-                            </p>
-                            <p style="margin-top: 15px;" class="information"><i class="fas fa-map-marked-alt"></i><strong>&nbsp;&nbsp;&nbsp;Regular Booking:
-                                </strong>
-                                <del><span style="color:red">৳<?php echo $row['regular_booking_price']; ?></span></del>
-                            </p>
-                            <br>
+                            </div>
 
 
-                            <div class="control">
-                                <button class="btn">
-                                    <span class="price text" style="color:azure">৳<?php echo $row['discounted_booking_price']; ?></span>
-                                    <span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true" style="color:azure"></i></span>
-                                    <span class="buy text" style="color:azure">Book Now</span>
-                                </button>
+                            <div class="product-image">
+
+                                <img src="<?php echo $row['hotel_image']; ?>" alt="">
+
+                                <div class="info">
+                                    <h2 class="text" style="color:azure">Description</h2>
+                                    <ul style="margin-left: 15px;">
+                                        <li><strong style="color:azure" class="text"><i style="color:azure" class="fas fa-map-marked-alt"></i>&nbsp;&nbsp;&nbsp;Status : 4 Star</strong></li>
+                                        <li><strong style="color:azure" class="text"><i style="color:azure" class="fas fa-coffee"></i>&nbsp;&nbsp;&nbsp;Free Breakfast</strong></li>
+                                        <li><strong style="color:azure" class="text"><i style="color:azure" class="fas fa-wifi"></i>&nbsp;&nbsp;&nbsp;Free Wifi</strong></li>
+                                        <li><strong style="color:azure" class="text"><i style="color:azure" class="fas fa-utensils"></i>&nbsp;&nbsp;&nbsp;Restaurant</strong></li>
+                                        <li><strong style="color:azure" class="text"><i style="color:azure" class="fas fa-dumbbell"></i>&nbsp;&nbsp;&nbsp;Gym</strong></li>
+                                        <li><strong style="color:azure" class="text"><i style="color:azure" class="fas fa-umbrella-beach"></i>&nbsp;&nbsp;&nbsp;Beach access</strong></li>
+                                    </ul>
+                                </div>
+
                             </div>
 
                         </div>
+                    </form>
 
 
-                        <div class="product-image">
-
-                            <img src="<?php echo $row['hotel_image']; ?>" alt="">
-
-                            <div class="info">
-                                <h2 class="text" style="color:azure">Description</h2>
-                                <ul style="margin-left: 15px;">
-                                    <li><strong style="color:azure" class="text"><i style="color:azure" class="fas fa-map-marked-alt"></i>&nbsp;&nbsp;&nbsp;Status : 4 Star</strong></li>
-                                    <li><strong style="color:azure" class="text"><i style="color:azure" class="fas fa-coffee"></i>&nbsp;&nbsp;&nbsp;Free Breakfast</strong></li>
-                                    <li><strong style="color:azure" class="text"><i style="color:azure" class="fas fa-wifi"></i>&nbsp;&nbsp;&nbsp;Free Wifi</strong></li>
-                                    <li><strong style="color:azure" class="text"><i style="color:azure" class="fas fa-utensils"></i>&nbsp;&nbsp;&nbsp;Restaurant</strong></li>
-                                    <li><strong style="color:azure" class="text"><i style="color:azure" class="fas fa-dumbbell"></i>&nbsp;&nbsp;&nbsp;Gym</strong></li>
-                                    <li><strong style="color:azure" class="text"><i style="color:azure" class="fas fa-umbrella-beach"></i>&nbsp;&nbsp;&nbsp;Beach access</strong></li>
-                                </ul>
-                            </div>
-
-                        </div>
-
-                    </div>
             <?php
 
 

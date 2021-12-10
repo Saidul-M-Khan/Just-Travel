@@ -52,34 +52,57 @@ if (isset($_COOKIE['flag'])) {
                 if ($check_event) {
                     while ($row = mysqli_fetch_assoc($query_run)) {
                 ?>
+                        <form action="./payment.php" method="POST">
+                            <div class="card">
+                                <input type="hidden" name="booking_for" value="event">
+                                <input type="hidden" name="booking_payment_method" value="card">
+                                <input type="hidden" name="booking_status" value="pending">
 
-                        <div class="card">
-                            <img src="<?php echo $row['event_image']; ?>" alt="" style="width:100%">
-                            <div class="card-container">
-                                <h1><?php echo $row['event_name']; ?></h1>
-                                <div>
-                                    <p><i class="far fa-calendar-alt fa-1x"></i>&nbsp;<?php echo $row['event_start_date']; ?> - <?php echo $row['event_end_date']; ?></p>
-                                </div>
-                                <div>
-                                    <p><i class="fas fa-map-marker-alt" style="color:black;"></i>&nbsp;<?php echo $row['event_location']; ?></p>
-                                </div>
-                                <div>
-                                    <p><?php echo $row['event_details']; ?></p>
-                                </div>
-                                <div>
-                                    <h2>Price: <span style="color:red;">৳<?php echo $row['event_ticket_price']; ?></span></h2>
-                                </div>
-                                <div style="margin: 25px 10px 25px 10px;">
-                                    <button class="event-ticket-buy-btn" role="button"><i class="fas fa-shopping-cart"></i>&nbsp;Buy Now</button>
-                                    <!-- <a class="see-details-button" href="<?php
-                                                                                // echo $row['event_id']; 
-                                                                                ?>">SEE DETAILS</a> -->
-                                </div>
+                                <img src="<?php echo $row['event_image']; ?>" alt="" style="width:100%">
+                                <div class="card-container">
+                                    <h1><?php echo $row['event_name']; ?></h1>
+                                    <input type="hidden" name="name" value="<?php echo $row['event_name']; ?>">
+
+                                    <div>
+                                        <p><i class="far fa-calendar-alt fa-1x"></i>&nbsp;<?php echo $row['event_start_date']; ?> - <?php echo $row['event_end_date']; ?></p>
+                                        <input type="hidden" name="start_date" value="<?php echo $row['event_start_date']; ?>">
+                                        <input type="hidden" name="end_date" value="<?php echo $row['event_end_date']; ?>">
+                                    </div>
+
+                                    <div>
+                                        <p><i class="fas fa-map-marker-alt" style="color:black;"></i>&nbsp;<?php echo $row['event_location']; ?></p>
+                                        <input type="hidden" name="location" value="<?php echo $row['event_location']; ?>">
+                                    </div>
+
+                                    <div>
+                                        <p><?php echo $row['event_details']; ?></p>
+
+                                        <!-- <input type="hidden" name="description" value="<?php
+                                                                                            // echo $row['event_details']; 
+                                                                                            ?>"> -->
+
+                                    </div>
+
+                                    <div>
+                                        <h2>Price: <span style="color:red;">৳<?php echo $row['event_ticket_price']; ?></span></h2>
+                                        <input type="hidden" name="booking_price" value="<?php echo $row['event_ticket_price']; ?>">
+                                    </div>
+
+                                    <div style="margin: 25px 10px 25px 10px;">
+                                        <!-- <button class="event-ticket-buy-btn" role="button"><i class="fas fa-shopping-cart"></i>&nbsp;Buy Now</button> -->
+                                        <input type="submit" class="event-ticket-buy-btn" role="button" value="Buy Now">
+                                        <!-- <a class="see-details-button" href="<?php
+                                                                                    // echo $row['event_id']; 
+                                                                                    ?>">SEE DETAILS</a> -->
+                                    </div>
 
 
 
+                                </div>
                             </div>
-                        </div>
+                        </form>
+
+
 
                         <!-- <div id="<?php
                                         // echo $row['event_id'];
