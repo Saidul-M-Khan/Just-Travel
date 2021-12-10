@@ -1,3 +1,8 @@
+<?php 
+	session_start();
+	if(isset($_COOKIE['flag'])){
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,46 +11,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="./css/header.css">
+        <link rel="stylesheet" href="./css/banner.css">
+        <link rel="stylesheet" href="./css/footer.css">
+        <link rel="stylesheet" href="./css/body.css">
    
-    <title>Home</title>
+    <title>Air</title>
+    <header>
+    
+           <?php
+            include './header.php';
+            ?>
+</header>
 </head>
 
 <body>
 
 
-<header>
-    
-    <div class="navbar">
 
-        <nav>
-            <fieldset>
-
-            <a class="logo" href="/"><img src="../images/logo.png" alt="logo" height="50px"></a>
-                <center>
-                    <a href="Bus.php" style="text-decoration:none"><big>&nbsp;Bus</big></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="Launch.php" style="text-decoration:none"><big></i>&nbsp;Launch</big></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="Air.php" style="text-decoration:none"><big>&nbsp;Air</big></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="places.php" style="text-decoration:none"><big>&nbsp;Places</big></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="hotel.php" style="text-decoration:none"><big>&nbsp;Hotel</big></a>
-
-                    <br>
-                    <br>
-                    
-
-                    <fieldset style="width:100px; float:right">
-                        <a href="../control/logout.php" style="text-decoration:none"><big>&nbsp;Logout</big></a>
-                    </fieldset>
-
-                </center>
-
-
-
-            </fieldset>
-        </nav>
-
-       
-    </div>
-</header>
 
     <main style="padding: 20px 70px 20px 70px; ">
         
@@ -103,120 +88,81 @@
             </form>   
               
         </h4>
-
-        <?php
-            require("../model/db.php");
-
-            $query = "SELECT * FROM air_ticket";
-            $query_run = mysqli_query($connection, $query);
-            $check_air_ticket = mysqli_num_rows($query_run) > 0;
-
-            if ($check_air_ticket) {
-                while ($row = mysqli_fetch_assoc($query_run)) {
-            ?>
-      
-      <fieldset style="width: 70%; margin:0 auto; margin-top: 25px;">
-                <table style="width:100%; margin:0 auto; margin-top: 25px;">
-                    <tbody>
-                        <tr>
-                            
-                            <td>
-                                <ul class="air-ticket-info">
-                                    <dl>
-                                        <img src="<?php echo $row['airline_image']; ?>" alt=""width="50%"><br>
-
-                                      <strong><h2><?php echo $row['plane_route']; ?></h2></strong>
-                                        <strong><h3>Flight no.:<h3><?php echo $row['flight_no']; ?></h3></strong>
-                                        <strong><h3><?php echo $row['plane_ticket_availability']; ?></h3></strong>
-                                       
-                                    </dl>
-                                </ul>
-                            </td>
-
-                            <td>
-                                <ul class="air-ticket-info">
-                                    <dl>
-                                    <h3>Starting Point: <?php echo $row['plane_start_location']; ?></h3></span>
-                                        <h3>Ending Point: <?php echo $row['plane_end_location']; ?></h3></span>
-                                    </dl>
-                                </ul>
-                            </td>
-
-                            <td>
-                                <ul class="air-ticket-info">
-                                    <dl>
-                                    <h3>Departure Time:
-                                         <?php echo $row['plane_departure_time']; ?></h3>
-                                        
-                                    </dl>
-                                </ul>
-                            </td>
-
-                            <td>
-                                <ul class="air-ticket-info">
-                                    <dl>
-                                    <h3>Arrival Time:
-                                         <?php echo $row['plane_arrival_time']; ?></h3>
-                                    </dl>
-                                </ul>
-                            </td>
-
-                            <td>
-                                <ul class="air-ticket-info">
-                                    <dl>
-                                    <h3>Available Seat:
-                                         <?php echo $row['plane_available_seat']; ?></h3>
-                                    </dl>
-                                </ul>
-                            </td>
-
-                            <td>
-                                <ul class="air-ticket-info">
-                                    <dl>
-                                        <h3>Price:
-                                        ৳<?php echo $row['air_ticket_price']; ?></h3>
-                                    </dl>
-                                </ul>
-                            </td>
-                            </tr>
-                    </tbody>
-                </table>
-            </fieldset>
-
-
-
-     
-     
-     
-     <?php
-
-
-}
-} else {
-echo "No air ticket found";
-}
-
-?>
-
     </main>
-    
-    
+    <div class="jumbotron text-center">
+  <h1>Air Ticket Search</h1>
+</div>
+  
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="search">
+      <table class="table table-hover">
+      <thead>
+        <tr>
+        <th>
+            
+        </th>
+          <th>Airline Name</th>
+          <th>Flight No.</th>
+          <th>Ticket Type</th>
+          <th>Ticket Price</th>
+          <th>Ticket Available</th>
+          <th>Seat Available</th>
+          <th>Destination</th>
+          <th>Start Location</th>
+          <th>End Location</th>
+          <th>Journey Date</th>
+          <th>Arrival Time</th>
+          <th>Departure Time</th>
+          <th>Image</th>
+        </tr>
+      </thead>
+      <tbody id="output">
+        
+      </tbody>
+    </table>
+    </div>
+    <div class="col-sm-3">
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#search").keypress(function(){
+      $.ajax({
+        type:'POST',
+        url:'./Search/air_search.php',
+        data:{
+          name:$("#search").val(),
+        },
+        success:function(data){
+          $("#output").html(data);
+        }
+      });
+    });
+  });
+</script>
 
+        
 
 
     <footer>
-       
-        <fieldset>
-            <div class="bottom">
-                <center>
-                    <span class="credit">Created By <a href="">AIUBians</a> | </span>
-                    <span class="far fa-copyright"></span><span> 2021 All rights reserved.</span>
-                </center>
-            </div>
-        </fieldset>
+            <?php
+            include './footer.php';
+            ?>
+        </footer>
 
-    </footer>
+
+        <script src="./js/header.js"></script>
 </body>
 
 </html>
+<?php
+	}else{
+		header('location:home.php');
+	}
+?>
 

@@ -1,5 +1,4 @@
 <?php
-
 class adduser{
     public $error=array(
         'nameErr'=>"",
@@ -9,6 +8,8 @@ class adduser{
         'nidErr' =>"",
         'genderErr' =>"",
     );
+
+    
 
     public $message="";
   

@@ -1,3 +1,7 @@
+<?php 
+	session_start();
+	if(isset($_COOKIE['flag'])){
+?>
 
 
 <!DOCTYPE html>
@@ -8,7 +12,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Home</title>
+    <link rel="stylesheet" href="./css/header.css">
+        <link rel="stylesheet" href="./css/banner.css">
+        <link rel="stylesheet" href="./css/footer.css">
+        <link rel="stylesheet" href="./css/body.css">
+    
+    <title>Hotel</title>
 </head>
 
 <body>
@@ -16,36 +25,9 @@
 
 <header>
     
-    <div class="navbar">
-
-        <nav>
-            <fieldset>
-
-            <a class="logo" href="/"><img src="../images/logo.png" alt="logo" height="50px"></a>
-                <center>
-                    <a href="Bus.php" style="text-decoration:none"><big>&nbsp;Bus</big></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="Launch.php" style="text-decoration:none"><big></i>&nbsp;Launch</big></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="Air.php" style="text-decoration:none"><big>&nbsp;Air</big></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="places.php" style="text-decoration:none"><big>&nbsp;Places</big></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="hotel.php" style="text-decoration:none"><big>&nbsp;Hotel</big></a>
-
-                    <br>
-                    <br>
-                    
-
-                    <fieldset style="width:100px; float:right">
-                        <a href="../control/logout.php" style="text-decoration:none"><big>&nbsp;Logout</big></a>
-                    </fieldset>
-
-                </center>
-
-
-
-            </fieldset>
-        </nav>
-
-       
-    </div>
+<?php
+            include './header.php';
+            ?>
 </header>
 
     <main style="padding: 20px 70px 20px 70px; ">
@@ -158,18 +140,19 @@
 
     <footer>
         
-        <fieldset>
-            <div class="bottom">
-                <center>
-                    <span class="credit">Created By <a href="">AIUBians</a> | </span>
-                    <span class="far fa-copyright"></span><span> 2021 All rights reserved.</span>
-                </center>
-            </div>
-        </fieldset>
-
+    <?php
+            include './footer.php';
+            ?> 
     </footer>
+
+    <script src="./js/header.js"></script>
 </body>
 
 </html>
+<?php
+	}else{
+		header('location:home.php');
+	}
+?>
     
     

@@ -1,6 +1,6 @@
 <nav class="nav">
     <div class="container">
-        <h1 class="logo"><a href="/">Just Travel</a></h1>
+        <h1 class="logo"><a href="home.php">Just Travel</a></h1>
         <ul>
             <li><a href="bus.php"><i class="fas fa-bus icon"></i>&nbsp;Bus</a></li>
             <li><a href="launch.php"><i class="fas fa-ship icon"></i>&nbsp;Launch</a></li>

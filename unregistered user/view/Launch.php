@@ -1,3 +1,8 @@
+<?php 
+	session_start();
+	if(isset($_COOKIE['flag'])){
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,59 +11,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="./css/header.css">
+        <link rel="stylesheet" href="./css/banner.css">
+        <link rel="stylesheet" href="./css/footer.css">
+        <link rel="stylesheet" href="./css/body.css">
+        <!-- <link rel="stylesheet" href="./css/launch.css"> -->
+       
     
-    <title>Home</title>
+    <title>Launch</title>
+    <header>
+    
+<?php
+            include './header.php';
+            ?>
+</header>
 </head>
 
 <body>
-
-
-<header>
-    
-    <div class="navbar">
-
-        <nav>
-            <fieldset>
-
-            <a class="logo" href="/"><img src="../images/logo.png" alt="logo" height="50px"></a>
-                <center>
-                    <a href="Bus.php" style="text-decoration:none"><big>&nbsp;Bus</big></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="Launch.php" style="text-decoration:none"><big></i>&nbsp;Launch</big></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="Air.php" style="text-decoration:none"><big>&nbsp;Air</big></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="places.php" style="text-decoration:none"><big>&nbsp;Places</big></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="hotel.php" style="text-decoration:none"><big>&nbsp;Hotel</big></a>
-
-                    <br>
-                    <br>
-                    
-
-                    <fieldset style="width:100px; float:right">
-                        <a href="../control/logout.php" style="text-decoration:none"><big>&nbsp;Logout</big></a>
-                    </fieldset>
-
-                </center>
-
-
-
-            </fieldset>
-        </nav>
-
-       
-    </div>
-</header>
-
-    <main style="padding: 20px 70px 20px 70px; ">
+    <main >
         
             <h1><Strong>Main Section</Strong></h1>
             <h4>
-            <form>
+            
                 <fieldset>
                     <legend><h3>Launch Travel Information</h3></legend>
               
                     <h4>Destination</h4>
                     <label>From:</label>
 
-                    <select>
+                    <select name="start_location" id="start_location">
                         <option value=""></option>
                         <option value="sadarghat">Sadarghat</option>
                         <option value="cox's bazar">Cox's Bazar</option>
@@ -72,7 +55,7 @@
 
                         <label>To:</label>
 
-                    <select>
+                    <select  name="end_location" id="end_location">
                         <option value=""></option>
                         <option value="sadarghat">Sadarghat</option>
                         <option value="cox's bazar">Cox's Bazar</option>
@@ -83,130 +66,97 @@
                         <option value="khulna">Khulna</option>
                         </select>
                         
-                          <label>Cabin Type:</label>
+                          <!-- <label>Cabin Type:</label>
                         <select>
                             <option value=""></option>
                             <option value="vip">VIP</option>
                             <option value="upper deck">Upper Deck</option>
                             <option value="lower deck">Lower Deck</option>
                             <option value="standard cabin">Standard Cabin</option>
-                            </select>
+                            </select> -->
                             
                     
 
                     <label for="date">Travel Date:</label>
-                     <input type="date" name="date" id="date"> 
+                     <input type="date" name="journey_date" id="journey_date"> 
                      
               
-                    
-                    <input type="submit"  name="search launches"  value="Search launches"><br><br>
-              
-                   </fieldset>
-            </form>   
-            </h4> <?php
-            require("../model/db.php");
+                     
+                    <!-- <input type="submit"  name="search launches" id="search" value="Search launches"><br><br> -->
+                    <button id="search" class="search-btn button" onclick="toggle()"> <label for="show">Search</label> </button>
+                    <div>
+                        <input type="checkbox" id="show">
+                        <div class="output-container">
+                            <label for="show" class="close-btn fas fa-times" style="color:black;" title="close"></label>
+                            <div class="table-wrapper">
+                                <table class="fl-table">
+                                    <thead>
+                                        <tr>
 
-            $query = "SELECT * FROM launch_ticket";
-            $query_run = mysqli_query($connection, $query);
-            $check_launch_ticket = mysqli_num_rows($query_run) > 0;
+                                            <th>Operator Name</th>
+          <th>Deck Type</th>
+          <th>Ticket Price</th>
+          <th>Ticket Available</th>
+          <th>Seat Available</th>
+          <th>Destination</th>
+          <th>Start Location</th>
+          <th>End Location</th>
+          <th>Journey Date</th>
+          <th>Arrival Time</th>
+          <th>Departure Time</th>
+          <th>Image</th>
+                                            <!-- <th>Buy</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody id="output">
 
-            if ($check_launch_ticket) {
-                while ($row = mysqli_fetch_assoc($query_run)) {
-            ?>
-      
-        <fieldset style="width: 70%; margin:0 auto; margin-top: 25px;">
-                <table style="width:100%; margin:0 auto; margin-top: 25px;">
-                    <tbody>
-                        <tr>
-                            
-                            <td>
-                                <ul class="launch-ticket-info">
-                                    <dl>
-                                        <img src="<?php echo $row['image']; ?>" alt="" width="80%"><br>
-                                      
-                                        <strong><h2><?php echo $row['launch_operator_name']; ?></h2></strong>
-                                        <strong><h3><?php echo $row['launch_route']; ?></h3></strong>
-                                        <strong><h4><?php echo $row['launch_deck_type']; ?></h4></strong></span>
-                                        <strong><h4><?php echo $row['launch_ticket_availability']; ?></h4></strong>
-                                        
-                                    </dl>
-                                </ul>
-                            </td>
+                                    <tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div> 
+                  
+                  </fieldset>
+               
+            </h4> 
+        </main>
 
-                            <td>
-                                <ul class="launch-ticket-info">
-                                    <dl>
-                                    <strong><h4>Starting Point: <?php echo $row['launch_starting_location']; ?></h4></strong></span>
-                                        <strong><h4>Ending Point: <?php echo $row['launch_ending_location']; ?></h4></strong></span>
-                                        
-                                    </dl>
-                                </ul>
-                            </td>
+       
 
-                            <td>
-                                <ul class="launch-ticket-info">
-                                    <dl>
-                                    <h4>Departure Time:<br>
-                                         <?php echo $row['launch_departure_time']; ?></h4>
-                                        
-                                    </dl>
-                                </ul>
-                            </td>
-
-                            <td>
-                                <ul class="launch-ticket-info">
-                                    <dl>
-                                    <h4>Arrival Time:<br>
-                                         <?php echo $row['launch_arrival_time']; ?></h4>
-                                    </dl>
-                                </ul>
-                            </td>
-
-                            <td>
-                                <ul class="launch-ticket-info">
-                                    <dl>
-                                    <h4>Available Seat:
-                                         <?php echo $row['launch_available_seats']; ?></h4>
-                                    </dl>
-                                </ul>
-                            </td>
-
-                            <td>
-                                <ul class="launch-ticket-info">
-                                    <dl>
-                                        <h3>Price:
-                                        ৳<?php echo $row['launch_ticket_price']; ?></h3>
-                                    </dl>
-                                </ul>
-                            </td>
-                            </tr>
-                    </tbody>
-                </table>
-            </fieldset>
-            <?php
-
-
-}
-} else {
-echo "No launch ticket found";
-}
-
-?>
-
-    </main>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#search").click(function(){
+      $.ajax({
+        type:'POST',
+        url:'./Search/launch_search.php',
+        data:{
+         
+          start_location:$("#start_location").val(),
+          end_location:$("#end_location").val(),
+          journey_date:$("#journey_date").val(),
+        },
+        
+        success:function(data){
+          $("#output").html(data);
+        }
+      });
+    });
+  });
+</script>
 
     <footer>
         
-        <fieldset>
-            <div class="bottom">
-                <center>
-                    <span class="credit">Created By <a href="">AIUBians</a> | </span>
-                    <span class="far fa-copyright"></span><span> 2021 All rights reserved.</span>
-                </center>
-            </div>
-        </fieldset>
-
+    <?php
+            include './footer.php';
+            ?> 
     </footer>
+
+    <script src="./js/header.js"></script>
 </body>
 
 </html>
+<?php
+	}else{
+		header('location:home.php');
+	}
+?>
