@@ -214,6 +214,21 @@ if (isset($_COOKIE['flag'])) {
                 position: relative;
                 top: -400px;
             }
+
+            table {
+                width: 100%;
+            }
+
+            th {
+                background: #f1f1f1;
+                font-weight: bold;
+                padding: 6px;
+            }
+
+            td {
+                background: #f9f9f9;
+                padding: 6px;
+            }
         </style>
         <title>Air</title>
     </head>
@@ -334,47 +349,19 @@ if (isset($_COOKIE['flag'])) {
                     </div>
                 </section>
 
-                <div class="air-routes">
+                <section class="air-routes">
+
                     <center>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th colspan="4">
-                                        <h1>POPULAR AIR ROUTES</h1>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <ul class="air-list routes">
-                                            <dl><a href="buy-air-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-COX'S BAZAR</a></dl>
-                                            <dl><a href="buy-air-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-CHITTAGONG</a></dl>
-
-
-                                        </ul>
-                                    </td>
-
-                                    <td>
-                                        <ul class="air-list routes">
-                                            <dl><a href="buy-air-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-RAJSHAHI</a></dl>
-                                            <dl><a href="buy-air-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-SYLHET</a></dl>
-
-                                        </ul>
-                                    </td>
-
-                                    <td>
-                                        <ul class="air-list routes">
-                                            <dl><a href="buy-air-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-JOSHOR</a></dl>
-                                            <dl><a href="buy-air-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-BARISAL</a></dl>
-                                            <dl><a href="buy-air-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-SAIADPUR</a></dl>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>
+                        <table id="air-route">
+                            <tr>
+                                <th>
+                                    <h2>AIR ROUTES</h2>
+                                </th>
+                            </tr>
                         </table>
                     </center>
-                </div>
+
+                </section>
 
                 <div style="width:100%; margin:0 auto; margin-top: 100px; margin-bottom:50px; background: white; border:2px solid blueviolet; border-radius: 10px; padding: 30px;">
 
@@ -428,6 +415,20 @@ if (isset($_COOKIE['flag'])) {
                 var blur = document.getElementById('blur');
                 blur.classlist.toggle('active')
             }
+        </script>
+
+        <!-- Display Launch Routes -->
+        <script type="text/javascript">
+            $.ajax({
+                url: '../model/JSON/air-routes.json',
+                dataType: 'json',
+                success: function(data) {
+                    for (var i = 0; i < data.length; i++) {
+                        var row = $('<tr><td><a href="buy-air-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;&nbsp;' + data[i].name + '</a></td></tr>');
+                        $('#air-route').append(row);
+                    }
+                }
+            });
         </script>
 
     </body>

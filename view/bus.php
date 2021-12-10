@@ -400,6 +400,25 @@ if (isset($_COOKIE['flag'])) {
                 position: relative;
                 top: -400px;
             }
+
+
+
+
+
+            table {
+                width: 100%;
+            }
+
+            th {
+                background: #f1f1f1;
+                font-weight: bold;
+                padding: 6px;
+            }
+
+            td {
+                background: #f9f9f9;
+                padding: 6px;
+            }
         </style>
     </head>
 
@@ -527,7 +546,7 @@ if (isset($_COOKIE['flag'])) {
 
                 <section class="bus-operators">
                     <center>
-                        <table>
+                        <table id="bus-operator">
                             <thead>
                                 <tr>
                                     <th colspan="4">
@@ -606,64 +625,19 @@ if (isset($_COOKIE['flag'])) {
                         </table>
                     </center>
 
+
+
                 </section>
 
                 <section class="bus-routes">
+
                     <center>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th colspan="4">
-                                        <h2>POPULAR BUS ROUTES</h2>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <ul class="bus-list routes">
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-COX'S BAZAR</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-KHAGRACHARI</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-BANDARBAN</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-TEKNAF</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-RANGAMATI</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-CHAPAINAWABGANJ</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-RAJSHAHI</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-RANGPUR</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-BARISAL</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-BARGUNA</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-KUAKATA</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-SATKHIRA</a></dl>
-                                        </ul>
-                                    </td>
-
-                                    <td>
-                                        <ul class="bus-list routes">
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-KHULNA</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-PATUAKHALI</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-THAKURGAON</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-CHITTAGONG</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-SHYAMNAGAR</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-KANSAT</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-KAPTAI</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-BENAPOLE</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;CHAPAINAWABGANJ-DHAKA</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-PATHORGHATA</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-KOLKATA</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-PANCHAGARH</a></dl>
-                                        </ul>
-                                    </td>
-
-                                    <td>
-                                        <ul class="bus-list routes">
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-VANDARIA</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-KHEPUPARA</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-PAIKGASA</a></dl>
-                                            <dl><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;DHAKA-BURIMARI</a></dl>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>
+                        <table id="bus-route">
+                            <tr>
+                                <th>
+                                    <h2>BUS ROUTES</h2>
+                                </th>
+                            </tr>
                         </table>
                     </center>
 
@@ -682,8 +656,6 @@ if (isset($_COOKIE['flag'])) {
             <center>
                 <a href="./buy-bus-ticket.php" style="text-decoration:none;"><button class="see-tickets-btn" role="button"><span class="text">SEE ALL AVAILABLE BUS TICKETS</span></button></a>
             </center>
-
-
         </main>
 
         <footer>
@@ -720,6 +692,22 @@ if (isset($_COOKIE['flag'])) {
                 blur.classlist.toggle('active')
             }
         </script>
+
+
+        <!-- Display Bus Route -->
+        <script type="text/javascript">
+            $.ajax({
+                url: '../model/JSON/bus-routes.json',
+                dataType: 'json',
+                success: function(data) {
+                    for (var i = 0; i < data.length; i++) {
+                        var row = $('<tr><td><a href="buy-bus-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;&nbsp;' + data[i].name + '</a></td></tr>');
+                        $('#bus-route').append(row);
+                    }
+                }
+            });
+        </script>
+
 
     </body>
 

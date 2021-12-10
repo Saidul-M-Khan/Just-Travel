@@ -213,6 +213,21 @@ if (isset($_COOKIE['flag'])) {
                 position: relative;
                 top: -400px;
             }
+
+            table {
+                width: 100%;
+            }
+
+            th {
+                background: #f1f1f1;
+                font-weight: bold;
+                padding: 6px;
+            }
+
+            td {
+                background: #f9f9f9;
+                padding: 6px;
+            }
         </style>
     </head>
 
@@ -325,54 +340,19 @@ if (isset($_COOKIE['flag'])) {
 
                 </div>
 
+                <section class="launch-routes">
 
-                <div class="launch-routes">
                     <center>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th colspan="4">
-                                        <h1>POPULAR LAUNCH ROUTES</h1>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <ul class="launch-list routes">
-                                            <dl><a href="buy-launch-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;Dhaka To Chandpur</a></dl>
-                                            <dl><a href="buy-launch-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;Dhaka To Chor Kolmi</a></dl>
-                                            <dl><a href="buy-launch-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;Dhaka To Chor Khali</a></dl>
-                                            <dl><a href="buy-launch-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;Dhaka To Cawkhali</a></dl>
-                                            <dl><a href="buy-launch-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;Dhaka To Chand Khali</a></dl>
-                                            <dl><a href="buy-launch-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;Dhaka To Chondromohon</a></dl>
-                                        </ul>
-                                    </td>
-
-                                    <td>
-                                        <ul class="launch-list routes">
-                                            <dl><a href="buy-launch-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;Dhaka To Chor Darial</a></dl>
-                                            <dl><a href="buy-launch-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;Dhaka To Chairmanbari Ghat</a></dl>
-                                            <dl><a href="buy-launch-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;Dhaka To Chor Kolmi</a></dl>
-                                            <dl><a href="buy-launch-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;Dhaka To C&B Ghat</a></dl>
-                                            <dl><a href="buy-launch-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;Dhaka To Chor Voyarabi</a></dl>
-                                        </ul>
-                                    </td>
-
-                                    <td>
-                                        <ul class="launch-list routes">
-                                            <dl><a href="buy-launch-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;Dhaka To Chobipur</a></dl>
-                                            <dl><a href="buy-launch-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;Dhaka To Chalita Toli</a></dl>
-                                            <dl><a href="buy-launch-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;Dhaka To Chor Borhan</a></dl>
-                                            <dl><a href="buy-launch-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;Dhaka To Babugong</a></dl>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>
+                        <table id="launch-route">
+                            <tr>
+                                <th>
+                                    <h2>LAUNCH ROUTES</h2>
+                                </th>
+                            </tr>
                         </table>
                     </center>
 
-                </div>
+                </section>
 
 
                 <div style="width:100%; margin:0 auto; margin-top: 100px; margin-bottom:50px; background: white; border:2px solid blueviolet; border-radius: 10px; padding: 30px;">
@@ -425,6 +405,20 @@ if (isset($_COOKIE['flag'])) {
                 var blur = document.getElementById('blur');
                 blur.classlist.toggle('active')
             }
+        </script>
+
+        <!-- Display Launch Routes -->
+        <script type="text/javascript">
+            $.ajax({
+                url: '../model/JSON/launch-routes.json',
+                dataType: 'json',
+                success: function(data) {
+                    for (var i = 0; i < data.length; i++) {
+                        var row = $('<tr><td><a href="buy-launch-ticket.php" style="text-decoration:none; color:black"><i class="fas fa-route"></i>&nbsp;&nbsp;' + data[i].name + '</a></td></tr>');
+                        $('#launch-route').append(row);
+                    }
+                }
+            });
         </script>
     </body>
 

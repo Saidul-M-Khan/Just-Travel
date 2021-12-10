@@ -1,7 +1,8 @@
 
 
 .banner {
-    background-image: url('https://source.unsplash.com/1260x750/?bangladesh,bus,launch,plane');
+    /* background-image: url('https://source.unsplash.com/1260x750/?bangladesh,bus,launch,plane'); */
+    background-image: url('../images/banner-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom center;
