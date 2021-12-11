@@ -697,7 +697,7 @@ if (isset($_COOKIE['flag'])) {
         <!-- Display Bus Route -->
         <script type="text/javascript">
             $.ajax({
-                url: '../model/JSON/bus-routes.json',
+                url: '../../model/JSON/bus-routes.json',
                 dataType: 'json',
                 success: function(data) {
                     for (var i = 0; i < data.length; i++) {
@@ -715,6 +715,6 @@ if (isset($_COOKIE['flag'])) {
 
 <?php
 } else {
-    header('location: ../control/user-login.php');
+    header('location: ../../control/user-login.php');
 }
 ?>

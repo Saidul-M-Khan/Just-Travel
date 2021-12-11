@@ -20,9 +20,6 @@ if (isset($_COOKIE['flag'])) {
         <link rel="stylesheet" href="./styles/hotel.css">
         <link rel="stylesheet" href="./styles/text-animation.css">
         <title>Hotel</title>
-        <style>
-
-        </style>
     </head>
 
     <body>
@@ -46,16 +43,16 @@ if (isset($_COOKIE['flag'])) {
 
 
             <?php
-            require("../model/db.php");
+            require("../../model/db.php");
 
-            $query = "SELECT * FROM hotel";
+            $query = "SELECT * FROM hotel where status='approved'";
             $query_run = mysqli_query($connection, $query);
             $check_hotel = mysqli_num_rows($query_run) > 0;
 
             if ($check_hotel) {
                 while ($row = mysqli_fetch_assoc($query_run)) {
             ?>
-                    <form action="./payment.php" method="POST">
+                    <form action="./booking-payment.php" method="POST">
                         <div class="cardContainer">
                             <div class="product-details">
                                 <input type="hidden" name="booking_for" value="hotel">
@@ -98,8 +95,6 @@ if (isset($_COOKIE['flag'])) {
                                         <span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true" style="color:azure"></i></span>
                                         <span class="buy text" style="color:azure">Book Now</span>
                                     </button>
-
-                                    <!-- <input type="submit" class="ticket-buy-btn" role="button" style="margin-top:15px;" value="Buy"> -->
                                 </div>
 
                             </div>
@@ -151,6 +146,6 @@ if (isset($_COOKIE['flag'])) {
     </html>
 <?php
 } else {
-    header('location: ../control/user-login.php');
+    header('location: ../../control/user-login.php');
 }
 ?>

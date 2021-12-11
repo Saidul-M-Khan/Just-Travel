@@ -12,9 +12,9 @@ if (isset($_COOKIE['flag'])) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
-        <link rel="stylesheet" href="../view/styles/header.css">
-        <link rel="stylesheet" href="../view/styles/banner.css">
-        <link rel="stylesheet" href="../view/styles/footer.css">
+        <link rel="stylesheet" href="./styles/header.css">
+        <link rel="stylesheet" href="./styles/banner.css">
+        <link rel="stylesheet" href="./styles/footer.css">
         <link rel="stylesheet" href="./styles/text-animation.css">
         <link rel="stylesheet" href="./styles/offers.css">
         <title>Offers</title>
@@ -39,7 +39,7 @@ if (isset($_COOKIE['flag'])) {
             </center>
             <div class="offers">
                 <?php
-                require("../model/db.php");
+                require("../../model/db.php");
 
                 $query = "SELECT * FROM offers";
                 $query_run = mysqli_query($connection, $query);
@@ -102,6 +102,6 @@ if (isset($_COOKIE['flag'])) {
     </html>
 <?php
 } else {
-    header('location: ../control/login.php');
+    header('location: ../../control/user-login.php');
 }
 ?>

@@ -13,7 +13,7 @@ if (isset($_POST['signup-submit'])) {
 	$cpassword = $_POST['cpassword'];
 	$role = $_POST['role'];
 	if ($password == $cpassword) {
-		$sql = "SELECT * FROM users WHERE email='$email'";
+		$sql = "SELECT * FROM users WHERE username='$username'";
 		$result = mysqli_query($connection, $sql);
 		if (!$result->num_rows > 0) {
 			$sql = "INSERT INTO users (fname, username, email, password, role) VALUES ('$fname', '$username', '$email', '$password','$role')";
@@ -30,10 +30,10 @@ if (isset($_POST['signup-submit'])) {
 				// echo "<script>alert('Something Went Wrong.')</script>";
 			}
 		} else {
-			// echo "<script>alert('Email Already Exists.')</script>";
+			echo "<script>alert('Username Already Exists.')</script>";
 		}
 	} else {
-		// echo "<script>alert('Password Not Matched.')</script>";
+		echo "<script>alert('Password Not Matched.')</script>";
 	}
 }
 
@@ -50,7 +50,7 @@ if (isset($_POST['login-submit'])) {
 		if ($row['role'] == "admin") {
 			header("Location: ../view/admin/admin.php");
 		} else if ($row['role'] == "user") {
-			header("Location: ../view/bus.php");
+			header("Location: ../view/reguser/bus.php");
 		} else if ($row['role'] == "merchant") {
 			header("Location: ../view/merchant/merchant.php");
 		}
@@ -191,69 +191,7 @@ if (isset($_POST['login-submit'])) {
 		</div>
 	</div>
 
-	<!-- <script src="../view/js/validate.js"></script>
-	<script>
-		function validateSignUp() {
-
-			var Full_Name = document.getElementById('fname').value;
-			var Username = document.getElementById('user').value;
-			var Password = document.getElementById('pass').value;
-			var Email = document.getElementById('email').value;
-			var Role = document.getElementsByName("role");
-			var submitButton = document.getElementById('signup-submit');
-
-			// if (Full_Name === "") {
-			// 	// submitButton.disabled = true;
-			// 	alert("Fill Out First Name Field");
-			// 	return false;
-			// } else if (Username === "") {
-			// 	// submitButton.disabled = true;
-			// 	alert("Fill Out Username Field");
-			// 	return false;
-			// } else if (Password === "") {
-			// 	// submitButton.disabled = true;
-			// 	alert("Fill Out Password Field");
-			// 	return false;
-			// } else if (Email === "") {
-			// 	// submitButton.disabled = true;
-			// 	alert("Fill Out Email Field");
-			// 	return false;
-			// } else {
-			// 	alert("Registration Successful");
-			// 	submitButton.disabled = false;
-			// 	return true;
-			// }
-
-			if (Full_Name === "" || Username === "" || Password === "" || Email === "") {
-				// document.getElementById('signup-submit').disabled = true;
-				alert("Fill out all fields");
-				return false;
-
-			} else {
-				// validateRole();
-				alert("Registration Successful");
-				document.getElementById('signup-submit').disabled = false;
-
-				return true;
-			}
-
-		}
-
-		// function validateRole() {
-		// 	var radios = document.getElementsByName("role");
-		// 	var formValid = false;
-
-		// 	var i = 0;
-		// 	while (!formValid && i < radios.length) {
-		// 		if (radios[i].checked) formValid = true;
-		// 		i++;
-		// 	}
-
-		// 	if (!formValid) alert("Must select a user!");
-		// 	return formValid;
-		// }​
-	</script> -->
-	<script src="../view/js/signup-validation.js"></script>
+	<script src="../view/reguser/js/signup-validation.js"></script>
 </body>
 
 </html>

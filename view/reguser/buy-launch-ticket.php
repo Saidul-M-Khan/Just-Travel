@@ -1,7 +1,5 @@
 <?php
-require_once '../model/db.php';
 session_start();
-
 if (isset($_COOKIE['flag'])) {
 ?>
     <!DOCTYPE html>
@@ -16,14 +14,14 @@ if (isset($_COOKIE['flag'])) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <link rel="stylesheet" href="./styles/header.css">
         <link rel="stylesheet" href="./styles/banner.css">
         <link rel="stylesheet" href="./styles/text-animation.css">
         <link rel="stylesheet" href="./styles/search.css">
         <link rel="stylesheet" href="./styles/ticket.css">
         <link rel="stylesheet" href="./styles/footer.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <style>
             * {
                 font-family: 'Poppins', sans-serif;
@@ -210,54 +208,58 @@ if (isset($_COOKIE['flag'])) {
             }
         </style>
 
-        <title>Buy Bus Ticket</title>
+        <title>Buy Launch Ticket</title>
     </head>
 
     <body>
+
         <header>
             <?php include './header.php'; ?>
             <div class="banner wrapper">
                 <div class="container">
-                    <h1 class="typing-effect">Most Reliable Bus Ticket Solution</h1>
+                    <h1 class="typing-effect">Most Reliable Launch Ticket Solution</h1>
                     <h2>No. 1 online Ticketing Network</h2>
-
                 </div>
             </div>
         </header>
 
         <main>
-
-            <center>
-                <div class="search">
-                    <center>
-                        <h2 class="search-title">SEARCH BUS</h2>
-                    </center>
+            <div class="search">
+                <center>
+                    <h2 class="search-title">SEARCH Launch</h2>
+                </center>
+                <center>
                     <div class="search-bar">
+
                         <span id="start" class="search-by-component">
                             <label for="">From:</label>
                             <select name="startLocation" id="startLocation" class="search-input">
-                                <option value="Dhaka">Dhaka</option>
-                                <option value="Chittagong">Chittagong</option>
-                                <option value="Barisal">Barisal</option>
-                                <option value="Mymensingh">Mymensingh</option>
-                                <option value="Khulna">Khulna</option>
-                                <option value="Rajshahi">Rajshahi</option>
-                                <option value="Rangpur">Rangpur</option>
-                                <option value="Sylhet">Sylhet</option>
+                                <option value="dhaka">Dhaka</option>
+                                <option value="chittagong">Chittagong</option>
+                                <option value="barisal">Barisal</option>
+                                <option value="cox-bazar">Cox's Bazar</option>
+                                <option value="bargona">Bargona</option>
+                                <option value="bangabandhu-island">Bangabandhu Island</option>
+                                <option value="elisha">Elisha</option>
+                                <option value="kuakata">Kuakata</option>
+                                <option value="mawa">Mawa</option>
+                                <option value="saint-martin">Saint Martin</option>
                             </select>
                         </span>
 
                         <span id="end" class="search-by-component">
                             <label for="">To:</label>
                             <select name="endLocation" id="endLocation" class="search-input">
-                                <option value="Dhaka">Dhaka</option>
-                                <option value="Chittagong">Chittagong</option>
-                                <option value="Barisal">Barisal</option>
-                                <option value="Mymensingh">Mymensingh</option>
-                                <option value="Khulna">Khulna</option>
-                                <option value="Rajshahi">Rajshahi</option>
-                                <option value="Rangpur">Rangpur</option>
-                                <option value="Sylhet">Sylhet</option>
+                                <option value="dhaka">Dhaka</option>
+                                <option value="chittagong">Chittagong</option>
+                                <option value="barisal">Barisal</option>
+                                <option value="cox-bazar">Cox's Bazar</option>
+                                <option value="bargona">Bargona</option>
+                                <option value="bangabandhu-island">Bangabandhu Island</option>
+                                <option value="elisha">Elisha</option>
+                                <option value="kuakata">Kuakata</option>
+                                <option value="mawa">Mawa</option>
+                                <option value="saint-martin">Saint Martin</option>
                             </select>
                         </span>
 
@@ -269,12 +271,12 @@ if (isset($_COOKIE['flag'])) {
                         <button id="search" class="search-btn button" onclick="toggle()"> <label for="show" style="color:#4FC3A1;">Search</label> </button>
 
                     </div>
-                </div>
-            </center>
-
+                </center>
+            </div>
 
 
             <section class="tickets">
+
                 <div id="searchResults">
                     <!-- POP UP SEARCH  -->
                     <div>
@@ -307,58 +309,56 @@ if (isset($_COOKIE['flag'])) {
                 </div>
 
 
-                <?php
-                // require("../model/db.php");
 
-                $query = "SELECT * FROM bus_ticket";
+
+
+                <?php
+                require("../../model/db.php");
+
+                $query = "SELECT * FROM launch_ticket where status='approved'";
                 $query_run = mysqli_query($connection, $query);
                 $check_ticket = mysqli_num_rows($query_run) > 0;
 
                 if ($check_ticket) {
                     while ($row = mysqli_fetch_assoc($query_run)) {
                 ?>
-                        <form action="./payment.php" method="POST">
+                        <form action="./order-payment.php" method="POST">
                             <div class="ticket-card">
                                 <div class="meta">
                                     <div class="photo" style="background-image: url(<?php echo $row['image']; ?>);"></div>
                                 </div>
                                 <div class="description">
-                                    <input type="hidden" name="journey_by" value="bus">
+                                    <input type="hidden" name="journey_by" value="launch">
                                     <input type="hidden" name="payment_method" value="card">
                                     <input type="hidden" name="status" value="pending">
 
-                                    <h1><?php echo $row['bus_operators_name']; ?></h1>
-                                    <input type="hidden" name="transport_name" value="<?php echo $row['bus_operators_name']; ?>">
+                                    <h1><?php echo $row['launch_operator_name']; ?></h1>
+                                    <input type="hidden" name="transport_name" value="<?php echo $row['launch_operator_name']; ?>">
 
-                                    <h2><i style="color:black" class="ticket-icon fas fa-route"></i>&nbsp;&nbsp;&nbsp;<strong>Route:&nbsp;</strong><?php echo $row['bus_start_location']; ?>&nbsp;<i style="color:black" class="ticket-icon fas fa-arrow-right"></i>&nbsp;<?php echo $row['bus_end_location']; ?></h2>
-                                    <input type="hidden" name="start_location" value="<?php echo $row['bus_start_location']; ?>">
-                                    <input type="hidden" name="end_location" value="<?php echo $row['bus_end_location']; ?>">
+                                    <h2><i style="color:black" class="ticket-icon fas fa-route"></i>&nbsp;&nbsp;&nbsp;<strong>Route:&nbsp;</strong><?php echo $row['launch_starting_location']; ?>&nbsp;<i style="color:black" class="ticket-icon fas fa-arrow-right"></i>&nbsp;<?php echo $row['launch_ending_location']; ?></h2>
+                                    <input type="hidden" name="start_location" value="<?php echo $row['launch_starting_location']; ?>">
+                                    <input type="hidden" name="end_location" value="<?php echo $row['launch_ending_location']; ?>">
 
-                                    <p><i style="color:black" class="ticket-icon far fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;<strong>Journey Date:&nbsp;</strong><?php echo $row['bus_journey_date']; ?></p>
-                                    <input type="hidden" name="journey_date" value="<?php echo $row['bus_journey_date']; ?>">
+                                    <p><i style="color:black" class="ticket-icon far fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;<strong>Journey Date:&nbsp;</strong><?php echo $row['launch_journey_date']; ?></p>
+                                    <input type="hidden" name="journey_date" value="<?php echo $row['launch_journey_date']; ?>">
 
-                                    <p><i style="color:black" class="ticket-icon fas fa-ticket-alt"></i>&nbsp;&nbsp;&nbsp;<strong>Ticket Type:&nbsp;</strong><?php echo $row['bus_ticket_type']; ?></p>
-                                    <input type="hidden" name="ticket_type" value="<?php echo $row['bus_ticket_type']; ?>">
+                                    <p><i style="color:black" class="ticket-icon fas fa-ticket-alt"></i>&nbsp;&nbsp;&nbsp;<strong>Deck Type:&nbsp;</strong><?php echo $row['launch_deck_type']; ?></p>
+                                    <input type="hidden" name="ticket_type" value="<?php echo $row['launch_deck_type']; ?>">
 
-                                    <p><i style="color:black" class="ticket-icon fas fa-clock"></i>&nbsp;&nbsp;&nbsp;<strong>Arrival Time:&nbsp;</strong><?php echo $row['bus_arrival_time']; ?></p>
-                                    <input type="hidden" name="arrival_time" value="<?php echo $row['bus_arrival_time']; ?>">
+                                    <p><i style="color:black" class="ticket-icon fas fa-clock"></i>&nbsp;&nbsp;&nbsp;<strong>Arrival Time:&nbsp;</strong><?php echo $row['launch_arrival_time']; ?></p>
+                                    <input type="hidden" name="arrival_time" value="<?php echo $row['launch_arrival_time']; ?>">
 
-                                    <p><i style="color:black" class="ticket-icon fas fa-clock"></i>&nbsp;&nbsp;&nbsp;<strong>Departure Time:&nbsp;</strong><?php echo $row['bus_departure_time']; ?></p>
-                                    <input type="hidden" name="departure_time" value="<?php echo $row['bus_departure_time']; ?>">
+                                    <p><i style="color:black" class="ticket-icon fas fa-clock"></i>&nbsp;&nbsp;&nbsp;<strong>Departure Time:&nbsp;</strong><?php echo $row['launch_departure_time']; ?></p>
+                                    <input type="hidden" name="departure_time" value="<?php echo $row['launch_departure_time']; ?>">
 
-                                    <p><i style="color:black" class="ticket-icon fas fa-check-square"></i>&nbsp;&nbsp;&nbsp;<strong>Available Seat:&nbsp;</strong><?php echo $row['bus_available_seat']; ?></p>
+                                    <p><i style="color:black" class="ticket-icon fas fa-check-square"></i>&nbsp;&nbsp;&nbsp;<strong>Available Seat:&nbsp;</strong><?php echo $row['launch_available_seats']; ?></p>
 
-                                    <p><i style="color:black" class="ticket-icon fas fa-hand-holding-usd"></i>&nbsp;&nbsp;&nbsp;<strong>Price:&nbsp;</strong><span style="color: red; font-weight: 700; font-size: 25px; line-height: 25px;">৳<?php echo $row['bus_ticket_price']; ?></span></p>
-                                    <input type="hidden" name="price" value="<?php echo $row['bus_ticket_price']; ?>">
-
+                                    <p><i style="color:black" class="ticket-icon fas fa-hand-holding-usd"></i>&nbsp;&nbsp;&nbsp;<strong>Price:&nbsp;</strong><span style="color: red; font-weight: 700; font-size: 25px; line-height: 25px;">৳<?php echo $row['launch_ticket_price']; ?></span></p>
+                                    <input type="hidden" name="price" value="<?php echo $row['launch_ticket_price']; ?>">
                                     <p class="qty">
-                                        <!-- <label for="qty">Quantity:</label> -->
-                                        <!-- <button class="qtyminus" aria-hidden="true">&minus;</button> -->
-                                        <strong style="font-size: 20px;">Quantity:&nbsp;</strong>&nbsp;&nbsp;&nbsp;<input type="number" name="qty" class="qty" id="qty" min="1" max="<?php echo $row['bus_available_seat']; ?>" step="1" value="1">
-                                        <!-- <button class="qtyplus" aria-hidden="true">&plus;</button> -->
+                                        <strong style="font-size: 20px;">Quantity:&nbsp;</strong>&nbsp;&nbsp;&nbsp;<input type="number" name="qty" class="qty" id="qty" min="1" max="<?php echo $row['launch_available_seats']; ?>" step="1" value="1">
                                     </p>
                                     <input type="submit" class="ticket-buy-btn" role="button" style="margin-top:15px;" value="Buy">
-                                    <!-- <i style="color:white" class="ticket-icon fas fa-shopping-cart"></i>&nbsp;&nbsp;Buy</input> -->
                                 </div>
                             </div>
                         </form>
@@ -377,19 +377,22 @@ if (isset($_COOKIE['flag'])) {
             </section>
         </main>
 
+
+
         <footer>
             <?php include 'footer.php'; ?>
         </footer>
 
         <script src="./js/header.js"></script>
         <script src="./js/search.js"></script>
+
         <!-- pop up script -->
         <script type="text/javascript">
             $(document).ready(function() {
                 $("#search").click(function() {
                     $.ajax({
                         type: 'POST',
-                        url: './search-bus-ticket.php',
+                        url: './search-launch-ticket.php',
                         data: {
                             startLocation: $("#startLocation").val(),
                             endLocation: $("#endLocation").val(),
@@ -413,9 +416,8 @@ if (isset($_COOKIE['flag'])) {
     </body>
 
     </html>
-
 <?php
 } else {
-    header('location: ../control/user-login.php');
+    header('location: ../../control/user-login.php');
 }
 ?>

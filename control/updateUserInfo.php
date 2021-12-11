@@ -30,7 +30,7 @@ $user = ['id' => $id, 'fname' => $fname, 'password' => $password, 'email' => $em
 $status = editUserInfo($user);
 
 if ($status) {
-    header('location: ../view/profile.php');
+    header('location: ../view/reguser/profile.php');
 } else {
-    header('location: ../view/edit-profile.php?id={$id}');
+    header('location: ../view/reguser/edit-profile.php?id={$id}');
 }

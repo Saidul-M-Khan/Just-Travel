@@ -75,7 +75,7 @@ if (isset($_COOKIE['flag'])) {
 
             <div class="cards">
                 <?php
-                require("../model/db.php");
+                require("../../model/db.php");
 
                 $query = "SELECT * FROM places";
                 $query_run = mysqli_query($connection, $query);
@@ -121,6 +121,6 @@ if (isset($_COOKIE['flag'])) {
 
 <?php
 } else {
-    header('location: ../control/user-login.php');
+    header('location: ../../control/user-login.php');
 }
 ?>

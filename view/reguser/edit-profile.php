@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once('../model/model.php');
+require_once('../../model/model.php');
 $id = $_REQUEST['id'];
 $user = getUserById($id);
 if (isset($_COOKIE['flag'])) {
-    require("../model/db.php");
+    // require("../../model/db.php");
     // $Username = $_SESSION['username'];
     // $query = "SELECT * FROM users where user_username='Saidul_Khan'";
     // $query = "SELECT * FROM users where username='Saidul_Khan'";
@@ -73,7 +73,7 @@ if (isset($_COOKIE['flag'])) {
         </header>
 
         <main>
-            <form method="post" action="../control/updateUserInfo.php" enctype="multipart/form-data">
+            <form method="post" action="../../control/updateUserInfo.php" enctype="multipart/form-data">
                 <div class="profile">
 
                     <center>
@@ -359,6 +359,6 @@ if (isset($_COOKIE['flag'])) {
 
 <?php
 } else {
-    header('location: ../control/user-login.php');
+    header('location: ../../control/user-login.php');
 }
 ?>

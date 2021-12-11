@@ -1,6 +1,7 @@
 <?php
 
-require_once('../model/db.php');
+require('db.php');
+// include('./db.php');
 
 // function addProduct($product)
 // {

@@ -19,7 +19,6 @@ if (isset($_COOKIE['flag'])) {
         <link rel="stylesheet" href="./styles/footer.css">
         <link rel="stylesheet" href="./styles/text-animation.css">
         <link rel="stylesheet" href="./styles/event.css">
-        <!-- <link rel="stylesheet" href="./styles/event-details.css"> -->
         <title>Events</title>
 
     </head>
@@ -43,16 +42,16 @@ if (isset($_COOKIE['flag'])) {
             </center>
             <div class="cards">
                 <?php
-                require("../model/db.php");
+                require("../../model/db.php");
 
-                $query = "SELECT * FROM event_ticket";
+                $query = "SELECT * FROM event_ticket where status='approved'";
                 $query_run = mysqli_query($connection, $query);
                 $check_event = mysqli_num_rows($query_run) > 0;
 
                 if ($check_event) {
                     while ($row = mysqli_fetch_assoc($query_run)) {
                 ?>
-                        <form action="./payment.php" method="POST">
+                        <form action="./booking-payment.php" method="POST">
                             <div class="card">
                                 <input type="hidden" name="booking_for" value="event">
                                 <input type="hidden" name="booking_payment_method" value="card">
@@ -76,11 +75,6 @@ if (isset($_COOKIE['flag'])) {
 
                                     <div>
                                         <p><?php echo $row['event_details']; ?></p>
-
-                                        <!-- <input type="hidden" name="description" value="<?php
-                                                                                            // echo $row['event_details']; 
-                                                                                            ?>"> -->
-
                                     </div>
 
                                     <div>
@@ -89,34 +83,11 @@ if (isset($_COOKIE['flag'])) {
                                     </div>
 
                                     <div style="margin: 25px 10px 25px 10px;">
-                                        <!-- <button class="event-ticket-buy-btn" role="button"><i class="fas fa-shopping-cart"></i>&nbsp;Buy Now</button> -->
                                         <input type="submit" class="event-ticket-buy-btn" role="button" value="Buy Now">
-                                        <!-- <a class="see-details-button" href="<?php
-                                                                                    // echo $row['event_id']; 
-                                                                                    ?>">SEE DETAILS</a> -->
                                     </div>
-
-
-
                                 </div>
                             </div>
                         </form>
-
-
-
-                        <!-- <div id="<?php
-                                        // echo $row['event_id'];
-                                        ?>" class="overlay">
-                            <div class="popup">
-                                <h2><?php
-                                    // echo $row['event_name'];
-                                    ?></h2>
-                                <a class="close" href="#">&times;</a>
-                                <div class="content">
-                                    Thank to pop me out of that button, but now i'm done so you can close this window.
-                                </div>
-                            </div>
-                        </div> -->
                 <?php
 
 
@@ -146,6 +117,6 @@ if (isset($_COOKIE['flag'])) {
     </html>
 <?php
 } else {
-    header('location: ../control/user-login.php');
+    header('location: ../../control/user-login.php');
 }
 ?>

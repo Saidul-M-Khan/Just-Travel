@@ -10,7 +10,7 @@
             <li><a href="offers.php"><i class="header-icon fas fa-tag icon"></i>&nbsp;Offer</a></li>
             <li><a href="hotel.php"><i class="header-icon fas fa-hotel icon"></i>&nbsp;Hotel</a></li>
             <li><a href="profile.php"><i class="header-icon far fa-user-circle icon"></i>&nbsp;Profile</a></li>
-            <li><a href="../control/logout.php"><i class="header-icon fas fa-sign-out-alt icon"></i>&nbsp;Logout</a></li>
+            <li><a href="../../control/logout.php"><i class="header-icon fas fa-sign-out-alt icon"></i>&nbsp;Logout</a></li>
         </ul>
     </div>
 </nav>

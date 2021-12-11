@@ -1,7 +1,7 @@
 <?php
 
 // Create connection
-include "../model/db.php";
+include "../../model/db.php";
 
 $start_location = $_POST['startLocation'];
 $end_location = $_POST['endLocation'];

@@ -91,14 +91,14 @@ function validateForm() {
         alert(dataPreview);
     }
 
-    // Validate confirm password
-    var password = document.getElementById("pass").value;
-    var confirmPassword = document.getElementById("cpass").value;
-    if (password != confirmPassword) {
-        alert("Passwords do not match.");
-        return false;
-    }
-    return true;
+    // // Validate confirm password
+    // var password = document.getElementById("pass").value;
+    // var confirmPassword = document.getElementById("cpass").value;
+    // if (password != confirmPassword) {
+    //     alert("Passwords do not match.");
+    //     return false;
+    // }
+    // return true;
 
 };
 
@@ -119,11 +119,11 @@ function loginValidate() {
     var username = document.getElementById("user").value;
     var password = document.getElementById("pass").value;
     if (username == null || username == "") {
-        alert("Please enter the username.");
+        alert("Please enter  the username.");
         return false;
     }
     if (password == null || password == "") {
-        alert("Please enter the password.");
+        alert("Please enter the password.");
         return false;
     }
     // alert('Login successful');

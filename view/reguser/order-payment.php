@@ -29,7 +29,7 @@ if (isset($_COOKIE['flag'])) {
         </header>
 
         <main>
-            <form action="./thankyou.php" method="POST">
+            <form action="./order-successful.php" method="POST">
                 <!-- Ticket Order -->
                 <input type="hidden" name="journey_by" value="<?php echo $_POST['journey_by'] ?>">
                 <input type="hidden" name="transport_name" value="<?php echo $_POST['transport_name'] ?>">
@@ -43,24 +43,6 @@ if (isset($_COOKIE['flag'])) {
                 <input type="hidden" name="payment_method" value="<?php echo $_POST['payment_method'] ?>">
                 <input type="hidden" name="status" value="<?php echo $_POST['status'] ?>">
 
-                <!-- Event & Hotel Booking -->
-                <input type="hidden" name="booking_for" value="<?php echo $_POST['booking_for'] ?>">
-                <input type="hidden" name="name" value="<?php echo $_POST['name'] ?>">
-                <input type="hidden" name="location" value="<?php echo $_POST['location'] ?>">
-                <input type="hidden" name="booking_price" value="<?php echo $_POST['booking_price'] ?>">
-                <input type="hidden" name="booking_payment_method" value="<?php echo $_POST['booking_payment_method'] ?>">
-                <input type="hidden" name="booking_status" value="<?php echo $_POST['booking_status'] ?>">
-                <input type="hidden" name="start_date" value="<?php echo $_POST['start_date'] ?>">
-                <input type="hidden" name="end_date" value="<?php echo $_POST['end_date'] ?>">
-
-                <!-- <input type="hidden" name="description" value="<?php
-                                                                    // echo $_POST['description'];
-                                                                    ?>"> -->
-
-
-
-
-
                 <div class="form-container">
                     <div class="body-text">
                         <small id="error" style="color: Red; display: none">* Input digits (0 - 9)</small>
@@ -73,24 +55,17 @@ if (isset($_COOKIE['flag'])) {
 
                     <strong>ORDER ID: </strong><input type="text" name="orderID" id="orderID" value="<?php echo "O-" . strval(rand(10, 1000)) ?>">
                     <input id="cardName" type="text" name="name-on-card" autocomplete="on" maxlength="40" placeholder="Name on Card" onkeyup="validateName(document.getElementById('cardName').value)" />
-
                     <input id="cardNumber" type="text" name="number" maxlength="16" placeholder="Card Number" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" />
-
                     <input id="cardExpiry" type="text" name="expiry" maxlength="5" placeholder="MM / YY" />
                     <input id="cardCvv" type="text" name="cvc" placeholder="CCV" maxlength="3" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" />
-
-                    <!-- <div class="card-wrapper"></div> -->
-
                     <input id="cardAddress" type="text" name="streetaddress" required="required" autocomplete="on" maxlength="45" placeholder="Street Address" />
                     <input id="cardCity" type="text" name="city" required="required" autocomplete="on" maxlength="20" placeholder="City" />
                     <input id="cardZip" type="text" name="zipcode" required="required" autocomplete="on" maxlength="5" placeholder="ZIP code" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" />
                     <input id="cardEmail" type="email" name="email" required="required" autocomplete="on" maxlength="40" placeholder="Email" onchange="CheckEmail(document.getElementById('cardEmail').value)" />
                     <input id="payment-button" type="submit" value="Submit" onclick="validatePayment()" />
                 </div>
+                
             </form>
-
-
-
         </main>
 
 
@@ -108,6 +83,6 @@ if (isset($_COOKIE['flag'])) {
     </html>
 <?php
 } else {
-    header('location: ../control/user-login.php');
+    header('location: ../../control/user-login.php');
 }
 ?>

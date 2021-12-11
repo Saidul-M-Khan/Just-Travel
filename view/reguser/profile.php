@@ -2,9 +2,9 @@
 session_start();
 
 
-include('../model/model.php');
+// include('../../model/model.php');
 if (isset($_COOKIE['flag'])) {
-    include("../model/db.php");
+    include("../../model/db.php");
     $Username = $_SESSION['username'];
 
     // $query = "SELECT * FROM users where user_username='Saidul_Khan'";

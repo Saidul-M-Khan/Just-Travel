@@ -28,8 +28,6 @@ if (isset($_COOKIE['flag'])) {
             .orders {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
-                /* gap: 10px; */
-                /* grid-auto-rows: minmax(100px, auto); */
             }
 
             .order {
@@ -62,7 +60,6 @@ if (isset($_COOKIE['flag'])) {
             </div>
         </header>
 
-
         <main>
             <center>
                 <h1>TICKET ORDERS</h1>
@@ -73,11 +70,8 @@ if (isset($_COOKIE['flag'])) {
                 </center>
 
                 <div class="orders">
-
-
-
                     <?php
-                    require("../model/db.php");
+                    require("../../model/db.php");
 
                     $query = "SELECT * FROM orders where username= '{$_SESSION['username']}' and status='pending'";
                     $query_run = mysqli_query($connection, $query);
@@ -86,7 +80,6 @@ if (isset($_COOKIE['flag'])) {
                     if ($check_order) {
                         while ($row = mysqli_fetch_assoc($query_run)) {
                     ?>
-
 
                             <div class="order">
                                 <table>
@@ -111,10 +104,7 @@ if (isset($_COOKIE['flag'])) {
                                         <h1><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;ORDER ID# <span style="color:blue"><?= $row['order_id'] ?></span></h1>
                                         <h2><span style="color:brown"><?= $row['transport_name'] ?></span></h2>
                                         <h4><i class="far fa-calendar-alt fa-1x"></i>&nbsp;&nbsp;Journey Date:&nbsp; <?= $row['journey_date'] ?></h4>
-
                                         <h2><i class="fas fa-hand-holding-usd"></i>&nbsp;&nbsp;Price: <span style="color:red">৳<?= $row['price'] ?></span></h2>
-                                        <!-- <strong><label for="file">Order in progress:</label></strong> -->
-                                        <!-- <progress id="file" value="50" max="100"> 32% </progress> -->
                                         <hr>
                                     </tr>
                                     <tr>
@@ -157,11 +147,8 @@ if (isset($_COOKIE['flag'])) {
                 </center>
 
                 <div class="orders">
-
-
-
                     <?php
-                    require("../model/db.php");
+                    require("../../model/db.php");
 
                     $query = "SELECT * FROM orders where username= '{$_SESSION['username']}' and status='approved'";
                     $query_run = mysqli_query($connection, $query);
@@ -170,8 +157,6 @@ if (isset($_COOKIE['flag'])) {
                     if ($check_order) {
                         while ($row = mysqli_fetch_assoc($query_run)) {
                     ?>
-
-
                             <div class="order">
                                 <table>
                                     <tr>
@@ -213,54 +198,18 @@ if (isset($_COOKIE['flag'])) {
                                 </table>
                             </div>
                     <?php
-
-
                         }
                     } else {
                         echo "No order found";
                     }
 
                     ?>
-
+                    
                 </div>
 
             </section>
             <br>
             <br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             <center>
                 <h1>BOOKING ORDERS</h1>
@@ -271,11 +220,8 @@ if (isset($_COOKIE['flag'])) {
                 </center>
 
                 <div class="orders">
-
-
-
                     <?php
-                    require("../model/db.php");
+                    require("../../model/db.php");
 
                     $query = "SELECT * FROM booking where username= '{$_SESSION['username']}' and status='pending'";
                     $query_run = mysqli_query($connection, $query);
@@ -313,8 +259,6 @@ if (isset($_COOKIE['flag'])) {
                                 </table>
                             </div>
                     <?php
-
-
                         }
                     } else {
                         echo "No order found";
@@ -333,11 +277,8 @@ if (isset($_COOKIE['flag'])) {
                 </center>
 
                 <div class="orders">
-
-
-
                     <?php
-                    require("../model/db.php");
+                    require("../../model/db.php");
 
                     $query = "SELECT * FROM booking where username= '{$_SESSION['username']}' and status='approved'";
                     $query_run = mysqli_query($connection, $query);
@@ -369,47 +310,15 @@ if (isset($_COOKIE['flag'])) {
                                 </table>
                             </div>
                     <?php
-
-
                         }
                     } else {
                         echo "No order found";
                     }
 
                     ?>
-
                 </div>
 
             </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <br>
             <center>
                 <fieldset style="width:10%">
@@ -430,6 +339,6 @@ if (isset($_COOKIE['flag'])) {
     </html>
 <?php
 } else {
-    header('location: ../control/user-login.php');
+    header('location: ../../control/user-login.php');
 }
 ?>
