@@ -82,7 +82,6 @@ if (isset($_POST['login-submit'])) {
 		}
 
 		form #togglePassword {
-			/* margin-left: -30px; */
 			position: relative;
 			left: 350px;
 			right: 25px;
@@ -115,7 +114,6 @@ if (isset($_POST['login-submit'])) {
 							<i class="fas fa-user input-icons"></i>
 							<input type="text" id="user" class="input" placeholder="Enter Your Username" name="username" value="<?php echo $username; ?>">
 							<!-- <br> -->
-							<!-- <small id="error"></small> -->
 						</div>
 						<br>
 						<div class="group">
@@ -164,6 +162,7 @@ if (isset($_POST['login-submit'])) {
 							<label for="pass" class="label">Confirm Password</label>
 							<i class="fas fa-lock input-icons"></i><input id="cpass" placeholder="Enter The Password Again" type="password" class="input" data-type="password" name="cpassword" value="<?php echo $_POST['cpassword']; ?>">
 						</div>
+
 						<div class="group">
 							<label for="email" class="label">Email Address</label>
 							<i class="fas fa-at input-icons"></i><input id="email" placeholder="Enter Your Email" type="text" class="input" name="email" value="<?php echo $email; ?>">
@@ -181,6 +180,7 @@ if (isset($_POST['login-submit'])) {
 						<div class="group">
 							<input type="submit" name="signup-submit" id="signup-submit" class="button btn" onclick="validateSignUp()" value="Submit">
 						</div>
+
 						<div class="hr"></div>
 						<div class="foot-lnk">
 							<label for="tab-1">Already Member?</a>

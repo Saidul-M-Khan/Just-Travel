@@ -508,7 +508,6 @@ if (isset($_COOKIE['flag'])) {
                                             <th>Available Seat</th>
                                             <th>Type</th>
                                             <th>Price</th>
-                                            <!-- <th>Buy</th> -->
                                         </tr>
                                     </thead>
                                     <tbody id="output">

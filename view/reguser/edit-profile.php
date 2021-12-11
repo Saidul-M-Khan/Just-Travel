@@ -41,11 +41,8 @@ if (isset($_COOKIE['flag'])) {
                 height: 30px;
                 border: 1px solid cyan;
                 border-radius: 10px;
-                /* font-size: large; */
-                /* background-color: rgb(255, 255, 255); */
                 background-color: transparent;
                 display: inline-block;
-                /* color: black; */
                 color: white;
                 margin-left: 15px;
                 padding: 5px;
@@ -83,78 +80,6 @@ if (isset($_COOKIE['flag'])) {
 
 
 
-
-
-
-
-
-                        <?php
-                        // $Error = "";
-                        // $ImageError = $UploadConfirmation = "";
-                        // if (isset($_POST["edit-submit"])) {
-                        //     $target_dir = "../assets/";
-                        //     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-                        //     // $uploadOk = 1;
-                        //     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-                        //     $filepath = "";
-
-                        //     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-
-
-
-
-                        //     // File Upload Validation
-                        //     if ($_FILES['fileToUpload']['name'] != "") {
-
-                        //         if ($check !== false) { // Checking if the file is image or not
-                        //             $uploaded = 1;
-                        //         } else {
-                        //             $ImageError = "File is not an image.";
-                        //             $uploaded = 0;
-                        //         }
-
-                        //         if (file_exists($target_file)) { // Checking if the file is already uploaded or not
-                        //             $ImageError = "Sorry, file already exists.";
-                        //             $uploaded = 0;
-                        //         }
-
-                        //         if ($_FILES["fileToUpload"]["size"] > 40000000000) { // Checking if thee file size is too large or not
-                        //             $ImageError = "Sorry, your file is too large.";
-                        //             $uploaded = 0;
-                        //         }
-
-                        //         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") { // Checking if the file is jpg/jpeg/png
-                        //             $ImageError = "Sorry, only JPG, JPEG & PNG files are allowed.";
-                        //             $uploaded = 0;
-                        //         }
-
-                        //         if ($uploaded == 0) { // Checking If the file is not uploaded
-                        //             $ImageError = "Sorry, your file was not uploaded.";
-                        //         } else {
-                        //             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) { // If the file is uploaded and moved to targeted file directory
-                        //                 $UploadConfirmation = "File has been uploaded Successfully";
-                        //                 $filepath = $target_dir . htmlspecialchars(basename($_FILES["fileToUpload"]["name"]));
-                        //             } else {
-                        //                 $ImageError = "Sorry, there was an error uploading your file.";
-                        //             }
-                        //         }
-                        //     } else {
-                        //         $ImageError = "No Image was selected";
-                        //     }
-                        // }
-                        ?>
-
-
-
-
-
-
-
-
-
-
-
-
                         <?php
                         $msg = "";
 
@@ -189,30 +114,8 @@ if (isset($_COOKIE['flag'])) {
                                 $msg = "Failed to upload image";
                             }
                         }
-                        // $Username = $_SESSION['username'];
-                        // $result = mysqli_query($db, "SELECT * FROM users WHERE username = '$Username'");
-                        // while ($data = mysqli_fetch_array($result)) {
 
                         ?>
-                        <!-- <img src="<?php
-                                        // echo $data['photo']; 
-                                        ?>" width="45%" height="auto" style="border-radius: 50%"> -->
-                        <!-- <img src=" -->
-                        <?
-                        // = $user['photo']; 
-                        ?>
-                        <!-- " width="45%" height="auto" style="border-radius: 50%"> -->
-
-                        <?php
-                        // }
-                        ?>
-
-
-
-
-
-
-
 
 
 
@@ -233,30 +136,9 @@ if (isset($_COOKIE['flag'])) {
                         <br><br>
 
 
-                        <!-- <input type="file" name="dataFile" id="fileChooser" onchange="return ValidateFileUpload()"> -->
                         <input type="file" name="fileToUpload" id="fileToUpload" onchange="validateImageAndSize()">
                         <button type="submit" name="upload">UPLOAD</button>
-                        <?php
-                        // if ($ImageError != "") {
-                        //     echo $ImageError;
-                        // }
-                        ?>
 
-                        <!-- <br><br><span style="color:red"> -->
-                        <?php
-                        // if ($ImageError != "") {
-                        //     echo $ImageError;
-                        // }
-
-                        ?>
-                        </span>
-                        <!-- <input type="button" value="Upload Profile Picture"> -->
-                        <br>
-                        <h1>
-                            <?php
-                            // echo $row['user_fname']; 
-                            ?>
-                        </h1>
                     </center>
                     <br>
 
@@ -274,50 +156,16 @@ if (isset($_COOKIE['flag'])) {
                     <p id="emailOutput"></p>
                     </p>
 
-                    <!-- <p><strong><i style="color:cyan" class="fas fa-venus-mars"></i>&nbsp;&nbsp;&nbsp;Gender:</strong>&nbsp;
-                        <select name="gender" id="gender">
-                            <option value="none" selected>Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                    </p> -->
-                    <!-- <p><strong><i style="color:cyan" class="fas fa-birthday-cake"></i>&nbsp;&nbsp;&nbsp;Date of Birth:</strong>&nbsp;<input type="date" name="dob" id="dob" value="
-                    <?php
-                    // $user['dob'];
-                    ?>">
-                    </p> -->
                     <input type="hidden" name="id" value="<?= $user['id'] ?>">
                     <!-- <br> -->
-                    <!-- <p><strong><i class="fas fa-venus-mars"></i>&nbsp;&nbsp;&nbsp;Gender:</strong>&nbsp;<?php
-                                                                                                                // echo $row['user_gender']; 
-                                                                                                                ?>
-    </p> -->
-                    <!-- <br> -->
-                    <!-- <p><strong><i class="fas fa-baby"></i>&nbsp;&nbsp;&nbsp;Date of
-            Birth:</strong>&nbsp;<?php
-                                    // echo $row['user_dob']; 
-                                    ?></p> -->
-                    <!-- <br> -->
-                    <!-- <p><strong><i class="fas fa-house-user"></i>&nbsp;&nbsp;&nbsp;Address:</strong>&nbsp;383/1 Free School Street, Dhanmondi, Dhaka-1205</p> -->
-                    <!-- <br> -->
+
                     <center>
-                        <!-- <fieldset style="width:120px;">
-            <a href="edit-profile.php" style="text-decoration:none; color:white"><i class="far fa-edit"></i>&nbsp;Edit Profile</a>
-        </fieldset> -->
+
                         <button class="profileButton" id="profileEditButton" name="edit-submit" role="button">Submit</button>
-                        <!-- <fieldset style="width:35%; margin-top: 10px;">
-            <a href="order-status.php" style="text-decoration:none; color:white"><i class="fas fa-shopping-cart"></i>&nbsp;See Order Status</a>
-        </fieldset> -->
-                        <!-- <button class="button-62" role="button">See Order Status</button> -->
                     </center>
                 </div>
             </form>
         </main>
-
-
-
-
-
 
         <footer>
             <?php
