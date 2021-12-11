@@ -120,7 +120,7 @@
 <div class="title">
       <h1>Welcome TO JUST Travel!!!</h1>
       <div style="margin: 20px 35%;" class="signup-op">
-        <a href=./view/registration.php">SignUp</a>
+        <a href="registration.php">SignUp</a>
         <a href="login.php">SignIn</a>
       </div>
 

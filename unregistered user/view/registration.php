@@ -1,150 +1,185 @@
-<?php
-$Name = $Email = $Password = $Confirm_Password = $Gender = $NID = "";
-$day = $month = $year = 0;
-$nameError = $emailError = $dobError = $usernameError = $genderError = $nidError = "";
-$passError = $cpassError = "";
-$ImageError = $UploadConfirmation = "";
+<?php 
+	//session_start();
+	require_once('../model/db.php');
 
-function test_input($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
+	if(isset($_POST['submit'])){
 
-if(isset($_POST["register"])){
-    $Name = test_input($_POST["name"]);
-    $Email = test_input($_POST["email"]);
-    $NID =  test_input($_POST["nid"]);
-    $Password = $_POST["pass"];
-    $Confirm_Password = $_POST["c_pass"];
-    if(!empty($_POST["gender"])){
-        $Gender=$_POST["gender"];
-    }
-    else{
-        $Gender="";
-    }
-
-    $data= array(
-        'Name'=> $Name,
-        'Email'=>$Email,
-        'NID'=>$NID,
-        'Password'=>$Password,
-        'Confirm_Password'=>$Confirm_Password,
-        'Gender'=>$Gender,
-        'FileName'=>$_FILES["myUploadedFile"]["name"],
-        'Tmp_name'=>$_FILES["myUploadedFile"]["tmp_name"]
-    );
-
-
-    require_once "../control/insert_data.php";
-    $registration= new adduser($data);
-
-    $registration->addData($data);
-
-    $error=$registration->get_error();
-    $message=$registration->get_message();
-
-    $nameError=$error["nameErr"];
-    $emailError=$error["emailErr"];
-    $nidError=$error["nidErr"];
-    $passError=$error["passwordErr"];
-    $cpassError=$error["confirm_passwordErr"];
-    $genderErr=$error["genderErr"];
-
-}
-
+		$username 	= $_POST['username'];
+		$email 		= $_POST['email'];
+		$password 	= $_POST['password'];
+		$c_password = $_POST['c_password'];
+		$role = $_POST['gender'];
+		if ($password == $c_password) {
+			$sql = "SELECT * FROM users WHERE username='$username'";
+			$result = mysqli_query($connection, $sql);
+			if (!$result->num_rows > 0) {
+				$sql = "INSERT INTO users (username, email, password, gender) VALUES ('$username', '$email', '$password','$gender')";
+				$result = mysqli_query($connection, $sql);
+				if ($result) {
+					
+					$username = "";
+					$email = "";
+					$_POST['password'] = "";
+					$_POST['c_password'] = "";
+					$_POST['gender'] = "";
+					header("Location:login.php");
+				} else {
+					// echo "<script>alert('Something Went Wrong.')</script>";
+				}
+			} else {
+				echo "<script>alert('Username Already Exists.')</script>";
+			}
+		} else {
+			echo "<script>alert('Password Not Matched.')</script>";
+		}
+	}
+		
 ?>
 <!DOCTYPE html>
-<html>
-    <title>Registration</title>
-    <body>
-    <header>
-        <!-- Navigation Bar -->
-        <div class="navbar">
-    
-            <nav>
-                <fieldset>
-    
-                    <a class="logo" href="/"><img src="../images/logo.png" alt="logo" height="50px"></a>
-                    
-                   
-                    
-                    <fieldset style="width:100px; float:right">
-                       
-                        <a href="login.php" style="text-decoration:none"><big><i class="fas fa-sign-in-alt"></i>&nbsp;Login</big></a>
-                    </fieldset>
+<html lang="en">
 
-                    <fieldset style="width:100px; float:right">
-                        <a href="registration.php" style="text-decoration:none"><big><i class="fas fa-user-plus"></i>&nbsp;Sign-Up</big></a>
-                    </fieldset>
-                    
-                </fieldset>
-            </nav>
-    
-           
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+    font-size: 16px;
+    font-family: system-ui;
+    background-image: url("../images/register_bgimage.jpg");
+    min-height: 700px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.form{
+    width: 100%;
+}
+h2 {
+    text-align: center;
+    color: #ef6e58;
+}
+form {
+    width: 300px;
+    padding: 15px 40px 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #99b3ff;
+    margin: 4% auto;
+}
+label {
+    display: block;
+    margin-bottom: 5px
+}
+label i {
+    color: #999;
+    font-size: 80%;
+}
+input, select {
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background-color: #a9bae64a;
+}
+.box {
+    padding-bottom: 10px;
+}
+.form-inline {
+    border: 1px solid #ccc;
+    padding: 8px 10px 4px;
+    border-radius: 2px;
+}
+.form-inline label, .form-inline input {
+    display: inline-block;
+    width: auto;
+    padding-right: 15px;
+}
+.error {
+    color: red;
+    font-size: 90%;
+}
+input[type=text]{
+        outline: none;
+}
+
+input[type="submit"] {
+    font-size: 110%;
+    font-weight: 100;
+    background: #3366ff;
+    border-color: #3366ff;
+    box-shadow: 0 3px 0 #bd432e;
+    color: #fff;
+    margin-top: 10px;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background: #3366ff;
+    border-color: #3366ff;
+}
+
+.input-1{
+    background-image: url(../images/check.png);
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    border:1px solid #01cc40;
+}
+.input-2{
+    background-image: url(../images/cancel.png);
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    border:1px solid red;
+}
+.input-3{
+    border:1px solid #01cc40!important;
+}
+select{
+    outline: none!important;
+}
+.input-4{
+    border:1px solid red;
+}
+    </style>
+	<title>Signup</title>
+</head>
+<body>
+	<div>
+	<form method="post">
+	<h1>REGISTER</h1>
+<div class="box">
+<label for="username"><b>Username:</b></label>
+ <input type="text" placeholder="Enter Username" name="username" value="">
+</div>
+ <div class="box">
+<label for="password"><b>Password:</b></label>
+ <input type="password" placeholder="Enter Password" name="password" value="">
+</div>
+ <div class="box">
+ <label for="c_password"><b>Confirm_Password:</b></label>
+ <input type="password" placeholder="Enter Confirm Password" name="c_password" value="">
+</div>
+ <div class="box">
+ <label for="email"><b>Email:</b></label>
+ <input type="text" placeholder="Enter Email" name="email" value="">
+</div>
+
+<div class="box">
+        <label>Gender</label>
+        <div class="form-inline" id="gender">
+            <label><input type="radio" name="gender" value="male"> Male</label>
+            <label><input type="radio" name="gender" value="female"> Female</label> 
         </div>
-    </header>
-    <h1>Registration Form</h1>
-    <h4>Please Fill it with correct informations</h4>
-    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
-    <label>Name</label><br>
-    <input type="text" name="name" id="name" value="" placeholder="Full Name"><span style="color: red;"><?php
-                if ($nameError != "") {
-                    echo "* - " . $nameError;
-                }
-                ?></span><br><br>
-    <label>National ID</label><br>
-    <input type="text" name="nid" id="nid" value="" placeholder="NID No."><span style="color: red;"><?php
-                if ($nidError!="") {
-                    echo "* - " . $nidError;
-                }
-                ?></span><br><br>
-    <label>Password</label><br>
-    <input type="password" name="pass" id="pass" placeholder="Password" value=""><span style="color: red;"><?php
-                if ($passError != "") {
-                    echo "* - " . $passError;
-                }
-                ?></span>
-               <br><br>
-              
-    <label>Confirm Password</label><br>
-    <input type="password" name="c_pass" id="c_pass" value="" placeholder="Confirm Password"><span style="color: red;"><?php
-                if ($cpassError != "") {
-                    echo "* - " . $cpassError;
-                }
-                ?></span><br><br>
-           
-    
-    <label>Email</label><br>
-    <input type="text" name="email" id="email" value="" placeholder="Email"><span style="color: red;"><?php
-                if ($emailError != "") {
-                    echo "* - " . $emailError;
-                }
-                ?></span><br><br>
-    <label>Gender</label>&nbsp;
-    <input type="radio" id="gender" name="gender" value="Male">Male&nbsp;
-    <input type="radio" id="gender" name="gender" value="Female">Female&nbsp;
-    <input type="radio" id="gender" name="gender" value="Prefer not to Say">Prefer not to say&nbsp;<span style="color: red;"><?php
-                if ($genderError != "") {
-                    echo "* - " . $genderError;
-                }
-                ?></span><br><br>
-                
-                <tr>
-                
-                <td>Upload Your Image: <input type="file" name="myUploadedFile" /></td>  
-      
-                
-              </tr><br>
-
-                <input type="submit" name="register" value="Submit"><br>
-    <?php
-            if (isset($message)) {
-                echo "<span style='color:green'><b>" . $message . "</b></span><br>";
-            }
-    ?>
-    </form>
-    </body>
+		
+ <div class="box">
+ <input type="submit" name="submit" value="Submit">
+ </div>
+	</form>
+	</div>
+</body>
 </html>

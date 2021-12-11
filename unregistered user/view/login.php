@@ -10,20 +10,7 @@
 		if($NID != ""){
 			if($Password != ""){
 				
-  //       $sql = "SELECT * FROM registration WHERE nid='$NID' AND password='$Password' ";
-	// $result = mysqli_query($conn, $sql);
-
-	// if ($result->num_rows > 0) {
-	// 	$row = mysqli_fetch_assoc($result);
-	// 	$_SESSION['nid'] = $row['nid'];
-
-	
-
-		
-	// } 
-	// else {
-	// 	echo "<script>alert('Woops! User Name or Password is Wrong.')</script>";
-	// }
+  
 
 				$myfile = fopen('../model/user.txt', 'r');
 				
@@ -148,7 +135,35 @@ input[type=text]:focus, input[type=password]:focus {
 
 
     </main>
+<script>
+  function loginValidate() {
 
+var username = document.getElementById("user").value;
+
+var password = document.getElementById("pass").value;
+
+if (username == null || username == "") {
+
+    alert("Please enter  the username.");
+
+    return false;
+
+}
+
+if (password == null || password == "") {
+
+    alert("Please enter the password.");
+
+    return false;
+
+}
+
+// alert('Login successful');
+
+
+
+}
+</script>
 
 </body>
 </html>

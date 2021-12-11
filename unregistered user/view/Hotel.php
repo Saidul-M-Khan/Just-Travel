@@ -11,42 +11,71 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
     <link rel="stylesheet" href="./css/header.css">
         <link rel="stylesheet" href="./css/banner.css">
         <link rel="stylesheet" href="./css/footer.css">
         <link rel="stylesheet" href="./css/body.css">
+        <link rel="stylesheet" href="./css/place.css">
+
+        <style>
+         #launch_bgimage {
+  border: 2px solid black;
+  padding: 150px;
+  background: url(../images/hotel_bgimage.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 160%;
+}
+table {
+    width: 100%;
+}
+th {
+    background: #f1f1f1;
+    font-weight: bold;
+    padding: 6px;
+}
+td {
+    background: #f9f9f9;
+    padding: 6px;
+}
+
+         </style>
     
     <title>Hotel</title>
-</head>
-
-<body>
-
-
-<header>
+    <header>
     
 <?php
             include './header.php';
             ?>
 </header>
+</head>
 
-    <main style="padding: 20px 70px 20px 70px; ">
+<body>
+
+
+
+
+    <main>
+    <center>
+    <div id="launch_bgimage">
+    <h1><strong>Hotel Search</strong></h1>
+    </div>
+        </center>
         
-            <h1><Strong>Hotels</Strong></h1>
+           
 
 
 
-            <h4>
-            <form>
-        
-                <fieldset>
+            <center>
                     <legend><h3>Hotel Information</h3></legend>
               
                     
                     <label>Destination:</label>
 
-                    <select>
-                        <option value="dhaka">Dhaka</option>
+                    <select name="hotel_location" id="hotel_location">
+                        <option value=""></option>
+                        <option value="kuakata">Kuakata</option>
                         <option value="sylhet">Sylhet</option>
                         <option value="chittagong">Chittagong</option>
                         <option value="barisal">Barisal</option>
@@ -57,82 +86,71 @@
                         <!-- <br><br> --> 
 
                         <label for="date">Booking Date:</label>
-                     <input type="date" name="date" id="date"> 
+                     <input type="date" name="booking_date" id="booking_date"> 
                      
               
                     
-                    <input type="submit"  name="search"  value="Search"><br><br>
+                    <!-- <input type="submit"  name="search"  value="Search"><br><br> -->
+                    <button id="search" class="search-btn button" onclick="toggle()"> <label for="show">Search</label> </button>
+                    
+            </center>
+            <div id="searchResults">
+                    <!-- POP UP SEARCH  -->
+                    <div>
+                        <input type="checkbox" id="show">
+                        <div class="output-container">
+                            <label for="show" class="close-btn fas fa-times" style="color:black;" title="close"></label>
+                            <div class="table-wrapper">
+                                <table class="fl-table">
+                                    <thead>
+                                        <tr>
+
+                                            <th>Hotel Name</th>
+                                            <th>Hotel Location</th>
+                                            <th>Regular Price</th>
+                                            <th>Discount Price</th>
+                                            <th>Booking Date</th>
+                                            <th>Hotel Service</th>
+                                            <th>Image</th>
+
+         
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody id="output">
+
+                                    <tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div> 
+            </div>
               
-                   </fieldset>
-            </form>   
+                   
+          
               
-        </h4>
-
-        <?php
-            require("../model/db.php");
-
-            $query = "SELECT * FROM hotel";
-            $query_run = mysqli_query($connection, $query);
-            $check_hotel = mysqli_num_rows($query_run) > 0;
-
-            if ($check_hotel) {
-                while ($row = mysqli_fetch_assoc($query_run)) {
-            ?>
-      
-        
-      <div>
-      <h1>
-                                <?php echo $row['hotel_name']; ?>
-                            </h1>
-
-                            <p style="margin-top: 20px;" </i><strong>&nbsp;&nbsp;&nbsp;Location:
-                                </strong>
-                                <?php echo $row['hotel_location']; ?>
-                            </p>
-                            <p style="margin-top: 15px;"<strong>&nbsp;&nbsp;&nbsp;Regular Booking:
-                                </strong>
-                                <del><span style="color:red">৳<?php echo $row['regular_booking_price']; ?></span></del>
-                            </p>
-                            <br>
-
-
-                            <div>
-                            <p style="margin-top: 15px;"<strong>&nbsp;&nbsp;&nbsp;Discount Booking:
-                                </strong>
-                            <span class="price text" >৳<?php echo $row['discounted_booking_price']; ?></span>
-
-                </p>  
-                        </div>
-
-                            <div>
-                            <img src="<?php echo $row['hotel_image']; ?>" alt=""style="width:50%">
-                             
-                            <div>
-                            <p style="margin-top: 15px;"<strong>&nbsp;&nbsp;&nbsp;Description:
-                                </strong>
-                            <span class="price text" ><?php echo $row['hotel_services']; ?></span>
-
-                </p>  
-                        </div>
-
-                        </div>
-
-                    </div>
-
-                    <?php
-
-
-                }
-            } else {
-                echo "No hotel found";
-            }
-
-            ?>
-
-                
- 
-
+       
     </main>
+
+    <script type="text/javascript">
+  $(document).ready(function(){
+    $("#search").click(function(){
+      $.ajax({
+        type:'POST',
+        url:'./Search/hotel_search.php',
+        data:{
+         
+          hotel_location:$("#hotel_location").val(),
+          booking_date:$("#booking_date").val(),
+        },
+        
+        success:function(data){
+          $("#output").html(data);
+        }
+      });
+    });
+  });
+</script>
     
     
 
@@ -141,7 +159,7 @@
     <footer>
         
     <?php
-            include './footer.php';
+            // include './footer.php';
             ?> 
     </footer>
 

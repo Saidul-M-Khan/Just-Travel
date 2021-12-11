@@ -11,14 +11,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
 
     <link rel="stylesheet" href="./css/header.css">
         <link rel="stylesheet" href="./css/banner.css">
-        <link rel="stylesheet" href="./css/footer.css">
+        <!-- <link rel="stylesheet" href="./css/footer.css"> -->
         <link rel="stylesheet" href="./css/body.css">
-        <!-- <link rel="stylesheet" href="./css/launch.css"> -->
-       
+        <link rel="stylesheet" href="./css/style.css">
+       <style>
+         #launch_bgimage {
+  border: 2px solid black;
+  padding: 150px;
+  background: url(../images/launch_bgimage.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 160%;
+}
+table {
+    width: 50%;
+}
+th {
+    background: #f1f1f1;
+    font-weight: bold;
+    padding: 6px;
+}
+td {
+    background: #f9f9f9;
+    padding: 6px;
+}
+
+         </style>
     
     <title>Launch</title>
     <header>
@@ -31,11 +54,16 @@
 
 <body>
     <main >
-        
-            <h1><Strong>Main Section</Strong></h1>
-            <h4>
-            
-                <fieldset>
+        <center>
+    <div id="launch_bgimage">
+    <h1><strong>Launch Ticket Search</strong></h1>
+  
+    </div>
+        </center>
+
+          
+            <center>
+                
                     <legend><h3>Launch Travel Information</h3></legend>
               
                     <h4>Destination</h4>
@@ -66,14 +94,13 @@
                         <option value="khulna">Khulna</option>
                         </select>
                         
-                          <!-- <label>Cabin Type:</label>
-                        <select>
+                          <label>Cabin Type:</label>
+                        <select name="launch_deck_type" id="launch_deck_type">
                             <option value=""></option>
-                            <option value="vip">VIP</option>
-                            <option value="upper deck">Upper Deck</option>
-                            <option value="lower deck">Lower Deck</option>
-                            <option value="standard cabin">Standard Cabin</option>
-                            </select> -->
+                            <option value="upper_deck_ac">UPPER-DECK(AC)</option>
+                            <option value="upper_deck_non-ac">UPPER-DECK(Non-AC)</option>
+                            
+                            </select>
                             
                     
 
@@ -82,8 +109,14 @@
                      
               
                      
-                    <!-- <input type="submit"  name="search launches" id="search" value="Search launches"><br><br> -->
-                    <button id="search" class="search-btn button" onclick="toggle()"> <label for="show">Search</label> </button>
+<button id="search" class="search-btn button" onclick="toggle()"> <label for="show" style="color:#4FC3A1;">Search</label> </button>
+                   
+            </center>
+
+                   
+                 
+                   <div id="searchResults">
+                    <!-- POP UP SEARCH  -->
                     <div>
                         <input type="checkbox" id="show">
                         <div class="output-container">
@@ -92,34 +125,46 @@
                                 <table class="fl-table">
                                     <thead>
                                         <tr>
-
-                                            <th>Operator Name</th>
+                                        <th>Operator Name</th>
           <th>Deck Type</th>
           <th>Ticket Price</th>
           <th>Ticket Available</th>
           <th>Seat Available</th>
           <th>Destination</th>
-          <th>Start Location</th>
-          <th>End Location</th>
-          <th>Journey Date</th>
+           <th>Journey Date</th>
           <th>Arrival Time</th>
           <th>Departure Time</th>
           <th>Image</th>
-                                            <!-- <th>Buy</th> -->
                                         </tr>
                                     </thead>
                                     <tbody id="output">
-
+ 
                                     <tbody>
                                 </table>
                             </div>
                         </div>
-                    </div> 
-                  
-                  </fieldset>
+                    </div>
+                </div>
+                
                
-            </h4> 
+            
         </main>
+        <div style="width:100%; margin:0 auto;">
+                    
+
+                <section class="launch_route">
+
+                    <center>
+                        <table id="launch_route">
+                            <tr>
+                                <th>
+                                    <h2>LAUNCH ROUTES</h2>
+                                </th>
+                            </tr>
+                        </table>
+                    </center>
+
+                </section>
 
        
 
@@ -133,6 +178,7 @@
          
           start_location:$("#start_location").val(),
           end_location:$("#end_location").val(),
+          launch_deck_type:$("#launch_deck_type").val(),
           journey_date:$("#journey_date").val(),
         },
         
@@ -144,11 +190,29 @@
   });
 </script>
 
+<script type="text/javascript">
+            $.ajax({
+                url: '../model/json/launch_route.json',
+                dataType: 'json',
+                success: function(data) {
+                    for (var i = 0; i < data.length; i++) {
+                        var row = $('<tr><td><style="text-decoration:none; color:black">&nbsp;&nbsp;' + data[i].name + '</style=></td></tr>');
+                        $('#launch_route').append(row);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+        alert('Error: ' + textStatus + ' - ' + errorThrown);
+                }    
+    });
+
+
+        </script>
+
     <footer>
         
     <?php
-            include './footer.php';
-            ?> 
+            // include './footer.php';
+            // ?> 
     </footer>
 
     <script src="./js/header.js"></script>

@@ -1,27 +1,21 @@
 <?php
-               include_once '../../model/db.php';
-            //    if($mysqli->connect_error) {
-            //     exit('Could not connect');
-            //   }
-                $query = "SELECT place_id, place_name, place_description, place_image FROM places WHERE place_id = ?";
-                // $query = "SELECT * FROM places";
 
-                $stmt = $mysqli->prepare($query);
-                $stmt->bind_param("s", $_GET['q']);
-                $stmt->execute();
-                $stmt->store_result();
-                $stmt->bind_result($place_id, $place_name, $place_description, $place_image);
-                $stmt->fetch();
-                $stmt->close();
+include_once '../../model/db.php';
+$places = $_POST['places'];
 
-                echo "<table>";
-                echo "<tr>";
-                echo "<th>placeName</th>";
-                echo "<td>" . $place_name . "</td>";
-                echo "<th>placeDescription</th>";
-                echo "<td>" . $place_description . "</td>";
-                echo "<th>Image</th>";
-                echo "<td>" . $place_image . "</td>";
-                echo "</tr>";
-                echo "</table>";
-                ?>
+$sql = "SELECT * FROM places WHERE (place_name LIKE '%$places%')";
+$result = mysqli_query($connection,$sql);
+if(mysqli_num_rows($result)>0){
+	while ($row=mysqli_fetch_assoc($result)) {
+		echo "	<tr>
+		          <td>".$row['place_name']."</td>
+                  <td>".$row['place_description']."</td>
+                 <td><img src=".$row['place_image']." style=\"width:50px;height:50px;\" > </td>
+		        </tr>";
+	}
+}
+else{
+	echo "<tr><td>0 result's found</td></tr>";
+}
+
+?>
