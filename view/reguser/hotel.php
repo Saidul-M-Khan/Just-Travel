@@ -95,6 +95,7 @@ if (isset($_COOKIE['flag'])) {
                                         <span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true" style="color:azure"></i></span>
                                         <span class="buy text" style="color:azure">Book Now</span>
                                     </button>
+                                    <input type="submit" class="btn" role="button">
                                 </div>
 
                             </div>
