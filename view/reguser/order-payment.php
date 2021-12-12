@@ -42,6 +42,8 @@ if (isset($_COOKIE['flag'])) {
                 <input type="hidden" name="price" value="<?php echo $_POST['price'] ?>">
                 <input type="hidden" name="payment_method" value="<?php echo $_POST['payment_method'] ?>">
                 <input type="hidden" name="status" value="<?php echo $_POST['status'] ?>">
+                <!-- <input type="hidden" name="id" value="<?php //echo $_POST['id'] 
+                                                            ?>"> -->
 
                 <div class="form-container">
                     <div class="body-text">
@@ -64,7 +66,7 @@ if (isset($_COOKIE['flag'])) {
                     <input id="cardEmail" type="email" name="email" required="required" autocomplete="on" maxlength="40" placeholder="Email" onchange="CheckEmail(document.getElementById('cardEmail').value)" />
                     <input id="payment-button" type="submit" value="Submit" onclick="validatePayment()" />
                 </div>
-                
+
             </form>
         </main>
 
@@ -83,6 +85,6 @@ if (isset($_COOKIE['flag'])) {
     </html>
 <?php
 } else {
-    header('location: ../../control/user-login.php');
+    header('location: ../../control/login.php');
 }
 ?>

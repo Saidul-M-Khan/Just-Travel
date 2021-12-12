@@ -6,7 +6,7 @@ require_once('../../model/db.php');
 
 if (isset($_COOKIE['flag'])) {
     $con = getConnection();
-    $sql = "insert into booking values('{$_POST['bookingID']}', '{$_SESSION['username']}', '{$_POST['booking_for']}', '{$_POST['name']}', '{$_POST['location']}', '{$_POST['booking_price']}', '{$_POST['booking_payment_method']}', '{$_POST['booking_status']}', '{$_POST['start_date']}', '{$_POST['end_date']}')";
+    $sql = "insert into booking values('{$_POST['bookingID']}', '{$_SESSION['username']}', '{$_POST['booking_for']}', '{$_POST['name']}', '{$_POST['location']}', '{$_POST['booking_price']}', '{$_POST['booking_payment_method']}', '{$_POST['booking_status']}', '{$_POST['start_date']}', '{$_POST['end_date']}','')";
 
     mysqli_query($con, $sql);
 
@@ -47,6 +47,6 @@ if (isset($_COOKIE['flag'])) {
 
 <?php
 } else {
-    header('location: ../../control/user-login.php');
+    header('location: ../../control/login.php');
 }
 ?>

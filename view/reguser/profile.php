@@ -1,19 +1,12 @@
 <?php
 session_start();
 
-
-// include('../../model/model.php');
 if (isset($_COOKIE['flag'])) {
     include("../../model/db.php");
     $Username = $_SESSION['username'];
 
-    // $query = "SELECT * FROM users where user_username='Saidul_Khan'";
-
-    // $ID = $_SESSION["NID"];
     $query = "SELECT * FROM users WHERE username='$Username'";
     $query_run = mysqli_query($connection, $query);
-
-
 
     // check if profile exists
     if (mysqli_num_rows($query_run) > 0) {
@@ -72,52 +65,13 @@ if (isset($_COOKIE['flag'])) {
                 </center>
                 <br>
                 <br>
-                <!-- <p><strong><i style="color:cyan" class="fas fa-user"></i>&nbsp;&nbsp;&nbsp;Name:</strong>&nbsp;
-                    <?php
-                    // echo $row['fname'];
-                    ?></p> -->
                 <p><strong><i style="color:cyan" class="fas fa-users"></i>&nbsp;&nbsp;&nbsp;Role:</strong>&nbsp;<?php echo $row['role']; ?></p>
                 <p><strong><i style="color:cyan" class="far fa-user-circle"></i>&nbsp;&nbsp;&nbsp;Username:</strong>&nbsp;<?php echo $row['username']; ?></p>
                 <p><strong><i style="color:cyan" class="fas fa-lock"></i>&nbsp;&nbsp;&nbsp;Password:</strong>&nbsp;<?php echo $row['password']; ?>
                 <p><strong><i style="color:cyan" class="fas fa-at"></i>&nbsp;&nbsp;&nbsp;Email:</strong>&nbsp;<?php echo $row['email']; ?>
                 </p>
-
-                <!-- <p><strong><i style="color:cyan" class="fas fa-venus-mars"></i>&nbsp;&nbsp;&nbsp;Gender:</strong>&nbsp;
-                <?php
-                // echo $row['gender'] 
-                ?>
-                </p> -->
-                <!-- <p><strong><i style="color:cyan" class="fas fa-birthday-cake"></i>&nbsp;&nbsp;&nbsp;Date of Birth:</strong>&nbsp;
-                <?php
-                // echo $row['dob'] 
-                ?>
-                </p> -->
-
-
-
-
-
-                <!-- <p><strong><i class="fas fa-venus-mars"></i>&nbsp;&nbsp;&nbsp;Gender:</strong>&nbsp;<?php
-                                                                                                            // echo $row['user_gender']; 
-                                                                                                            ?>
-                </p> -->
-                <!-- <br> -->
-                <!-- <p><strong><i class="fas fa-baby"></i>&nbsp;&nbsp;&nbsp;Date of
-                        Birth:</strong>&nbsp;<?php
-                                                // echo $row['user_dob']; 
-                                                ?></p> -->
-                <!-- <br> -->
-                <!-- <p><strong><i class="fas fa-house-user"></i>&nbsp;&nbsp;&nbsp;Address:</strong>&nbsp;383/1 Free School Street, Dhanmondi, Dhaka-1205</p> -->
-                <!-- <br> -->
                 <center>
-                    <!-- <fieldset style="width:120px;">
-                        <a href="edit-profile.php" style="text-decoration:none; color:white"><i class="far fa-edit"></i>&nbsp;Edit Profile</a>
-                    </fieldset> -->
-                    <a href="edit-profile.php?id=<?php echo $row['id']; ?>"> <button class="profileButton" role="button">Edit Profile</button> </a>
-
-                    <!-- <fieldset style="width:35%; margin-top: 10px;">
-                        <a href="order-status.php" style="text-decoration:none; color:white"><i class="fas fa-shopping-cart"></i>&nbsp;See Order Status</a>
-                    </fieldset> -->
+                    <a href="edit-profile.php?id=<?php echo $row['id']; ?>"> <button class="profileButton" role="button">Edit Profile</button></a>
                     <a href="./order-status.php"><button class="profileButton" role="button">See Order Status</button></a>
                 </center>
             </div>
@@ -137,6 +91,6 @@ if (isset($_COOKIE['flag'])) {
 
 <?php
 } else {
-    header('location: ../control/user-login.php');
+    header('location: ../../control/login.php');
 }
 ?>

@@ -6,7 +6,7 @@ require_once('../../model/db.php');
 
 if (isset($_COOKIE['flag'])) {
     $con = getConnection();
-    $sql = "insert into orders values('{$_POST['orderID']}', '{$_SESSION['username']}', '{$_POST['journey_by']}', '{$_POST['transport_name']}', '{$_POST['ticket_type']}', '{$_POST['journey_date']}', '{$_POST['start_location']}', '{$_POST['end_location']}', '{$_POST['arrival_time']}', '{$_POST['departure_time']}', '{$_POST['price']}', '{$_POST['payment_method']}', '{$_POST['status']}')";
+    $sql = "insert into orders values('{$_POST['orderID']}', '{$_SESSION['username']}', '{$_POST['journey_by']}', '{$_POST['transport_name']}', '{$_POST['ticket_type']}', '{$_POST['journey_date']}', '{$_POST['start_location']}', '{$_POST['end_location']}', '{$_POST['arrival_time']}', '{$_POST['departure_time']}', '{$_POST['price']}', '{$_POST['payment_method']}', '{$_POST['status']}', '')";
 
     mysqli_query($con, $sql);
 
@@ -48,6 +48,6 @@ if (isset($_COOKIE['flag'])) {
 
 <?php
 } else {
-    header('location: ../../control/user-login.php');
+    header('location: ../../control/login.php');
 }
 ?>

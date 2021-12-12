@@ -1,19 +1,7 @@
 <?php
 
-require('db.php');
-// include('./db.php');
+require_once('db.php');
 
-// function addProduct($product)
-// {
-//     $con = getConnection();
-//     $sql = "insert into products values('', '{$product['product_name']}', '{$product['product_buying_price']}', '{$product['product_selling_price']}', '{$product['displayable']}')";
-
-//     if (mysqli_query($con, $sql)) {
-//         return true;
-//     } else {
-//         return false;
-//     }
-// }
 
 function getAllBusTicket()
 {
@@ -185,15 +173,12 @@ function deleteProfile($id)
 function cancelOrder($order_id)
 {
     $con = getConnection();
-    $con = mysqli_connect('localhost', 'root', 'root', 'just-travel');
     $sql = "delete from orders where order_id='{$order_id}'";
     if (mysqli_query($con, $sql)) {
         return true;
     } else {
         return false;
     }
-
-    // mysqli_query($con, $sql);
 }
 
 function cancelBooking($booking_id)

@@ -1,15 +1,14 @@
 <?php
 
-// Create connection
-include "../../model/db.php";
+include "../../model/model.php";
 
 $start_location = $_POST['startLocation'];
 $end_location = $_POST['endLocation'];
 $journey_date = $_POST['journeyDate'];
-$conn = mysqli_connect('localhost', 'root', 'root', 'just-travel');
+$con = getConnection();
 $sql = "SELECT * FROM launch_ticket WHERE (launch_starting_location LIKE '%$start_location%') AND (launch_ending_location LIKE '%$end_location%') AND (launch_journey_date LIKE '%$journey_date%')";
 
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($con, $sql);
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         echo "	 <tr>

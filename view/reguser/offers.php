@@ -54,7 +54,7 @@ if (isset($_COOKIE['flag'])) {
                                     <tr>
                                         <td>
                                             <ul>
-                                                <h2><?php echo $row['offer_title']; ?></h2>
+                                                <h2><?php echo $row['offer_name']; ?></h2>
                                             </ul>
                                         </td>
                                         <td>
@@ -102,6 +102,6 @@ if (isset($_COOKIE['flag'])) {
     </html>
 <?php
 } else {
-    header('location: ../../control/user-login.php');
+    header('location: ../../control/login.php');
 }
 ?>

@@ -4,16 +4,6 @@ require_once('../../model/model.php');
 $id = $_REQUEST['id'];
 $user = getUserById($id);
 if (isset($_COOKIE['flag'])) {
-    // require("../../model/db.php");
-    // $Username = $_SESSION['username'];
-    // $query = "SELECT * FROM users where user_username='Saidul_Khan'";
-    // $query = "SELECT * FROM users where username='Saidul_Khan'";
-    // $query_run = mysqli_query($connection, $query);
-
-    // check if profile exists
-    // if (mysqli_num_rows($query_run) > 0) {
-    //     $row = mysqli_fetch_assoc($query_run);
-    // }
 ?>
 
     <!DOCTYPE html>
@@ -79,7 +69,6 @@ if (isset($_COOKIE['flag'])) {
                     <center>
 
 
-
                         <?php
                         $msg = "";
 
@@ -91,8 +80,6 @@ if (isset($_COOKIE['flag'])) {
                             $target_file = $target_dir . basename($filename);
                             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
                             $filepath = "";
-
-
 
                             $tempname = $_FILES["fileToUpload"]["tmp_name"];
                             $folder = "../assets/" . $filename;
@@ -117,8 +104,6 @@ if (isset($_COOKIE['flag'])) {
 
                         ?>
 
-
-
                         <?php
                         if (empty($user['photo'])) {
                         ?>
@@ -131,13 +116,12 @@ if (isset($_COOKIE['flag'])) {
                         }
                         ?>
                         <br>
-
-
                         <br><br>
-
-
                         <input type="file" name="fileToUpload" id="fileToUpload" onchange="validateImageAndSize()">
                         <button type="submit" name="upload">UPLOAD</button>
+
+                        </span>
+                        <br>
 
                     </center>
                     <br>
@@ -157,11 +141,7 @@ if (isset($_COOKIE['flag'])) {
                     </p>
 
                     <input type="hidden" name="id" value="<?= $user['id'] ?>">
-                    <!-- <br> -->
-
-                    <center>
-
-                        <button class="profileButton" id="profileEditButton" name="edit-submit" role="button">Submit</button>
+                    <button class="profileButton" id="profileEditButton" name="edit-submit" role="button">Submit</button>
                     </center>
                 </div>
             </form>
@@ -207,6 +187,6 @@ if (isset($_COOKIE['flag'])) {
 
 <?php
 } else {
-    header('location: ../../control/user-login.php');
+    header('location: ../../control/login.php');
 }
 ?>

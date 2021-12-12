@@ -204,7 +204,7 @@ if (isset($_COOKIE['flag'])) {
                     }
 
                     ?>
-                    
+
                 </div>
 
             </section>
@@ -216,7 +216,7 @@ if (isset($_COOKIE['flag'])) {
             </center>
             <section id="pending-orders">
                 <center>
-                    <h1 style="color:darkviolet">Pending Orders</h1>
+                    <h1 style="color:darkviolet">Pending Booking</h1>
                 </center>
 
                 <div class="orders">
@@ -244,7 +244,7 @@ if (isset($_COOKIE['flag'])) {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <h1><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;ORDER ID# <span style="color:blue"><?= $row['booking_id'] ?></span></h1>
+                                        <h1><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;BOOKING ID# <span style="color:blue"><?= $row['booking_id'] ?></span></h1>
                                         <h2><span style="color:brown"><?= $row['name'] ?></span></h2>
                                         <h4><i class="far fa-calendar-alt fa-1x"></i>&nbsp;&nbsp;Event Date:&nbsp; <?= $row['start_date'] ?>&nbsp;<i class="fas fa-arrow-right"></i>&nbsp;<?= $row['end_date'] ?></h4>
                                         <h2><i class="fas fa-hand-holding-usd"></i>&nbsp;&nbsp;Price: <span style="color:red">৳<?= $row['price'] ?></span></h2>
@@ -273,7 +273,7 @@ if (isset($_COOKIE['flag'])) {
 
             <section id="approved-orders">
                 <center>
-                    <h1 style="color:green">Approved Orders</h1>
+                    <h1 style="color:green">Approved Booking</h1>
                 </center>
 
                 <div class="orders">
@@ -301,7 +301,7 @@ if (isset($_COOKIE['flag'])) {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <h1><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;ORDER ID# <span style="color:blue"><?= $row['booking_id'] ?></span></h1>
+                                        <h1><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;BOOKING ID# <span style="color:blue"><?= $row['booking_id'] ?></span></h1>
                                         <h2><span style="color:brown"><?= $row['name'] ?></span></h2>
                                         <h4><i class="far fa-calendar-alt fa-1x"></i>&nbsp;&nbsp;Date:&nbsp; <?= $row['start_date'] ?>&nbsp;<i class="fas fa-arrow-right"></i>&nbsp;<?= $row['end_date'] ?></h4>
                                         <h2><i class="fas fa-hand-holding-usd"></i>&nbsp;&nbsp;Price: <span style="color:red">৳<?= $row['price'] ?></span></h2>
@@ -339,6 +339,6 @@ if (isset($_COOKIE['flag'])) {
     </html>
 <?php
 } else {
-    header('location: ../../control/user-login.php');
+    header('location: ../../control/login.php');
 }
 ?>

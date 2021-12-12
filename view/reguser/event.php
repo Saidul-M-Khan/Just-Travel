@@ -44,7 +44,7 @@ if (isset($_COOKIE['flag'])) {
                 <?php
                 require("../../model/db.php");
 
-                $query = "SELECT * FROM event_ticket where status='approved'";
+                $query = "SELECT * FROM event_ticket";
                 $query_run = mysqli_query($connection, $query);
                 $check_event = mysqli_num_rows($query_run) > 0;
 
@@ -108,15 +108,11 @@ if (isset($_COOKIE['flag'])) {
         </footer>
 
         <script src="./js/header.js"></script>
-
-
-
-
     </body>
 
     </html>
 <?php
 } else {
-    header('location: ../../control/user-login.php');
+    header('location: ../../control/login.php');
 }
 ?>

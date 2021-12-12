@@ -86,6 +86,6 @@ if (isset($_COOKIE['flag'])) {
     </html>
 <?php
 } else {
-    header('location: ../../control/user-login.php');
+    header('location: ../../control/login.php');
 }
 ?>

@@ -45,7 +45,7 @@ if (isset($_COOKIE['flag'])) {
             <?php
             require("../../model/db.php");
 
-            $query = "SELECT * FROM hotel where status='approved'";
+            $query = "SELECT * FROM hotel";
             $query_run = mysqli_query($connection, $query);
             $check_hotel = mysqli_num_rows($query_run) > 0;
 
@@ -95,7 +95,6 @@ if (isset($_COOKIE['flag'])) {
                                         <span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true" style="color:azure"></i></span>
                                         <span class="buy text" style="color:azure">Book Now</span>
                                     </button>
-                                    <input type="submit" class="btn" role="button">
                                 </div>
 
                             </div>
@@ -147,6 +146,6 @@ if (isset($_COOKIE['flag'])) {
     </html>
 <?php
 } else {
-    header('location: ../../control/user-login.php');
+    header('location: ../../control/login.php');
 }
 ?>
