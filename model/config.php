@@ -7,7 +7,7 @@ $database = "ticket_db";
 
 $conn = mysqli_connect($server, $user, $pass, $database);
 
-if (!$conn) {
+ if (!$conn) {
     die("<script>alert('Connection Failed.')</script>");
 }
 
