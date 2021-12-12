@@ -58,34 +58,39 @@ class adduser{
       if (empty($data["Gender"])){
         $this-> error["genderErr"] = "Gender is required";
       }
-      $des = "../upload/" . $data['FileName'];
-
-					$src = $data['Tmp_name'];
+      
 		
-					if (move_uploaded_file($src, $des)) {
-			
-					  header('location:../view/login.php');
-			     echo "done";
-					} else {
-			
-					  echo "Image Upload Error";
-			
-					}
+					
 
       if(empty($this-> error["nameErr"]) && empty($this-> error["emailErr"]) && empty($this-> error["nidErr"]) && empty($this-> error["passwordErr"]) && empty($this-> error["confirm_passwordErr"]) && empty($this-> error["genderErr"])){
 
-        $myfile = fopen('../model/user.txt', 'w');
-        $myuser = $data["Name"]."|".$data["Email"]."|".$data["NID"]."|".$data["Password"]."|"
-        .$data["Gender"];
-        fwrite($myfile, $myuser);
-        fclose($myfile);
+        // $myfile = fopen('../model/user.txt', 'w');
+        // $myuser = $data["Name"]."|".$data["Email"]."|".$data["NID"]."|".$data["Password"]."|"
+        // .$data["Gender"];
+        // fwrite($myfile, $myuser);
+        // fclose($myfile);
 
-        $myfile = fopen('../model/user.txt', 'a');
-        $myuser = $data["Name"]."|".$data["Email"]."|".$data["NID"]."|".$data["Password"]."|"
-        .$data["Gender"]."\r\n";
-        fwrite($myfile, $myuser);
-        fclose($myfile);
+        // $myfile = fopen('../model/user.txt', 'a');
+        // $myuser = $data["Name"]."|".$data["Email"]."|".$data["NID"]."|".$data["Password"]."|"
+        // .$data["Gender"]."\r\n";
+        // fwrite($myfile, $myuser);
+        // fclose($myfile);
+        $Name= $data["Name"];
+        $Email=$data["Email"];
+        $NID=$data["NID"];
+        $Password=$data["Password"];
+        $Gender=$data["Gender"];
+       
+
+        include_once '../model/register_db.php';
+        $sql = "INSERT INTO registration (Name, Email, NID, Password, Gender) VALUES ('$Name','$Email','$NID','$Password','$Gender')";
+			$result = mysqli_query($conn, $sql);
+      if ($result){$this->message = "Registration Successful";
+      }else {
+          $this->message = "Unable to do Registration";
+        }
       }
+
     }
 
     function get_error(){

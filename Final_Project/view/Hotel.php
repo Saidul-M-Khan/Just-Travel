@@ -40,6 +40,88 @@ td {
     padding: 6px;
 }
 
+.hotel_container {
+  position: relative;
+  width: 50%;
+  height: 85%;
+  right: -38%;
+}
+
+.hotel_image {
+  display: block;
+  width: 50%;
+  height: 60%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  width: 50%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #008CBA;
+}
+
+.hotel_container:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.hotel_container1 {
+  position: relative;
+  width: 50%;
+  height: 85%;
+  right: -40%;
+}
+
+.hotel_image1 {
+  display: block;
+  width: 50%;
+  height: 60%;
+}
+
+.overlay1 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  width: 50%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #008CBA;
+}
+
+.hotel_container1:hover .overlay1 {
+  opacity: 1;
+}
+
+.text1 {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
          </style>
     
     <title>Hotel</title>
@@ -130,7 +212,40 @@ td {
           
               
        
-    </main>
+    </main><br><br><br>
+    <center><h1><strong>Hotel Services</strong></h1></center>
+    
+    <div class="hotel_container">
+  <img src="../images/hotel-1.png" alt="Hotel" class="hotel_image">
+  <div class="overlay">
+    <div class="text">
+       <center>
+       <h3>Hotel The Cox Today</h3>
+      <h4><p>Services are not updated</p></h4>
+       </center> 
+    </div>
+  </div>
+</div>
+
+<div class="hotel_container1">
+  <img src="../images/hotel-2.png" alt="Hotel" class="hotel_image1">
+  <div class="overlay1">
+    <div class="text1">
+       <center>
+       <h3>Sayeman Beach Resort</h3>
+      <h3><p>Services:</p></h3>
+      <ul>
+  <li>Free Breakfast</li>
+  <li>Free Wifi</li>
+  <li>Restaurant</li>
+  <li>Beach Access</li>
+  <li>Gym</li>
+
+</ul>  
+       </center> 
+    </div>
+  </div>
+</div>
 
     <script type="text/javascript">
   $(document).ready(function(){

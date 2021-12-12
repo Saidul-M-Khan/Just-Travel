@@ -12,28 +12,46 @@
 				
   
 
-				$myfile = fopen('../model/user.txt', 'r');
+				// $myfile = fopen('../model/user.txt', 'r');
 				
-				while(!feof($myfile)){
+				// while(!feof($myfile)){
 					
-					$data = fgets($myfile);
-					$user = explode('|', $data);		
+				// 	$data = fgets($myfile);
+				// 	$user = explode('|', $data);		
 					
-					if($NID == trim($user[2]) && $Password == trim($user[3])){
-						setcookie('flag', 'true', time()+3600, '/');
-						header('location:../view/home.php');
+				// 	if($NID == trim($user[2]) && $Password == trim($user[3])){
+				// 		setcookie('flag', 'true', time()+3600, '/');
+				// 		header('location:../view/home.php');
+        include_once '../model/register_db.php';
+        $sql = "SELECT * FROM registration WHERE NID='$NID' AND Password='$Password' ";
+	$result = mysqli_query($conn, $sql);
+  if ($result->num_rows > 0) {
+		$row = mysqli_fetch_assoc($result);
+		$_SESSION['NID'] = $row['NID'];
+    
+
+		
+		setcookie('flag', 'true', time()+3600, '/');
+		header("location: home.php");
+	} 
+	else {
+		echo "<script>alert('Woops! User Name or Password is Wrong.')</script>";
+	}
+
+
 					}
 				}
 
-				echo "invalid nid/password";
+				// echo "invalid nid/password";
 
-			}else{
-				echo "invalid password....";
-			}
-		}else{
-			echo "invalid nid....";
-		}
-	 }
+	// 		}else{
+	// 			echo "invalid password....";
+	// 		}
+	// 	}else{
+	// 		echo "invalid nid....";
+	// 	}
+	//  }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -120,14 +138,14 @@ input[type=text]:focus, input[type=password]:focus {
     <main>
 
         <div class="bg-img">
-        <form method="post" class="container";>
+        <form method="post" class="container"onsubmit="return loginValidate() ">
            <h1>LOGIN</h1>
 
            <label for="nid"><b>NID</b></label>
-            <input type="text" placeholder="Enter NID" name="nid" value="">
+            <input type="text" placeholder="Enter NID" name="nid" value="" id="user">
             
            <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" value="">
+            <input type="password" placeholder="Enter Password" name="password" value="" id="pass">
                    
             <button type="submit" class="btn">Login</button>
             <input type="submit" name="submit" value="Submit">
