@@ -154,3 +154,8 @@ body {
         display: block;
     }
 }
+.error {
+    color: red;
+    font-size: 90%;
+}
+
